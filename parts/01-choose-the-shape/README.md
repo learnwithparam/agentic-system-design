@@ -34,12 +34,12 @@ For example, the sample design puts `switch-the-feeder` on the `person` rung. A 
 carries power from a substation to many streets. Its Shape block says:
 
 ```yaml
-  - job: switch-the-feeder
-    rung: person
-    decides_next_step: person
-    trigger: person
-    lifetime: 15 minutes
-    why: Policy rule P1 says only an authorised switching engineer may operate a switch, so no machine sits on this job.
+- job: switch-the-feeder
+  rung: person
+  decides_next_step: person
+  trigger: person
+  lifetime: 15 minutes
+  why: Policy rule P1 says only an authorised switching engineer may operate a switch, so no machine sits on this job.
 ```
 
 | Step                  | Minutes | You produce               | What the check reads                                                                        |

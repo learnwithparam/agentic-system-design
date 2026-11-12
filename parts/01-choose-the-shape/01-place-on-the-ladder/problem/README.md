@@ -61,11 +61,11 @@ Expect: `Done. All 9 rules pass.` and a `Progress:` line.
 
 ## If you get stuck
 
-| What you see                                              | Fix                                                                                     |
-| --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `FAIL design.md has a Shape section`                      | Keep the fence line exactly as ` ```yaml design `. Indent with spaces, not tabs.        |
-| `FAIL ... matches its rung`                               | A workflow is still decided by code, even when one step calls a model.                  |
-| `FAIL ... reserves for a person`                          | Policy rule P1 says no software operates a switch.                                      |
+| What you see                                              | Fix                                                                                          |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `FAIL design.md has a Shape section`                      | Keep the fence line exactly as ` ```yaml design `. Indent with spaces, not tabs.             |
+| `FAIL ... matches its rung`                               | A workflow is still decided by code, even when one step calls a model.                       |
+| `FAIL ... reserves for a person`                          | Policy rule P1 says no software operates a switch.                                           |
 | `FAIL at least one machine job sits below the agent rung` | Ask of each job: could I write every step down before it starts? If yes, it is not an agent. |
 
 To compare, run `bun run verify place-on-the-ladder solution` and read `../solution/design.md`.

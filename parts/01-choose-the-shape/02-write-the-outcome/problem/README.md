@@ -69,12 +69,12 @@ Expect: `Done. All 7 rules pass.` and a `Progress:` line.
 
 ## If you get stuck
 
-| What you see                                        | Fix                                                                                                                       |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `FAIL the metric has a name, a number and a unit`   | Write `target: 45`, not `target: 45 minutes`. The unit goes in `unit:`.                                                   |
-| `FAIL the must-never covers at least one hard rule` | Rules P2 and P3 in `world/policy.md` are the ones a machine could break.                                                  |
-| `FAIL the system of record is the OMS`              | Name tables that exist, such as `outages`, `meter_reads`, `calls`. A notes file or the agent's memory is not a record.    |
-| `FAIL done is a check against OMS records`          | Replace "the agent reports it is fixed" with what the meters in `meter_reads` show.                                       |
+| What you see                                        | Fix                                                                                                                    |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `FAIL the metric has a name, a number and a unit`   | Write `target: 45`, not `target: 45 minutes`. The unit goes in `unit:`.                                                |
+| `FAIL the must-never covers at least one hard rule` | Rules P2 and P3 in `world/policy.md` are the ones a machine could break.                                               |
+| `FAIL the system of record is the OMS`              | Name tables that exist, such as `outages`, `meter_reads`, `calls`. A notes file or the agent's memory is not a record. |
+| `FAIL done is a check against OMS records`          | Replace "the agent reports it is fixed" with what the meters in `meter_reads` show.                                    |
 
 ## Words you will use
 

@@ -46,11 +46,11 @@ For an agent pattern, also add `token_multiplier`: how many times the tokens of 
 For example, the sample answer in `../solution/design.md` picks this for the crew job:
 
 ```yaml
-  - job: plan-the-crews
-    pattern: agent-loop
-    rejected: chain
-    token_multiplier: 4
-    why_not_simpler: A fixed chain cannot react when a repair uncovers a second fault or a crew frees early, which happens on most storm nights.
+- job: plan-the-crews
+  pattern: agent-loop
+  rejected: chain
+  token_multiplier: 4
+  why_not_simpler: A fixed chain cannot react when a repair uncovers a second fault or a crew frees early, which happens on most storm nights.
 ```
 
 A chain is a fixed list of steps. It cannot change its plan halfway, so the crew job needs an agent loop.
