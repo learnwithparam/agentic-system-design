@@ -5,8 +5,7 @@
 The operations director asked for "an AI agent for storm nights". Four jobs hide in that wish, and each one
 has a different right answer. Choosing the shape is a cost decision: Anthropic found that "agents typically
 use about 4x more tokens than chat interactions, and multi-agent systems use about 15x more tokens than
-chats" ([How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system),
-read 12 Nov 2026). It is also a safety decision: one of the four jobs may never be done by software at all.
+chats" ([How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)). It is also a safety decision: one of the four jobs may never be done by software at all.
 
 ```mermaid
 flowchart TB

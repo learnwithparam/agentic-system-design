@@ -10,7 +10,7 @@ decides whether the system pays: Freedom Forever, the largest residential solar 
 States, reports that its permit email agent processed "approximately 19,000 emails in its first month",
 fully handled "about 71%", and that "each execution costs $0.20–$0.35", "two to five times less than the
 human equivalent" ([Claude customer story, Freedom Forever](https://claude.com/customers/freedom-forever),
-a vendor claim, read 12 Nov 2026).
+a vendor claim).
 
 ```mermaid
 sequenceDiagram

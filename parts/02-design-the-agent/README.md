@@ -7,8 +7,7 @@ Status: planned. A part session builds the step folders from [PARTS.md](../../PA
 The crew plan agent can assign crews, send texts and close outages. Every tool it holds is a way to be wrong
 at speed, and a human gate only helps if people read what they approve. Anthropic reports that people
 "accept 93%" of the permission prompts Claude Code shows them anyway
-([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode), 25 Mar 2026, read
-12 Nov 2026). A gate that a tired desk lead clicks through on a storm night is not a gate.
+([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). A gate that a tired desk lead clicks through on a storm night is not a gate.
 
 ```mermaid
 flowchart LR

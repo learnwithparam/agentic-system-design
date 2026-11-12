@@ -6,10 +6,9 @@ Status: planned. A part session builds the step folders from [PARTS.md](../../PA
 
 A review board has three skeptics: finance, security and the head of control room operations. Each will
 ask what a number means before they trust it. Even one public case can carry two claims: AES's story says
-"96% faster" audit results in its headline, and in its body that reports "that took two weeks to complete
-can now be generated in about an hour" and "Reduced audit costs by 99%"
-([Claude customer story, AES](https://claude.com/customers/aes), a vendor claim, read 12 Nov 2026). A
-reviewer's first question is always: compared with what?
+"96% faster" for audit results and also "Reduced audit costs by 99%"
+([Claude customer story, AES](https://claude.com/customers/aes), a vendor claim). Faster than what, and
+99% of which costs? A reviewer's first question is always: compared with what?
 
 ```mermaid
 flowchart LR

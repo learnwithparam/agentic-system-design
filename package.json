@@ -9,7 +9,8 @@
     "world": "bun world/world.ts",
     "storm": "bun finished/storm.ts",
     "models": "bun scripts/models.ts",
-    "shots": "bun scripts/shots.ts"
+    "shots": "bun scripts/shots.ts",
+    "test": "bun test"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "4.0.103",
