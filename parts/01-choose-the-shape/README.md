@@ -36,22 +36,22 @@ step.
 bun run verify place-on-the-ladder
 ```
 
-Expect: `Done. All 9 rules pass.`
+Expect: `Done. All 9 rules pass.` once your Shape section is filled.
 
 ```bash
 bun run verify write-the-outcome
 ```
 
-Expect: `Done. All 7 rules pass.`
+Expect: `Done. All 7 rules pass.` once your Outcome section is filled.
 
 ```bash
 bun run verify pick-the-pattern
 ```
 
-Expect: `Done. All 6 rules pass.`
+Expect: `Done. All 6 rules pass.` once your Pattern section is filled.
 
 ```bash
 bun run verify part choose-the-shape
 ```
 
-Expect: `Part choose-the-shape is done: 3/3 steps pass.`
+Expect: `Part choose-the-shape is done: 3/3 steps pass.` once all three sections pass.
