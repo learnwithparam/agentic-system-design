@@ -70,7 +70,10 @@ for (const p of ps) {
     if (walk === undefined) fail(readme, `part README needs a "## Walkthrough" section`);
     else if (!walk.includes("```bash")) fail(readme, "the walkthrough needs the commands, each with an Expect: line");
   }
-  if (p.steps.length === 0) fail(p.dir, "part has no steps");
+  // A part a later session will build may have no steps yet, only when its README says "Status: planned".
+  const planned = existsSync(readme) && /^Status: planned\./m.test(read(readme));
+  if (p.steps.length === 0 && !planned) fail(p.dir, "part has no steps");
+  if (p.steps.length > 0 && planned) fail(readme, `the part has steps, so remove the "Status: planned." line`);
   for (const s of p.steps) {
     if (!VERB_THING.test(s.name)) fail(s.dir, `step name "${s.name}" must be verb-thing in lower case`);
     if (seen.has(s.name)) fail(s.dir, `step name "${s.name}" is used twice`);
