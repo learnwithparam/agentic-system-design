@@ -44,7 +44,7 @@ export function reset(dir = stateDir()) {
   rmSync(dir, { recursive: true, force: true });
   mkdirSync(dir, { recursive: true });
   const db = new Database(p.oms, { create: true });
-  db.exec("PRAGMA journal_mode = DELETE;");
+  db.exec("PRAGMA journal_mode = DELETE; PRAGMA synchronous = OFF;");
   db.exec(SCHEMA);
   const net = seed.network();
   const tx = db.transaction(() => {
@@ -67,7 +67,9 @@ export function reset(dir = stateDir()) {
 export function open(dir = stateDir(), readonly = false) {
   const p = paths(dir);
   if (!existsSync(p.oms)) throw new Error(`No OMS at ${p.oms}. Run: bun run world reset`);
-  return new Database(p.oms, readonly ? { readonly: true } : undefined);
+  const db = new Database(p.oms, readonly ? { readonly: true } : undefined);
+  if (!readonly) db.exec("PRAGMA synchronous = OFF;");
+  return db;
 }
 
 export function tables(dir = stateDir()): string[] {
