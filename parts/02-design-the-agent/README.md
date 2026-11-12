@@ -56,8 +56,8 @@ the human gate, and if nobody answers in time, the system stops and waits.
 
 A few words from the table. A risk tier is how much harm a wrong call can do. A write you cannot undo is always tier high. A
 response size cap is the most text a tool may send back to the model. A memory layer is where a fact is kept.
-It may sit in the context (what the model reads on this call), in run state (notes the harness keeps for one
-run), in long-term notes, or in the OMS.
+It can sit in four places. The context is what the model reads on this call. Run state is notes the
+harness keeps for one run. Long-term notes last across runs. The OMS is the outage system itself.
 
 Gates per shift matters because people get tired. Your desk lead works a shift of `480` minutes. In a storm
 month, the desk handles `420` outages. If every outage asks for several approvals, the lead stops reading
