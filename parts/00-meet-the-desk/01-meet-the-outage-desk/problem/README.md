@@ -17,8 +17,8 @@ flowchart LR
   E --> B
 ```
 
-The ledger is a log file with one line for each model call and its cost. The events log has one line for
-each tool the system used. It also logs each gate, which is a rule in code that can stop an action.
+The ledger logs each model call and its cost. The events log has a line for each tool the system used. It
+also logs each gate, a rule in code that can stop an action.
 
 ## Your challenge
 
@@ -55,7 +55,7 @@ And one blocked line in `events.jsonl` looks like this:
 ```
 
 Here the agent tried to close outage `OUT-028`. Rule `P2` stopped it, because 151 smart meters behind it
-still had no power. Your `run` id will be different.
+still had no power. Your `run` id will differ.
 
 ## Done when
 

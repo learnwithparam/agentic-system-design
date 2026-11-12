@@ -2,16 +2,12 @@
 
 ## The problem
 
-Think back to the storm night you watched in orientation. Twice, the sample design's agent tried to close an
-outage because the crew said it was fixed. But smart meters behind those outages were still dark.
+On the storm night you watched, the agent twice tried to close an outage because the crew said so. But smart
+meters behind those outages were still dark.
 
-Picture a design that says "done" whenever the agent says done. It would send the crews home and leave a
-care home without power. So before you pick a pattern, you write down four things:
-
-- what success means,
-- how you measure it,
-- what must never happen,
-- where the truth lives.
+Trusting the agent's "done" would send the crews home and leave a care home without power. So before you
+pick a pattern, write down what success means and how you measure it. Also write what must never happen, and
+where the truth lives.
 
 ```mermaid
 flowchart LR
@@ -23,8 +19,7 @@ flowchart LR
 
 ## Your challenge
 
-Your Shape section is already in `design.md`. You may paste in your own from the last step if you prefer
-it. Under `## Outcome`, fill the block:
+Your Shape section is already in `design.md` (or paste in your own). Under `## Outcome`, fill the block:
 
 | Field              | What to write                                                         |
 | ------------------ | --------------------------------------------------------------------- |
@@ -34,7 +29,7 @@ it. Under `## Outcome`, fill the block:
 | `system_of_record` | `name: oms` and the `records` (OMS tables) your outcome depends on    |
 | `done_when`        | Each item has a `check` a person could run, and the tables it `reads` |
 
-For example, the sample answer in `../solution/design.md` writes its metric and one done check like this:
+For example, the sample answer in `../solution/design.md` has this metric and done check:
 
 ```yaml
 metric:
@@ -46,10 +41,9 @@ done_when:
     reads: [outages, meter_reads]
 ```
 
-The target is a plain number, and the unit has its own line. The check reads two OMS tables. It does not
-take anyone's word.
+The done check reads two OMS tables. It takes nobody's word.
 
-The OMS tables are listed in `world/README.md`. To see them yourself:
+`world/README.md` lists the OMS tables. To see them:
 
 ```bash
 bun run world
@@ -65,7 +59,7 @@ Expect: `The world is ready. Next: bun run storm`
 - Every must-never contains the word never.
 - At least one must-never covers a hard rule in `world/desk.yaml`.
 - The system of record is the OMS, and every record it names is an OMS table.
-- Every done check reads OMS tables. It never relies on someone saying it is done.
+- Every done check reads OMS tables, never someone saying it is done.
 
 ```bash
 bun run verify write-the-outcome
@@ -84,8 +78,7 @@ Expect: `Done. All 7 rules pass.` and a `Progress:` line.
 
 ## Words you will use
 
-- **Outcome**: the change in the world that the system exists to make.
+- **Outcome**: the change in the world the system exists to make.
 - **Metric**: the number that tells you how well the system meets the outcome.
 - **Must-never**: an action the system may never take, whatever the model decides.
 - **System of record**: the place the business treats as the truth. Here, it is the OMS.
-- **OMS table**: one table in the OMS database, such as `outages` or `meter_reads`.

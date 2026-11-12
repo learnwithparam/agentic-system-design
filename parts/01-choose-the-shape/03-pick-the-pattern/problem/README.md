@@ -2,13 +2,16 @@
 
 ## The problem
 
-A rung says who decides; a pattern says how the work flows. Teams often jump to the most complex pattern
-because it demos well. Microsoft's pattern guide lists "Adding agents that don't provide meaningful
-specialization" as an antipattern
+A rung says who decides. A pattern says how the work flows from step to step. Teams often jump to the most
+complex pattern because it looks good in a demo.
+
+Microsoft's pattern guide warns against this. It lists "Adding agents that don't provide meaningful
+specialization" as an antipattern, that is, a common mistake
 ([Azure Architecture Center, AI agent orchestration patterns](https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/ai-ml/guide/ai-agent-design-patterns.md)).
-Each step up costs tokens: about 4 times a chat for one agent, about 15 times for many
-([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). Pick the simplest
-pattern that works, and say why the next simpler one fails.
+
+Each step up also costs more tokens. One agent uses about 4 times the tokens of a chat. Many agents use about
+15 times ([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). So pick the
+simplest pattern that works. Then say why the next simpler one fails.
 
 ```mermaid
 flowchart LR
@@ -19,9 +22,11 @@ flowchart LR
   AL --> MA[many-agents]
 ```
 
+The simplest pattern is on the left, the most costly on the right.
+
 ## Your challenge
 
-Under `## Pattern` in `design.md`, give each job one pattern that fits its rung in your Shape section:
+Find `## Pattern` in `design.md`. Give each job one pattern that fits its rung in your Shape section:
 
 | Rung          | Patterns that fit                                                           |
 | ------------- | --------------------------------------------------------------------------- |
@@ -31,9 +36,25 @@ Under `## Pattern` in `design.md`, give each job one pattern that fits its rung 
 | `agent`       | `agent-loop`                                                                |
 | `many-agents` | `many-agents`                                                               |
 
-For every machine job, add `rejected` (a simpler pattern you considered, or `none` for a single call) and
-`why_not_simpler` (the fact of the storm desk that breaks it). For an agent pattern, add `token_multiplier`:
-how many times the tokens of a chat you expect it to use.
+For every machine job, add two more fields:
+
+- `rejected`: a simpler pattern you thought about. Write `none` for a single call.
+- `why_not_simpler`: the fact of the storm desk that breaks that simpler pattern.
+
+For an agent pattern, also add `token_multiplier`: how many times the tokens of a chat you expect it to use.
+
+For example, the sample answer in `../solution/design.md` picks this for the crew job:
+
+```yaml
+  - job: plan-the-crews
+    pattern: agent-loop
+    rejected: chain
+    token_multiplier: 4
+    why_not_simpler: A fixed chain cannot react when a repair uncovers a second fault or a crew frees early, which happens on most storm nights.
+```
+
+A chain is a fixed list of steps. It cannot change its plan halfway, so the crew job needs an agent loop.
+The multiplier of 4 matches what Anthropic measured for one agent.
 
 ## Done when
 
@@ -55,12 +76,14 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 | What you see                                                 | Fix                                                                           |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | `FAIL every pattern is on the list and fits the job's rung`  | Change the pattern, or go back and change the rung in Shape. They must agree. |
-| `FAIL every machine job names a simpler pattern it rejected` | `rejected` must sit lower on the diagram above than your choice.              |
+| `FAIL every machine job names a simpler pattern it rejected` | `rejected` must sit further left on the diagram above than your choice.       |
 | `FAIL ... token multiplier`                                  | One agent: 3 to 5. Many agents: 10 to 20.                                     |
 
 ## Words you will use
 
-- **Route**: code sends each input down one of several paths, such as meter alarms one way and text another.
+- **Pattern**: the way the work flows through code and model calls for one job.
+- **Route**: code sends each input down one of several paths. For example, meter alarms go one way and texts
+  go another.
 - **Chain**: fixed steps in order, each feeding the next.
-- **Orchestrator-workers**: one model splits a task and hands parts to other calls.
+- **Orchestrator-workers**: one model splits a task and hands the parts to other calls.
 - **Token multiplier**: how many times more tokens a design uses than a single chat answer.
