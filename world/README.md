@@ -61,6 +61,24 @@ The start files for the world live in `seed/`. `bun run world reset` reads them.
 | `desk.yaml`           | The desk's jobs, hard rules and monthly volumes, as the checks read them             |
 | `policy.md`           | The desk's written rules                                                             |
 
+For example, here are the first three reports of the storm night:
+
+```bash
+head -3 world/seed/reports.jsonl
+```
+
+Expect: three lines, `RPT-0001` to `RPT-0003`.
+
+```text
+{"id":"RPT-0001","at":1,"channel":"text","customer_hint":null,"text":"Only my kitchen sockets are off at 83 Thorn Lane, the rest of the house works."}
+{"id":"RPT-0002","at":1,"channel":"meter","customer_hint":"C02817","text":"LAST_GASP"}
+{"id":"RPT-0003","at":1,"channel":"meter","customer_hint":"C02819","text":"LAST_GASP"}
+```
+
+The first is a text from a person. Only part of the house is off, so it is likely not a fault on the
+network. The next two are smart meter alarms. `LAST_GASP` is the last message a meter sends as it loses
+power.
+
 ## The system of record
 
 The OMS is the outage management system. Here it is `state/oms.db`, a SQLite file. SQLite is a small

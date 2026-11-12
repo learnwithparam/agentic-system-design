@@ -18,9 +18,11 @@ parts of a design, a cost model and a review of real systems.
 **The world.** The course is set in a made-up company, Copperbeck Power. It brings power to homes in one
 region. You work on its storm outage desk, the team that handles power cuts on a storm night.
 
-For example, in one storm night the desk gets 4,200 reports. It serves 9,000 customers on 12 feeders. A
-feeder is one power line that leaves a substation and runs down many streets. The desk has 9 repair crews
-and 9 critical customers, such as a hospital. Its boss asked for "an AI agent for storm nights".
+For example, in one storm night the desk gets 4,200 reports. A substation is a site that sends power out
+to the streets. A feeder is one power line that leaves a substation and runs down many streets.
+
+The desk serves 9,000 customers on 12 feeders. It has 9 repair crews and 9 critical customers, such as a
+hospital. The desk's operations director asked for "an AI agent for storm nights".
 
 ## Run the finished system
 
@@ -144,7 +146,7 @@ A reviewer looks for four things in the first minute:
 | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------- |
 | [Building effective agents](https://www.anthropic.com/research/building-effective-agents), Anthropic                         | The ladder and the workflow patterns this course uses               | 15      |
 | [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system), Anthropic | What many agents really cost: about 15 times the tokens of a chat   | 20      |
-| [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents), Anthropic              | What a tool is, and why fewer, clearer tools win                    | 15      |
+| [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents), Anthropic              | What a tool is, and why fewer, clearer tools work better            | 15      |
 | [Freedom Forever customer story](https://claude.com/customers/freedom-forever), a vendor claim                               | A cost per outcome from a real system: $0.20 to $0.35 per execution | 5       |
 
 A token is a small piece of text, about three quarters of a word. Model companies charge by the token.
