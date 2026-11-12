@@ -19,16 +19,17 @@ jobs:
     why: Policy rule P1. Only an authorised switching engineer may operate a switch.
 
 # Hard rules from policy.md. A design's must-never covers at least one of them.
+# A rule is covered when a must-never line matches every keyword (each keyword is a pattern; | means or).
 hard_rules:
   - id: P1
     rule: Only an authorised switching engineer operates a switch, recloser or fuse.
-    keywords: [switch, recloser, feeder]
+    keywords: ["switch|recloser|feeder"]
   - id: P2
     rule: An outage is closed only when every smart meter behind its device reports power.
-    keywords: [close, meter]
+    keywords: ["clos", "meter"]
   - id: P3
     rule: A critical customer hears a restore time from a person, never only from a machine.
-    keywords: [critical, hospital, oxygen, care]
+    keywords: ["critical|hospital|oxygen|care home"]
 
 # Copperbeck's own records (synthetic). The cost steps price a design at these volumes.
 volumes:
