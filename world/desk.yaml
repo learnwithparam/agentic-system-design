@@ -1,0 +1,47 @@
+# The storm desk at Copperbeck Power, as the checks read it. Prose versions are in README.md and policy.md.
+company: Copperbeck Power
+system_of_record: oms   # world/state/oms.db, the outage management system
+
+# The four jobs hidden inside "we want an AI agent for storm nights".
+jobs:
+  - id: group-the-reports
+    what: Turn thousands of phone, text, web and smart meter reports into a short list of outages, each tied to the device that failed.
+    reserved_for_person: false
+  - id: write-the-customer-updates
+    what: Write the text message each affected customer gets, with the restore time the crew plan gives.
+    reserved_for_person: false
+  - id: plan-the-crews
+    what: Decide which crew goes to which outage next, and give an honest restore time.
+    reserved_for_person: false
+  - id: switch-the-feeder
+    what: Open or close a switch or recloser on the network to isolate a fault or restore power.
+    reserved_for_person: true
+    why: Policy rule P1. Only an authorised switching engineer may operate a switch.
+
+# Hard rules from policy.md. A design's must-never covers at least one of them.
+hard_rules:
+  - id: P1
+    rule: Only an authorised switching engineer operates a switch, recloser or fuse.
+    keywords: [switch, recloser, feeder]
+  - id: P2
+    rule: An outage is closed only when every smart meter behind its device reports power.
+    keywords: [close, meter]
+  - id: P3
+    rule: A critical customer hears a restore time from a person, never only from a machine.
+    keywords: [critical, hospital, oxygen, care]
+
+# Copperbeck's own records (synthetic). The cost steps price a design at these volumes.
+volumes:
+  normal_month:
+    reports: 1900
+    outages: 140
+    critical_calls: 30
+  storm_month:
+    reports: 16000
+    outages: 420
+    critical_calls: 260
+  storm_night:
+    reports: 4200
+    outages: 31
+    crews: 9
+  desk_lead_shift_minutes: 480

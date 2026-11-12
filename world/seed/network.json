@@ -1,0 +1,724 @@
+{
+ "company": "Copperbeck Power",
+ "substations": [
+  {
+   "id": "beckside",
+   "name": "Beckside",
+   "feeders": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06"
+   ]
+  },
+  {
+   "id": "fellgate",
+   "name": "Fellgate",
+   "feeders": [
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11",
+    "F12"
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "id": "R-F01",
+   "kind": "recloser",
+   "feeder": "F01",
+   "parent": null,
+   "streets": [
+    "Saxon Lane"
+   ]
+  },
+  {
+   "id": "FU-F01-1",
+   "kind": "fuse",
+   "feeder": "F01",
+   "parent": "R-F01",
+   "streets": [
+    "Quarry Street"
+   ]
+  },
+  {
+   "id": "FU-F01-2",
+   "kind": "fuse",
+   "feeder": "F01",
+   "parent": "R-F01",
+   "streets": [
+    "Oak Street"
+   ]
+  },
+  {
+   "id": "FU-F01-3",
+   "kind": "fuse",
+   "feeder": "F01",
+   "parent": "R-F01",
+   "streets": [
+    "Vale Street"
+   ]
+  },
+  {
+   "id": "FU-F01-4",
+   "kind": "fuse",
+   "feeder": "F01",
+   "parent": "R-F01",
+   "streets": [
+    "Pine Close"
+   ]
+  },
+  {
+   "id": "FU-F01-5",
+   "kind": "fuse",
+   "feeder": "F01",
+   "parent": "R-F01",
+   "streets": [
+    "Clover Way"
+   ]
+  },
+  {
+   "id": "R-F02",
+   "kind": "recloser",
+   "feeder": "F02",
+   "parent": null,
+   "streets": [
+    "Quarry Way"
+   ]
+  },
+  {
+   "id": "FU-F02-1",
+   "kind": "fuse",
+   "feeder": "F02",
+   "parent": "R-F02",
+   "streets": [
+    "Quarry Close"
+   ]
+  },
+  {
+   "id": "FU-F02-2",
+   "kind": "fuse",
+   "feeder": "F02",
+   "parent": "R-F02",
+   "streets": [
+    "Saxon Road"
+   ]
+  },
+  {
+   "id": "FU-F02-3",
+   "kind": "fuse",
+   "feeder": "F02",
+   "parent": "R-F02",
+   "streets": [
+    "Brook Lane"
+   ]
+  },
+  {
+   "id": "FU-F02-4",
+   "kind": "fuse",
+   "feeder": "F02",
+   "parent": "R-F02",
+   "streets": [
+    "Heath Street"
+   ]
+  },
+  {
+   "id": "FU-F02-5",
+   "kind": "fuse",
+   "feeder": "F02",
+   "parent": "R-F02",
+   "streets": [
+    "Thorn Road"
+   ]
+  },
+  {
+   "id": "FU-F02-6",
+   "kind": "fuse",
+   "feeder": "F02",
+   "parent": "R-F02",
+   "streets": [
+    "Heath Close"
+   ]
+  },
+  {
+   "id": "R-F03",
+   "kind": "recloser",
+   "feeder": "F03",
+   "parent": null,
+   "streets": [
+    "Orchard Way"
+   ]
+  },
+  {
+   "id": "FU-F03-1",
+   "kind": "fuse",
+   "feeder": "F03",
+   "parent": "R-F03",
+   "streets": [
+    "Yew Road"
+   ]
+  },
+  {
+   "id": "FU-F03-2",
+   "kind": "fuse",
+   "feeder": "F03",
+   "parent": "R-F03",
+   "streets": [
+    "Holly Lane"
+   ]
+  },
+  {
+   "id": "FU-F03-3",
+   "kind": "fuse",
+   "feeder": "F03",
+   "parent": "R-F03",
+   "streets": [
+    "Quarry Road"
+   ]
+  },
+  {
+   "id": "FU-F03-4",
+   "kind": "fuse",
+   "feeder": "F03",
+   "parent": "R-F03",
+   "streets": [
+    "Elm Road"
+   ]
+  },
+  {
+   "id": "FU-F03-5",
+   "kind": "fuse",
+   "feeder": "F03",
+   "parent": "R-F03",
+   "streets": [
+    "Cedar Street"
+   ]
+  },
+  {
+   "id": "FU-F03-6",
+   "kind": "fuse",
+   "feeder": "F03",
+   "parent": "R-F03",
+   "streets": [
+    "Holly Close"
+   ]
+  },
+  {
+   "id": "R-F04",
+   "kind": "recloser",
+   "feeder": "F04",
+   "parent": null,
+   "streets": [
+    "Birch Street"
+   ]
+  },
+  {
+   "id": "FU-F04-1",
+   "kind": "fuse",
+   "feeder": "F04",
+   "parent": "R-F04",
+   "streets": [
+    "Clover Close"
+   ]
+  },
+  {
+   "id": "FU-F04-2",
+   "kind": "fuse",
+   "feeder": "F04",
+   "parent": "R-F04",
+   "streets": [
+    "Larch Street"
+   ]
+  },
+  {
+   "id": "FU-F04-3",
+   "kind": "fuse",
+   "feeder": "F04",
+   "parent": "R-F04",
+   "streets": [
+    "Thorn Lane"
+   ]
+  },
+  {
+   "id": "FU-F04-4",
+   "kind": "fuse",
+   "feeder": "F04",
+   "parent": "R-F04",
+   "streets": [
+    "Glen Lane"
+   ]
+  },
+  {
+   "id": "FU-F04-5",
+   "kind": "fuse",
+   "feeder": "F04",
+   "parent": "R-F04",
+   "streets": [
+    "Kiln Street"
+   ]
+  },
+  {
+   "id": "R-F05",
+   "kind": "recloser",
+   "feeder": "F05",
+   "parent": null,
+   "streets": [
+    "Moor Street"
+   ]
+  },
+  {
+   "id": "FU-F05-1",
+   "kind": "fuse",
+   "feeder": "F05",
+   "parent": "R-F05",
+   "streets": [
+    "Birch Road"
+   ]
+  },
+  {
+   "id": "FU-F05-2",
+   "kind": "fuse",
+   "feeder": "F05",
+   "parent": "R-F05",
+   "streets": [
+    "Yew Close"
+   ]
+  },
+  {
+   "id": "FU-F05-3",
+   "kind": "fuse",
+   "feeder": "F05",
+   "parent": "R-F05",
+   "streets": [
+    "Heath Road"
+   ]
+  },
+  {
+   "id": "FU-F05-4",
+   "kind": "fuse",
+   "feeder": "F05",
+   "parent": "R-F05",
+   "streets": [
+    "Cedar Lane"
+   ]
+  },
+  {
+   "id": "FU-F05-5",
+   "kind": "fuse",
+   "feeder": "F05",
+   "parent": "R-F05",
+   "streets": [
+    "Glen Way"
+   ]
+  },
+  {
+   "id": "R-F06",
+   "kind": "recloser",
+   "feeder": "F06",
+   "parent": null,
+   "streets": [
+    "Brook Way"
+   ]
+  },
+  {
+   "id": "FU-F06-1",
+   "kind": "fuse",
+   "feeder": "F06",
+   "parent": "R-F06",
+   "streets": [
+    "Orchard Road"
+   ]
+  },
+  {
+   "id": "FU-F06-2",
+   "kind": "fuse",
+   "feeder": "F06",
+   "parent": "R-F06",
+   "streets": [
+    "Mill Close"
+   ]
+  },
+  {
+   "id": "FU-F06-3",
+   "kind": "fuse",
+   "feeder": "F06",
+   "parent": "R-F06",
+   "streets": [
+    "Rowan Street"
+   ]
+  },
+  {
+   "id": "FU-F06-4",
+   "kind": "fuse",
+   "feeder": "F06",
+   "parent": "R-F06",
+   "streets": [
+    "Linden Street"
+   ]
+  },
+  {
+   "id": "FU-F06-5",
+   "kind": "fuse",
+   "feeder": "F06",
+   "parent": "R-F06",
+   "streets": [
+    "Ash Street"
+   ]
+  },
+  {
+   "id": "R-F07",
+   "kind": "recloser",
+   "feeder": "F07",
+   "parent": null,
+   "streets": [
+    "Clover Street"
+   ]
+  },
+  {
+   "id": "FU-F07-1",
+   "kind": "fuse",
+   "feeder": "F07",
+   "parent": "R-F07",
+   "streets": [
+    "Hazel Lane"
+   ]
+  },
+  {
+   "id": "FU-F07-2",
+   "kind": "fuse",
+   "feeder": "F07",
+   "parent": "R-F07",
+   "streets": [
+    "Glen Road"
+   ]
+  },
+  {
+   "id": "FU-F07-3",
+   "kind": "fuse",
+   "feeder": "F07",
+   "parent": "R-F07",
+   "streets": [
+    "Castle Way"
+   ]
+  },
+  {
+   "id": "FU-F07-4",
+   "kind": "fuse",
+   "feeder": "F07",
+   "parent": "R-F07",
+   "streets": [
+    "Heath Lane"
+   ]
+  },
+  {
+   "id": "FU-F07-5",
+   "kind": "fuse",
+   "feeder": "F07",
+   "parent": "R-F07",
+   "streets": [
+    "Elm Way"
+   ]
+  },
+  {
+   "id": "FU-F07-6",
+   "kind": "fuse",
+   "feeder": "F07",
+   "parent": "R-F07",
+   "streets": [
+    "Brook Close"
+   ]
+  },
+  {
+   "id": "R-F08",
+   "kind": "recloser",
+   "feeder": "F08",
+   "parent": null,
+   "streets": [
+    "Field Street"
+   ]
+  },
+  {
+   "id": "FU-F08-1",
+   "kind": "fuse",
+   "feeder": "F08",
+   "parent": "R-F08",
+   "streets": [
+    "Linden Close"
+   ]
+  },
+  {
+   "id": "FU-F08-2",
+   "kind": "fuse",
+   "feeder": "F08",
+   "parent": "R-F08",
+   "streets": [
+    "Hazel Street"
+   ]
+  },
+  {
+   "id": "FU-F08-3",
+   "kind": "fuse",
+   "feeder": "F08",
+   "parent": "R-F08",
+   "streets": [
+    "Elm Street"
+   ]
+  },
+  {
+   "id": "FU-F08-4",
+   "kind": "fuse",
+   "feeder": "F08",
+   "parent": "R-F08",
+   "streets": [
+    "Saxon Close"
+   ]
+  },
+  {
+   "id": "FU-F08-5",
+   "kind": "fuse",
+   "feeder": "F08",
+   "parent": "R-F08",
+   "streets": [
+    "Church Lane"
+   ]
+  },
+  {
+   "id": "FU-F08-6",
+   "kind": "fuse",
+   "feeder": "F08",
+   "parent": "R-F08",
+   "streets": [
+    "Elm Close"
+   ]
+  },
+  {
+   "id": "R-F09",
+   "kind": "recloser",
+   "feeder": "F09",
+   "parent": null,
+   "streets": [
+    "Willow Street"
+   ]
+  },
+  {
+   "id": "FU-F09-1",
+   "kind": "fuse",
+   "feeder": "F09",
+   "parent": "R-F09",
+   "streets": [
+    "Fern Close"
+   ]
+  },
+  {
+   "id": "FU-F09-2",
+   "kind": "fuse",
+   "feeder": "F09",
+   "parent": "R-F09",
+   "streets": [
+    "Hazel Road"
+   ]
+  },
+  {
+   "id": "FU-F09-3",
+   "kind": "fuse",
+   "feeder": "F09",
+   "parent": "R-F09",
+   "streets": [
+    "Pine Street"
+   ]
+  },
+  {
+   "id": "FU-F09-4",
+   "kind": "fuse",
+   "feeder": "F09",
+   "parent": "R-F09",
+   "streets": [
+    "Mill Way"
+   ]
+  },
+  {
+   "id": "FU-F09-5",
+   "kind": "fuse",
+   "feeder": "F09",
+   "parent": "R-F09",
+   "streets": [
+    "Hazel Close"
+   ]
+  },
+  {
+   "id": "R-F10",
+   "kind": "recloser",
+   "feeder": "F10",
+   "parent": null,
+   "streets": [
+    "Thorn Way"
+   ]
+  },
+  {
+   "id": "FU-F10-1",
+   "kind": "fuse",
+   "feeder": "F10",
+   "parent": "R-F10",
+   "streets": [
+    "Castle Lane"
+   ]
+  },
+  {
+   "id": "FU-F10-2",
+   "kind": "fuse",
+   "feeder": "F10",
+   "parent": "R-F10",
+   "streets": [
+    "Larch Close"
+   ]
+  },
+  {
+   "id": "FU-F10-3",
+   "kind": "fuse",
+   "feeder": "F10",
+   "parent": "R-F10",
+   "streets": [
+    "Kiln Way"
+   ]
+  },
+  {
+   "id": "FU-F10-4",
+   "kind": "fuse",
+   "feeder": "F10",
+   "parent": "R-F10",
+   "streets": [
+    "Kiln Lane"
+   ]
+  },
+  {
+   "id": "FU-F10-5",
+   "kind": "fuse",
+   "feeder": "F10",
+   "parent": "R-F10",
+   "streets": [
+    "Fern Road"
+   ]
+  },
+  {
+   "id": "FU-F10-6",
+   "kind": "fuse",
+   "feeder": "F10",
+   "parent": "R-F10",
+   "streets": [
+    "Rowan Way"
+   ]
+  },
+  {
+   "id": "R-F11",
+   "kind": "recloser",
+   "feeder": "F11",
+   "parent": null,
+   "streets": [
+    "Vale Road"
+   ]
+  },
+  {
+   "id": "FU-F11-1",
+   "kind": "fuse",
+   "feeder": "F11",
+   "parent": "R-F11",
+   "streets": [
+    "Pine Road"
+   ]
+  },
+  {
+   "id": "FU-F11-2",
+   "kind": "fuse",
+   "feeder": "F11",
+   "parent": "R-F11",
+   "streets": [
+    "Glen Close"
+   ]
+  },
+  {
+   "id": "FU-F11-3",
+   "kind": "fuse",
+   "feeder": "F11",
+   "parent": "R-F11",
+   "streets": [
+    "Thorn Street"
+   ]
+  },
+  {
+   "id": "FU-F11-4",
+   "kind": "fuse",
+   "feeder": "F11",
+   "parent": "R-F11",
+   "streets": [
+    "Station Close"
+   ]
+  },
+  {
+   "id": "FU-F11-5",
+   "kind": "fuse",
+   "feeder": "F11",
+   "parent": "R-F11",
+   "streets": [
+    "Thorn Close"
+   ]
+  },
+  {
+   "id": "R-F12",
+   "kind": "recloser",
+   "feeder": "F12",
+   "parent": null,
+   "streets": [
+    "Yew Street"
+   ]
+  },
+  {
+   "id": "FU-F12-1",
+   "kind": "fuse",
+   "feeder": "F12",
+   "parent": "R-F12",
+   "streets": [
+    "Kiln Road"
+   ]
+  },
+  {
+   "id": "FU-F12-2",
+   "kind": "fuse",
+   "feeder": "F12",
+   "parent": "R-F12",
+   "streets": [
+    "Willow Way"
+   ]
+  },
+  {
+   "id": "FU-F12-3",
+   "kind": "fuse",
+   "feeder": "F12",
+   "parent": "R-F12",
+   "streets": [
+    "Pine Lane"
+   ]
+  },
+  {
+   "id": "FU-F12-4",
+   "kind": "fuse",
+   "feeder": "F12",
+   "parent": "R-F12",
+   "streets": [
+    "Linden Lane"
+   ]
+  },
+  {
+   "id": "FU-F12-5",
+   "kind": "fuse",
+   "feeder": "F12",
+   "parent": "R-F12",
+   "streets": [
+    "Church Close"
+   ]
+  }
+ ]
+}
