@@ -21,11 +21,11 @@ flowchart TB
 The diagram shows where the sample design puts each job. Your design may differ, as long as the checks and
 your reasons hold.
 
-| Step | Minutes | You produce | What the check reads |
-|---|---|---|---|
-| `place-on-the-ladder` | 20 | `## Shape` in `design.md` | Your Shape block, the jobs and policy in `world/desk.yaml` |
-| `write-the-outcome` | 20 | `## Outcome` | Your Outcome block, the hard rules in `world/desk.yaml`, the tables of a freshly seeded OMS |
-| `pick-the-pattern` | 20 | `## Pattern` | Your Pattern and Shape blocks, the desk's jobs |
+| Step                  | Minutes | You produce               | What the check reads                                                                        |
+| --------------------- | ------- | ------------------------- | ------------------------------------------------------------------------------------------- |
+| `place-on-the-ladder` | 20      | `## Shape` in `design.md` | Your Shape block, the jobs and policy in `world/desk.yaml`                                  |
+| `write-the-outcome`   | 20      | `## Outcome`              | Your Outcome block, the hard rules in `world/desk.yaml`, the tables of a freshly seeded OMS |
+| `pick-the-pattern`    | 20      | `## Pattern`              | Your Pattern and Shape blocks, the desk's jobs                                              |
 
 Each step's `problem/design.md` starts with the sections from the steps before it, so you can begin at any
 step.

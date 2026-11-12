@@ -23,24 +23,24 @@ The test for each rung is one question: **who decides the next step?** A person,
 Open `design.md` in this folder. Under `## Shape`, place each of the desk's four jobs (from
 `world/desk.yaml`) on one rung. For each job, fill:
 
-| Field | Allowed values |
-|---|---|
-| `rung` | `person`, `one-call`, `workflow`, `agent`, `many-agents` |
-| `decides_next_step` | `person`, `code` or `model`, matching the rung |
-| `trigger` | `person`, `event`, `schedule`, `agent`: what starts it |
-| `lifetime` | a number and a unit, such as `20 minutes` |
-| `reason` | only on agent rungs: `open-ended-steps`, `varied-input` or `parallel-breadth` |
-| `why` | one sentence that names a fact of the storm desk |
+| Field               | Allowed values                                                                |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `rung`              | `person`, `one-call`, `workflow`, `agent`, `many-agents`                      |
+| `decides_next_step` | `person`, `code` or `model`, matching the rung                                |
+| `trigger`           | `person`, `event`, `schedule`, `agent`: what starts it                        |
+| `lifetime`          | a number and a unit, such as `20 minutes`                                     |
+| `reason`            | only on agent rungs: `open-ended-steps`, `varied-input` or `parallel-breadth` |
+| `why`               | one sentence that names a fact of the storm desk                              |
 
 A worked example for one job:
 
 ```yaml
-  - job: group-the-reports
-    rung: workflow
-    decides_next_step: code
-    trigger: event
-    lifetime: 5 minutes
-    why: Every report follows the same steps (read the address, find the device, attach or open an outage), so code can decide each step.
+- job: group-the-reports
+  rung: workflow
+  decides_next_step: code
+  trigger: event
+  lifetime: 5 minutes
+  why: Every report follows the same steps (read the address, find the device, attach or open an outage), so code can decide each step.
 ```
 
 Read `world/policy.md` before you place `switch-the-feeder`.
@@ -63,11 +63,11 @@ Expect: `Done. All 9 rules pass.` and a `Progress:` line.
 
 ## If you get stuck
 
-| What you see | Fix |
-|---|---|
-| `FAIL design.md has a Shape section` | Keep the fence line exactly as `` ```yaml design ``. Indent with spaces, not tabs. |
-| `FAIL ... matches its rung` | A workflow is still decided by code, even when one step calls a model. |
-| `FAIL ... reserves for a person` | Policy rule P1: no software operates a switch. |
+| What you see                                              | Fix                                                                                    |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `FAIL design.md has a Shape section`                      | Keep the fence line exactly as ` ```yaml design `. Indent with spaces, not tabs.       |
+| `FAIL ... matches its rung`                               | A workflow is still decided by code, even when one step calls a model.                 |
+| `FAIL ... reserves for a person`                          | Policy rule P1: no software operates a switch.                                         |
 | `FAIL at least one machine job sits below the agent rung` | Ask of each job: could I write every step down in advance? If yes, it is not an agent. |
 
 Compare with the sample: `bun run verify place-on-the-ladder solution`, then read `../solution/design.md`.

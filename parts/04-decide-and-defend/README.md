@@ -19,11 +19,11 @@ flowchart LR
   V -->|fail| D
 ```
 
-| Step | Minutes | You produce |
-|---|---|---|
-| `record-the-decisions` | 20 | Three ADRs in `adr/`, MADR 4.0.0 form, each with a Confirmation section |
-| `review-a-real-system` | 20 | `review-<case>.md`: the checklist applied to one public system, every pass quoted |
-| `defend-the-design` | 20 | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
+| Step                   | Minutes | You produce                                                                                             |
+| ---------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `record-the-decisions` | 20      | Three ADRs in `adr/`, MADR 4.0.0 form, each with a Confirmation section                                 |
+| `review-a-real-system` | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
+| `defend-the-design`    | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
 
 ## Walkthrough
 

@@ -52,12 +52,12 @@ Expect: `Done. All 8 rules pass.` and a `Progress:` line.
 
 ## If you get stuck
 
-| What you see | Fix |
-|---|---|
-| `FAIL first-look.md exists` | The file goes in this `problem/` folder, next to this README. |
-| `FAIL ... matches the board` | Copy the number after the label. `92%` and `92` both work; so do `$0.15` and `0.15`. |
-| `FAIL The job you think needs an agent` | Use an id such as `plan-the-crews`, not a description. |
-| `The storm run stopped: No recorded reply` | The sample prompts were changed. Run `git checkout finished/`. |
+| What you see                               | Fix                                                                                  |
+| ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `FAIL first-look.md exists`                | The file goes in this `problem/` folder, next to this README.                        |
+| `FAIL ... matches the board`               | Copy the number after the label. `92%` and `92` both work; so do `$0.15` and `0.15`. |
+| `FAIL The job you think needs an agent`    | Use an id such as `plan-the-crews`, not a description.                               |
+| `The storm run stopped: No recorded reply` | The sample prompts were changed. Run `git checkout finished/`.                       |
 
 ## Words you will use
 

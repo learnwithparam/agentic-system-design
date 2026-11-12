@@ -1,33 +1,88 @@
 import { expect, test } from "bun:test";
-import { amount, block, section } from "../checks/lib/design";
-import { parse, missingHeadings } from "../checks/lib/adr";
+import { missingHeadings, parse } from "../checks/lib/adr";
 import { costPerOutcome } from "../checks/lib/cost";
+import { amount, block, section } from "../checks/lib/design";
 
-const doc = "# D\n\n## Shape\n\ntext\n\n```yaml design\njobs:\n  - job: a\n    rung: workflow\n```\n\n## Outcome\n\nnone\n";
+const designDoc = [
+  "# D",
+  "",
+  "## Shape",
+  "",
+  "text",
+  "",
+  "```yaml design",
+  "jobs:",
+  "  - job: a",
+  "    rung: workflow",
+  "```",
+  "",
+  "## Outcome",
+  "",
+  "none",
+  "",
+].join("\n");
 
 test("a section and its yaml design block are read", () => {
-  expect(section(doc, "Shape")).toContain("text");
-  const b = block(doc, "Shape");
-  expect(b.ok && b.data.jobs[0].rung).toBe("workflow");
-  expect(block(doc, "Outcome").ok).toBe(false);
-  expect(block(doc, "Pattern").ok).toBe(false);
+  expect(section(designDoc, "Shape")).toContain("text");
+  const shape = block(designDoc, "Shape");
+  const jobs = shape.ok ? (shape.data.jobs as { rung: string }[]) : [];
+  expect(jobs[0].rung).toBe("workflow");
+  expect(block(designDoc, "Outcome").ok).toBe(false);
+  expect(block(designDoc, "Pattern").ok).toBe(false);
 });
 
 test("amounts need a number and a unit", () => {
-  expect(amount("20 minutes")).toEqual({ n: 20, unit: "minutes" });
+  expect(amount("20 minutes")).toEqual({ value: 20, unit: "minutes" });
   expect(amount("soon")).toBeNull();
-  expect(amount(45, "minutes")).toEqual({ n: 45, unit: "minutes" });
+  expect(amount(45, "minutes")).toEqual({ value: 45, unit: "minutes" });
 });
 
+const adrText = [
+  "---",
+  "status: accepted",
+  "---",
+  "# Use a workflow",
+  "",
+  "## Context and Problem Statement",
+  "",
+  "x",
+  "",
+  "## Considered Options",
+  "",
+  "* A",
+  "* B",
+  "",
+  "## Decision Outcome",
+  "",
+  "A",
+  "",
+  "### Consequences",
+  "",
+  "* Good, because x",
+  "* Bad, because y",
+  "",
+  "### Confirmation",
+  "",
+  "The check place-on-the-ladder.",
+  "",
+].join("\n");
+
 test("an ADR in MADR form is parsed, with Confirmation required", () => {
-  const a = parse("0001-x.md", "---\nstatus: accepted\n---\n# Use a workflow\n\n## Context and Problem Statement\n\nx\n\n## Considered Options\n\n* A\n* B\n\n## Decision Outcome\n\nA\n\n### Consequences\n\n* Good, because x\n* Bad, because y\n\n### Confirmation\n\nThe check place-on-the-ladder.\n");
-  expect(a.status).toBe("accepted");
-  expect(a.options.length).toBe(2);
-  expect(a.bad).toBe(1);
-  expect(missingHeadings(a)).toEqual([]);
+  const adr = parse("0001-x.md", adrText);
+  expect(adr.status).toBe("accepted");
+  expect(adr.options.length).toBe(2);
+  expect(adr.badConsequences).toBe(1);
+  expect(missingHeadings(adr)).toEqual([]);
 });
 
 test("cost per outcome uses the list prices", () => {
-  const c = costPerOutcome([{ job: "x", role: "fast", calls_per_outcome: 1, input_tokens: 1_000_000, cached_input_tokens: 0, output_tokens: 0 }]);
-  expect(c).toBeCloseTo(0.1, 6);
+  const oneMillionFreshTokens = {
+    job: "x",
+    role: "fast" as const,
+    callsPerOutcome: 1,
+    inputTokens: 1_000_000,
+    cachedInputTokens: 0,
+    outputTokens: 0,
+  };
+  expect(costPerOutcome([oneMillionFreshTokens])).toBeCloseTo(0.1, 6);
 });

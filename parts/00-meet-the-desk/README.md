@@ -14,9 +14,9 @@ flowchart LR
   B --> G[Your goal: a design that beats it, or says why it cannot]
 ```
 
-| Step | Minutes | What the check reads |
-|---|---|---|
-| `meet-the-outage-desk` | 15 | Three fresh replay runs of the finished system (OMS, ledger, events), and your `first-look.md` |
+| Step                   | Minutes | What the check reads                                                                           |
+| ---------------------- | ------- | ---------------------------------------------------------------------------------------------- |
+| `meet-the-outage-desk` | 15      | Three fresh replay runs of the finished system (OMS, ledger, events), and your `first-look.md` |
 
 ## Walkthrough
 

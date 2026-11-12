@@ -72,13 +72,13 @@ flowchart LR
 4. `bun run verify part <part-name>` checks a whole part. `bun run verify --report` writes
    `verify-report.json` for cohort grading.
 
-| Part | Steps | Minutes | You produce |
-|---|---|---|---|
-| [Meet the desk](parts/00-meet-the-desk/README.md) | `meet-the-outage-desk` | 15 | `first-look.md`: the board's numbers in your words |
-| [Choose the shape](parts/01-choose-the-shape/README.md) | `place-on-the-ladder`, `write-the-outcome`, `pick-the-pattern` | 60 | Shape, Outcome and Pattern sections |
-| [Design the agent](parts/02-design-the-agent/README.md) | `scope-the-tools`, `map-the-memory`, `place-the-gates` | 60 | Tools, Memory and Gates sections |
-| [Plan for failure and cost](parts/03-plan-for-failure-and-cost/README.md) | `name-the-failures`, `design-the-restart`, `price-the-outcome` | 60 | Failures and Restart sections, `cost.yaml` |
-| [Decide and defend](parts/04-decide-and-defend/README.md) | `record-the-decisions`, `review-a-real-system`, `defend-the-design` | 60 | Three ADRs, a review of a real system, a review request |
+| Part                                                                      | Steps                                                               | Minutes | You produce                                             |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------- | ------------------------------------------------------- |
+| [Meet the desk](parts/00-meet-the-desk/README.md)                         | `meet-the-outage-desk`                                              | 15      | `first-look.md`: the board's numbers in your words      |
+| [Choose the shape](parts/01-choose-the-shape/README.md)                   | `place-on-the-ladder`, `write-the-outcome`, `pick-the-pattern`      | 60      | Shape, Outcome and Pattern sections                     |
+| [Design the agent](parts/02-design-the-agent/README.md)                   | `scope-the-tools`, `map-the-memory`, `place-the-gates`              | 60      | Tools, Memory and Gates sections                        |
+| [Plan for failure and cost](parts/03-plan-for-failure-and-cost/README.md) | `name-the-failures`, `design-the-restart`, `price-the-outcome`      | 60      | Failures and Restart sections, `cost.yaml`              |
+| [Decide and defend](parts/04-decide-and-defend/README.md)                 | `record-the-decisions`, `review-a-real-system`, `defend-the-design` | 60      | Three ADRs, a review of a real system, a review request |
 
 Parts 2 to 4 are being built; [PARTS.md](PARTS.md) lists every step and what its check reads.
 [schedules.toml](schedules.toml) maps the parts onto formats.
@@ -96,12 +96,12 @@ each name how they will be checked.
 
 ## Read before you start
 
-| Read | Why | Minutes |
-|---|---|---|
-| [Building effective agents](https://www.anthropic.com/research/building-effective-agents), Anthropic | The ladder and the workflow patterns this course uses | 15 |
-| [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system), Anthropic | What many agents really cost: about 15 times the tokens of a chat | 20 |
-| [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents), Anthropic | What a tool is, and why fewer, clearer tools win | 15 |
-| [Freedom Forever customer story](https://claude.com/customers/freedom-forever), a vendor claim | A cost per outcome from a real system: $0.20 to $0.35 per execution | 5 |
+| Read                                                                                                                         | Why                                                                 | Minutes |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------- |
+| [Building effective agents](https://www.anthropic.com/research/building-effective-agents), Anthropic                         | The ladder and the workflow patterns this course uses               | 15      |
+| [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system), Anthropic | What many agents really cost: about 15 times the tokens of a chat   | 20      |
+| [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents), Anthropic              | What a tool is, and why fewer, clearer tools win                    | 15      |
+| [Freedom Forever customer story](https://claude.com/customers/freedom-forever), a vendor claim                               | A cost per outcome from a real system: $0.20 to $0.35 per execution | 5       |
 
 ## Models
 

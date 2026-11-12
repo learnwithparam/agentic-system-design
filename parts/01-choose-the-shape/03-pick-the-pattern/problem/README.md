@@ -23,13 +23,13 @@ flowchart LR
 
 Under `## Pattern` in `design.md`, give each job one pattern that fits its rung in your Shape section:
 
-| Rung | Patterns that fit |
-|---|---|
-| `person` | `person` |
-| `one-call` | `single-call` |
-| `workflow` | `chain`, `route`, `parallel`, `orchestrator-workers`, `evaluator-optimizer` |
-| `agent` | `agent-loop` |
-| `many-agents` | `many-agents` |
+| Rung          | Patterns that fit                                                           |
+| ------------- | --------------------------------------------------------------------------- |
+| `person`      | `person`                                                                    |
+| `one-call`    | `single-call`                                                               |
+| `workflow`    | `chain`, `route`, `parallel`, `orchestrator-workers`, `evaluator-optimizer` |
+| `agent`       | `agent-loop`                                                                |
+| `many-agents` | `many-agents`                                                               |
 
 For every machine job, add `rejected` (a simpler pattern you considered, or `none` for a single call) and
 `why_not_simpler` (the fact of the storm desk that breaks it). For an agent pattern, add `token_multiplier`:
@@ -52,11 +52,11 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 ## If you get stuck
 
-| What you see | Fix |
-|---|---|
-| `FAIL every pattern is on the list and fits the job's rung` | Change the pattern, or go back and change the rung in Shape. They must agree. |
-| `FAIL every machine job names a simpler pattern it rejected` | `rejected` must sit lower on the diagram above than your choice. |
-| `FAIL ... token multiplier` | One agent: 3 to 5. Many agents: 10 to 20. |
+| What you see                                                 | Fix                                                                           |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| `FAIL every pattern is on the list and fits the job's rung`  | Change the pattern, or go back and change the rung in Shape. They must agree. |
+| `FAIL every machine job names a simpler pattern it rejected` | `rejected` must sit lower on the diagram above than your choice.              |
+| `FAIL ... token multiplier`                                  | One agent: 3 to 5. Many agents: 10 to 20.                                     |
 
 ## Words you will use
 

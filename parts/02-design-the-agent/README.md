@@ -22,11 +22,11 @@ flowchart LR
   G -->|timeout| S[Stop and wait, never proceed]
 ```
 
-| Step | Minutes | You produce |
-|---|---|---|
-| `scope-the-tools` | 20 | `## Tools`: each tool with read or write, reversible or not, risk tier, response size cap |
-| `map-the-memory` | 20 | `## Memory`: each fact, its layer, who writes it, who reads it, when it expires |
-| `place-the-gates` | 20 | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
+| Step              | Minutes | You produce                                                                                |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------ |
+| `scope-the-tools` | 20      | `## Tools`: each tool with read or write, reversible or not, risk tier, response size cap  |
+| `map-the-memory`  | 20      | `## Memory`: each fact, its layer, who writes it, who reads it, when it expires            |
+| `place-the-gates` | 20      | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
 
 ## Walkthrough
 

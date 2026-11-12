@@ -1,6 +1,6 @@
 # The storm desk at Copperbeck Power, as the checks read it. Prose versions are in README.md and policy.md.
 company: Copperbeck Power
-system_of_record: oms   # world/state/oms.db, the outage management system
+system_of_record: oms # world/state/oms.db, the outage management system
 
 # The four jobs hidden inside "we want an AI agent for storm nights".
 jobs:

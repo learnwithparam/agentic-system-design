@@ -1,31 +1,56 @@
-// bun run models: one tiny call per role on the chosen provider. Prints provider, role, pass or fail and cost.
+// bun run models: one tiny call per role on the chosen provider.
+// It prints the provider, each role, pass or fail, and the cost.
 // It never prints a key or a model id.
-import { ask, costOf, REPLAY_FILE } from "../config/llm";
-import { provider, ROLES } from "../config/models";
 import { existsSync, readFileSync } from "node:fs";
+import { ask, costOf, REPLAY_FILE } from "../config/llm";
+import { type Provider, provider, ROLES, type Role } from "../config/models";
 
-let p;
-try { p = provider(); } catch (e) { console.log((e as Error).message); process.exit(1); }
-console.log(`Provider: ${p}`);
-let failed = 0;
-for (const role of ROLES) {
-  if (p === "replay") {
-    // Replay has no live model. It passes when the recorded replies load.
-    const ok = existsSync(REPLAY_FILE) && Object.keys(JSON.parse(readFileSync(REPLAY_FILE, "utf8")).replies ?? {}).length > 0;
-    console.log(`  ${role.padEnd(6)} ${ok ? "PASS" : "FAIL"}  recorded replies ${ok ? "found" : "missing"}, cost $0.0000`);
-    if (!ok) failed++;
-    continue;
+// Replay has no live model. A role passes when the recorded replies load.
+function checkReplay(role: Role): boolean {
+  let found = false;
+  if (existsSync(REPLAY_FILE)) {
+    const replay = JSON.parse(readFileSync(REPLAY_FILE, "utf8"));
+    found = Object.keys(replay.replies ?? {}).length > 0;
   }
+  const result = found ? "PASS" : "FAIL";
+  const replies = found ? "found" : "missing";
+  console.log(`  ${role.padEnd(6)} ${result}  recorded replies ${replies}, cost $0.0000`);
+  return found;
+}
+
+async function checkLiveRole(role: Role, chosenProvider: Provider): Promise<boolean> {
   try {
-    const r = await ask({ role, system: "Reply with the single word: ready", prompt: "Are you ready?" });
-    const cost = costOf(role, r.usage, p);
-    const ok = /ready/i.test(r.text);
-    console.log(`  ${role.padEnd(6)} ${ok ? "PASS" : "FAIL"}  ${r.usage.input} in, ${r.usage.output} out, cost ${cost === null ? "unknown" : `$${cost.toFixed(6)}`}`);
-    if (!ok) failed++;
-  } catch (e) {
-    console.log(`  ${role.padEnd(6)} FAIL  ${(e as Error).message.split("\n")[0]}`);
-    failed++;
+    const call = { role, system: "Reply with the single word: ready", prompt: "Are you ready?" };
+    const reply = await ask(call);
+    const cost = costOf(role, reply.usage, chosenProvider);
+    const answered = /ready/i.test(reply.text);
+    const shownCost = cost === null ? "unknown" : `$${cost.toFixed(6)}`;
+    const tokens = `${reply.usage.input} in, ${reply.usage.output} out`;
+    console.log(`  ${role.padEnd(6)} ${answered ? "PASS" : "FAIL"}  ${tokens}, cost ${shownCost}`);
+    return answered;
+  } catch (error) {
+    const firstLine = (error as Error).message.split("\n")[0];
+    console.log(`  ${role.padEnd(6)} FAIL  ${firstLine}`);
+    return false;
   }
 }
-console.log(failed ? `${failed} role(s) failed. See 00-orientation/troubleshooting.md.` : "Every role answers.");
+
+let chosenProvider: Provider;
+try {
+  chosenProvider = provider();
+} catch (error) {
+  console.log((error as Error).message);
+  process.exit(1);
+}
+console.log(`Provider: ${chosenProvider}`);
+
+let failed = 0;
+for (const role of ROLES) {
+  let passed: boolean;
+  if (chosenProvider === "replay") passed = checkReplay(role);
+  else passed = await checkLiveRole(role, chosenProvider);
+  if (!passed) failed++;
+}
+if (failed) console.log(`${failed} role(s) failed. See 00-orientation/troubleshooting.md.`);
+else console.log("Every role answers.");
 process.exit(failed ? 1 : 0);

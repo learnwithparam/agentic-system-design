@@ -24,11 +24,11 @@ sequenceDiagram
   O-->>A: already assigned, no second crew sent
 ```
 
-| Step | Minutes | You produce |
-|---|---|---|
-| `name-the-failures` | 20 | `## Failures`: at least five failure modes, how each shows up, how it is caught, what the system does |
-| `design-the-restart` | 20 | `## Restart`: where run state lives, idempotency keys, step and money budget per run |
-| `price-the-outcome` | 20 | `cost.yaml` and the cost board for a normal and a storm month |
+| Step                 | Minutes | You produce                                                                                           |
+| -------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
+| `name-the-failures`  | 20      | `## Failures`: at least five failure modes, how each shows up, how it is caught, what the system does |
+| `design-the-restart` | 20      | `## Restart`: where run state lives, idempotency keys, step and money budget per run                  |
+| `price-the-outcome`  | 20      | `cost.yaml` and the cost board for a normal and a storm month                                         |
 
 ## Walkthrough
 
