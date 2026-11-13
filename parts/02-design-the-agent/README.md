@@ -14,7 +14,7 @@ permission prompts Claude Code shows them
 ([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). Picture a tired desk
 lead on a storm night. If they click yes without reading, the gate does not protect anyone.
 
-For example, run `bun run storm` and look at this line on the board:
+For example, run `bun run storm` and look at this line in the timeline above the board:
 `+295 min  BLOCKED close of OUT-005: 103 meters behind R-F05 still dark`. The agent called `oms_close_outage` to close an outage, and the harness blocked it.
 Policy rule P2 says you close an outage only when every smart meter behind it reports power. A close
 cannot be undone, so this is the kind of tool that needs a hard stop.

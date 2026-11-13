@@ -40,7 +40,7 @@ Then set `limit_per_shift`: the most gates one desk lead can read well in one sh
 
 The check counts the gates for you. It takes the storm month in `world/desk.yaml` (`420` outages, `16000`
 reports, `260` critical calls). It spreads them over the shifts in a month of `480`-minute shifts. That is
-90 shifts.
+90 shifts: 30 days of three shifts a day.
 
 For example, the sample answer in `../solution/design.md` has two gates per outage and one per critical
 call:

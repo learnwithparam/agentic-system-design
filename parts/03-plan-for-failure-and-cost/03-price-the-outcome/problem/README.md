@@ -77,6 +77,6 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 ## Words you will use
 
 - **Cost per outcome**: what you spend on model calls for one useful result.
-- **Cached input**: input the model read before. It costs about a tenth of fresh input.
+- **Cached input**: input the model read before. In `config/models.ts` it costs a tenth (`fast`) to a twentieth (`smart`) of fresh input.
 - **Role**: `fast` or `smart`. `config/models.ts` maps each role to a model and a price.
 - **Value per outcome**: what one result is worth, such as desk time saved.

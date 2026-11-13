@@ -63,7 +63,7 @@ The multiplier of 4 matches what Anthropic measured for one agent.
 - Every pattern is on the list and fits the job's rung.
 - Every machine job names a simpler pattern it rejected.
 - Every `why_not_simpler` has at least 10 words.
-- Every agent pattern has a `token_multiplier` in the published range.
+- Every agent pattern has a `token_multiplier` near Anthropic's numbers.
 
 ```bash
 bun run verify pick-the-pattern

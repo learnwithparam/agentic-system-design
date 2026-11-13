@@ -6,7 +6,7 @@ Two hard questions arrive in the middle of a storm. First, the process that runs
 some crews are assigned while others are not. Second, finance asks what one storm night costs. Your design
 needs an answer to both before anyone builds it.
 
-For example, run `bun run storm`. At `+60 min` the board prints `CREW-5 to OUT-005 on R-F05, restore in about
+For example, run `bun run storm`. At `+60 min` the timeline prints `CREW-5 to OUT-005 on R-F05, restore in about
 200 min`. Now picture the process dying one second after that line. When it starts again, does it send a
 second crew to `OUT-005`? It must not.
 
