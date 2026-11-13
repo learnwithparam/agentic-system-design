@@ -2,27 +2,42 @@
 // bun run storm --quiet    print only the board
 // bun run storm --record   with a live provider, save the replies for replay mode
 // LLM_PROVIDER=replay (the default) uses recorded replies and needs no key.
-import { provider } from "../config/models";
 import { saveRecording, startRecording } from "../config/llm";
+import { provider } from "../config/models";
 import { stateDir } from "../world/lib/oms";
-import { runStorm } from "./harness";
 import { boardLines, computeBoard } from "./board";
+import { runStorm } from "./harness";
 
 const quiet = process.argv.includes("--quiet");
 // --record with a live provider saves every reply to world/replay/storm-night.json for replay mode.
 const record = process.argv.includes("--record");
-try {
-  const p = provider();
-  if (!quiet) console.log(`Provider: ${p}${p === "replay" ? " (recorded replies, no key needed)" : ""}`);
-  if (record && p === "replay") throw new Error("--record needs a live provider. Set LLM_PROVIDER and its key in .env.");
-  if (record) startRecording(`Recorded from a live ${p} run of the sample design on ${new Date().toISOString().slice(0, 10)}.`);
-  const res = await runStorm(stateDir(), { log: quiet ? undefined : (s) => console.log(s) });
+
+async function playTheStorm() {
+  const chosenProvider = provider();
+  if (!quiet) {
+    const note = chosenProvider === "replay" ? " (recorded replies, no key needed)" : "";
+    console.log(`Provider: ${chosenProvider}${note}`);
+  }
+  if (record && chosenProvider === "replay") {
+    throw new Error("--record needs a live provider. Set LLM_PROVIDER and its key in .env.");
+  }
+  if (record) {
+    const today = new Date().toISOString().slice(0, 10);
+    startRecording(`Recorded from a live ${chosenProvider} run of the sample design on ${today}.`);
+  }
+  const log = quiet ? undefined : (line: string) => console.log(line);
+  const result = await runStorm(stateDir(), { log });
   if (record) saveRecording();
   console.log("");
-  for (const l of boardLines(computeBoard(res.dir))) console.log(l);
+  for (const line of boardLines(computeBoard(result.dir))) console.log(line);
   console.log("");
-  console.log("Storm night replayed. The OMS is in world/state/oms.db, model calls in world/state/ledger.jsonl.");
-} catch (e) {
-  console.log(`The storm run stopped: ${(e as Error).message}`);
+  const where = "The OMS is in world/state/oms.db, model calls in world/state/ledger.jsonl.";
+  console.log(`Storm night replayed. ${where}`);
+}
+
+try {
+  await playTheStorm();
+} catch (error) {
+  console.log(`The storm run stopped: ${(error as Error).message}`);
   process.exit(2);
 }

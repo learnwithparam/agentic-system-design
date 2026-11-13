@@ -1,119 +1,259 @@
 // The board: what one storm night achieved, computed from the OMS, the ledger and the events log.
 // It never reads what the model said; only what happened in the system of record.
+import type { Database } from "bun:sqlite";
 import { open, paths, readJsonl, seed } from "../world/lib/oms";
+import type { Truth } from "../world/lib/types";
 
 export type Board = {
-  outages_true: number;
-  outages_found: number;
-  outages_false: number;
+  outagesTrue: number;
+  outagesFound: number;
+  outagesFalse: number;
   reports: number;
-  reports_attached_right_pct: number;
-  median_minutes_to_crew: number;
-  restore_times_kept_pct: number;
-  critical_customers_dark: number;
-  critical_called_by_person: number;
-  closed_while_dark: number;
-  must_never_blocked: number;
-  model_calls: number;
-  model_cost_usd: number;
-  cost_per_outage_usd: number;
+  reportsAttachedRightPercent: number;
+  medianMinutesToCrew: number;
+  restoreTimesKeptPercent: number;
+  criticalCustomersDark: number;
+  criticalCalledByPerson: number;
+  closedWhileDark: number;
+  mustNeverBlocked: number;
+  modelCalls: number;
+  modelCostUsd: number;
+  costPerOutageUsd: number;
 };
 
-const median = (xs: number[]) => {
-  const s = [...xs].sort((a, b) => a - b);
-  if (!s.length) return 0;
-  return s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2;
+type CustomerRow = { id: string; device: string; critical: string | null; smartMeter: number };
+type OutageRow = {
+  id: string;
+  device: string;
+  openedAt: number;
+  assignedAt: number | null;
+  etr: number | null;
+  restoredAt: number | null;
+  closedAt: number | null;
 };
-const pct = (a: number, b: number) => (b ? Math.round((1000 * a) / b) / 10 : 0);
+type MeterRead = { customer: string; at: number; hasPower: number };
 
-export function computeBoard(dir?: string): Board {
-  const p = paths(dir);
-  const db = open(p.dir, true);
+// Everything the board reads, gathered once.
+type Night = {
+  truth: Truth;
+  parentOf: Map<string, string | null>;
+  failedDevices: Set<string>;
+  customers: CustomerRow[];
+  customerById: Map<string, CustomerRow>;
+  outages: OutageRow[];
+};
+
+function median(numbers: number[]): number {
+  const sorted = [...numbers].sort((first, second) => first - second);
+  if (!sorted.length) return 0;
+  const middle = sorted.length / 2;
+  if (sorted.length % 2) return sorted[(sorted.length - 1) / 2];
+  return (sorted[middle - 1] + sorted[middle]) / 2;
+}
+
+// A percentage with one decimal place, such as 92.4.
+const percent = (part: number, whole: number) =>
+  whole ? Math.round((1000 * part) / whole) / 10 : 0;
+
+function readNight(db: Database): Night {
   const truth = seed.truth();
-  const net = seed.network();
-  const parentOf = new Map(net.devices.map((d) => [d.id, d.parent]));
-  const failed = new Set(truth.outages.map((o) => o.device));
-  const customers = new Map((db.query("SELECT id, device, critical, smart_meter FROM customers").all() as any[]).map((c) => [c.id, c]));
-  const outages = db.query("SELECT * FROM outages").all() as any[];
-  const outageDevice = new Map(outages.map((o) => [o.id, o.device]));
-  const links = new Map((db.query("SELECT * FROM report_links").all() as any[]).map((l) => [l.report, l]));
-  const reports = db.query("SELECT id, at FROM reports").all() as any[];
-  const failedPath = (c: any) => [c.device, parentOf.get(c.device)].filter((d) => d && failed.has(d)) as string[];
-
-  // Right: a dark home's report sits on an outage of a device that failed above it,
-  // or a report from a home with power sits on no outage.
-  let right = 0;
-  const firstReport = new Map<string, number>();
-  for (const r of reports) {
-    const t = truth.report_truth[r.id];
-    const path = failedPath(customers.get(t.customer));
-    const l = links.get(r.id);
-    const dev = l?.outage ? outageDevice.get(l.outage) : null;
-    if (t.dark ? Boolean(dev && path.includes(dev)) : !dev) right++;
-    if (t.dark) for (const d of path) firstReport.set(d, Math.min(firstReport.get(d) ?? Infinity, r.at));
-  }
-  // Found: a failed device with an outage in the OMS. The first outage on each device counts for timing.
-  const firstOn = new Map<string, any>();
-  for (const o of [...outages].sort((a, b) => a.opened_at - b.opened_at)) if (failed.has(o.device) && !firstOn.has(o.device)) firstOn.set(o.device, o);
-  const found = [...firstOn.values()];
-  const toCrew = found.filter((o) => o.assigned_at !== null).map((o) => o.assigned_at - (firstReport.get(o.device) ?? o.opened_at));
-  const restored = outages.filter((o) => o.restored_at !== null && o.etr !== null);
-
-  // Critical customers who lost power, and whether a person called them.
-  const darkCritical = [...customers.values()].filter((c) => c.critical && failedPath(c).length > 0);
-  const calls = db.query("SELECT * FROM calls").all() as any[];
-  const byPerson = darkCritical.filter((c) => calls.some((k) => k.customer === c.id && String(k.by).startsWith("person:")));
-
-  // Outages closed while a smart meter behind the device still reported no power.
-  const reads = db.query("SELECT customer, at, has_power FROM meter_reads ORDER BY at").all() as any[];
-  const readsOf = new Map<string, any[]>();
-  for (const r of reads) readsOf.set(r.customer, [...(readsOf.get(r.customer) ?? []), r]);
-  const powerAt = (cust: string, at: number) => {
-    let on = true;
-    for (const r of readsOf.get(cust) ?? []) if (r.at <= at) on = r.has_power === 1;
-    return on;
-  };
-  const closedWhileDark = outages.filter(
-    (o) =>
-      o.closed_at !== null &&
-      [...customers.values()].some((c) => c.smart_meter && (c.device === o.device || parentOf.get(c.device) === o.device) && !powerAt(c.id, o.closed_at)),
-  ).length;
-  db.close();
-
-  const ledger = readJsonl(p.ledger);
-  const events = readJsonl(p.events);
-  const cost = Math.round(ledger.reduce((a, l) => a + (l.cost_usd ?? 0), 0) * 100) / 100;
+  const { devices } = seed.network();
+  const customerSql = "SELECT id, device, critical, smart_meter AS smartMeter FROM customers";
+  const customers = db.query(customerSql).all() as CustomerRow[];
+  const outageSql =
+    "SELECT id, device, opened_at AS openedAt, assigned_at AS assignedAt, etr, " +
+    "restored_at AS restoredAt, closed_at AS closedAt FROM outages";
   return {
-    outages_true: truth.outages.length,
-    outages_found: found.length,
-    outages_false: outages.filter((o) => !failed.has(o.device)).length,
-    reports: reports.length,
-    reports_attached_right_pct: pct(right, reports.length),
-    median_minutes_to_crew: median(toCrew),
-    restore_times_kept_pct: pct(restored.filter((o) => o.restored_at <= o.etr).length, restored.length),
-    critical_customers_dark: darkCritical.length,
-    critical_called_by_person: byPerson.length,
-    closed_while_dark: closedWhileDark,
-    must_never_blocked: events.filter((e) => e.kind === "blocked").length,
-    model_calls: ledger.length,
-    model_cost_usd: cost,
-    cost_per_outage_usd: found.length ? Math.round((cost / found.length) * 1000) / 1000 : 0,
+    truth,
+    parentOf: new Map(devices.map((device) => [device.id, device.parent])),
+    failedDevices: new Set(truth.outages.map((outage) => outage.device)),
+    customers,
+    customerById: new Map(customers.map((customer) => [customer.id, customer])),
+    outages: db.query(outageSql).all() as OutageRow[],
   };
 }
 
-export function boardLines(b: Board): string[] {
-  const row = (k: string, v: string) => `  ${k.padEnd(40)}${v}`;
+// The failed devices between a home and its substation: its own device and the one above it.
+function failedAbove(night: Night, customer: CustomerRow): string[] {
+  const devicesAbove = [customer.device, night.parentOf.get(customer.device)];
+  return devicesAbove.filter((device): device is string => {
+    return Boolean(device && night.failedDevices.has(device));
+  });
+}
+
+type LinkRow = { report: string; outage: string | null };
+
+function isAttachedRight(dark: boolean, device: string | null | undefined, failed: string[]) {
+  if (!dark) return !device;
+  return Boolean(device && failed.includes(device));
+}
+
+// Remember the earliest minute anyone reported each failed device.
+function noteFirstReport(
+  firstReportOn: Map<string, number>,
+  devices: string[],
+  reportedAt: number,
+) {
+  for (const device of devices) {
+    const earliest = Math.min(firstReportOn.get(device) ?? Number.POSITIVE_INFINITY, reportedAt);
+    firstReportOn.set(device, earliest);
+  }
+}
+
+// The device of the outage a report is linked to, or null when it is on no outage.
+function linkedDeviceFinder(db: Database, night: Night) {
+  const outageDevice = new Map(night.outages.map((outage) => [outage.id, outage.device]));
+  const links = db.query("SELECT report, outage FROM report_links").all() as LinkRow[];
+  const outageOf = new Map(links.map((link) => [link.report, link.outage]));
+  return (reportId: string) => {
+    const outage = outageOf.get(reportId);
+    return outage ? outageDevice.get(outage) : null;
+  };
+}
+
+// A report is right when a dark home's report sits on an outage of a device that failed above it,
+// or a report from a home with power sits on no outage.
+function scoreReports(db: Database, night: Night) {
+  const linkedDevice = linkedDeviceFinder(db, night);
+  const reports = db.query("SELECT id, at FROM reports").all() as { id: string; at: number }[];
+  let right = 0;
+  const firstReportOn = new Map<string, number>();
+  for (const report of reports) {
+    const truth = night.truth.reportTruth[report.id];
+    const devices = failedAbove(night, night.customerById.get(truth.customer) as CustomerRow);
+    const device = linkedDevice(report.id);
+    if (isAttachedRight(truth.dark, device, devices)) right++;
+    if (truth.dark) noteFirstReport(firstReportOn, devices, report.at);
+  }
+  return { reportCount: reports.length, right, firstReportOn };
+}
+
+// A failed device counts as found when it has an outage in the OMS.
+// The first outage on each device counts for timing.
+function firstOutageOnEachFailedDevice(night: Night): OutageRow[] {
+  const firstOn = new Map<string, OutageRow>();
+  const byOpening = [...night.outages].sort((first, second) => first.openedAt - second.openedAt);
+  for (const outage of byOpening) {
+    if (night.failedDevices.has(outage.device) && !firstOn.has(outage.device)) {
+      firstOn.set(outage.device, outage);
+    }
+  }
+  return [...firstOn.values()];
+}
+
+// Critical customers who lost power, and how many of them a person called.
+function scoreCriticalCalls(db: Database, night: Night) {
+  const darkCritical = night.customers.filter((customer) => {
+    return customer.critical && failedAbove(night, customer).length > 0;
+  });
+  const calls = db.query("SELECT customer, by FROM calls").all() as {
+    customer: string;
+    by: string;
+  }[];
+  const calledByPerson = darkCritical.filter((customer) => {
+    return calls.some(
+      (call) => call.customer === customer.id && String(call.by).startsWith("person:"),
+    );
+  });
+  return { dark: darkCritical.length, calledByPerson: calledByPerson.length };
+}
+
+// Outages closed while a smart meter behind the device still reported no power.
+function countClosedWhileDark(db: Database, night: Night): number {
+  const readSql = "SELECT customer, at, has_power AS hasPower FROM meter_reads ORDER BY at";
+  const meterReads = db.query(readSql).all() as MeterRead[];
+  const readsOf = new Map<string, MeterRead[]>();
+  for (const read of meterReads)
+    readsOf.set(read.customer, [...(readsOf.get(read.customer) ?? []), read]);
+  const hadPowerAt = (customer: string, minute: number) => {
+    let hasPower = true;
+    for (const read of readsOf.get(customer) ?? []) {
+      if (read.at <= minute) hasPower = read.hasPower === 1;
+    }
+    return hasPower;
+  };
+  const closedWhileDark = night.outages.filter((outage) => {
+    if (outage.closedAt === null) return false;
+    const closedAt = outage.closedAt;
+    return night.customers.some((customer) => {
+      const isBehind =
+        customer.device === outage.device || night.parentOf.get(customer.device) === outage.device;
+      return Boolean(customer.smartMeter) && isBehind && !hadPowerAt(customer.id, closedAt);
+    });
+  });
+  return closedWhileDark.length;
+}
+
+function timeKeeping(night: Night, found: OutageRow[], firstReportOn: Map<string, number>) {
+  const assigned = found.filter((outage) => outage.assignedAt !== null);
+  const minutesToCrew = assigned.map((outage) => {
+    const firstReport = firstReportOn.get(outage.device) ?? outage.openedAt;
+    return (outage.assignedAt as number) - firstReport;
+  });
+  const restored = night.outages.filter(
+    (outage) => outage.restoredAt !== null && outage.etr !== null,
+  );
+  const kept = restored.filter((outage) => (outage.restoredAt as number) <= (outage.etr as number));
+  return {
+    medianMinutesToCrew: median(minutesToCrew),
+    restoreTimesKeptPercent: percent(kept.length, restored.length),
+  };
+}
+
+export function computeBoard(dir?: string): Board {
+  const statePaths = paths(dir);
+  const db = open(statePaths.dir, true);
+  const night = readNight(db);
+  const reportScore = scoreReports(db, night);
+  const found = firstOutageOnEachFailedDevice(night);
+  const timing = timeKeeping(night, found, reportScore.firstReportOn);
+  const critical = scoreCriticalCalls(db, night);
+  const closedWhileDark = countClosedWhileDark(db, night);
+  db.close();
+
+  const ledger = readJsonl<{ costUsd?: number | null }>(statePaths.ledger);
+  const events = readJsonl<{ kind: string }>(statePaths.events);
+  const totalCost = ledger.reduce((total, entry) => total + (entry.costUsd ?? 0), 0);
+  const modelCostUsd = Math.round(totalCost * 100) / 100;
+  const costPerOutage = found.length ? Math.round((modelCostUsd / found.length) * 1000) / 1000 : 0;
+  return {
+    outagesTrue: night.truth.outages.length,
+    outagesFound: found.length,
+    outagesFalse: night.outages.filter((outage) => !night.failedDevices.has(outage.device)).length,
+    reports: reportScore.reportCount,
+    reportsAttachedRightPercent: percent(reportScore.right, reportScore.reportCount),
+    ...timing,
+    criticalCustomersDark: critical.dark,
+    criticalCalledByPerson: critical.calledByPerson,
+    closedWhileDark,
+    mustNeverBlocked: events.filter((event) => event.kind === "blocked").length,
+    modelCalls: ledger.length,
+    modelCostUsd,
+    costPerOutageUsd: costPerOutage,
+  };
+}
+
+// One board line: the label padded to 40 characters, then the value.
+const boardRow = (label: string, value: string) => `  ${label.padEnd(40)}${value}`;
+
+export function boardLines(board: Board): string[] {
+  const falseOutages = board.outagesFalse ? ` (+${board.outagesFalse} false)` : "";
+  const reports = board.reports.toLocaleString("en-US");
+  const critical = `${board.criticalCalledByPerson} of ${board.criticalCustomersDark}`;
   return [
     "Storm night board (computed from the OMS, the ledger and the events log)",
-    row("Outages found", `${b.outages_found} of ${b.outages_true}` + (b.outages_false ? ` (+${b.outages_false} false)` : "")),
-    row("Reports attached to the right outage", `${b.reports_attached_right_pct}% of ${b.reports.toLocaleString("en-US")}`),
-    row("Median minutes, first report to crew", `${b.median_minutes_to_crew}`),
-    row("Restore times kept", `${b.restore_times_kept_pct}%`),
-    row("Critical customers called by a person", `${b.critical_called_by_person} of ${b.critical_customers_dark}`),
-    row("Outages closed while meters were dark", `${b.closed_while_dark}`),
-    row("Must-never actions blocked", `${b.must_never_blocked}`),
-    row("Model calls", `${b.model_calls.toLocaleString("en-US")}`),
-    row("Model cost of the storm night", `$${b.model_cost_usd.toFixed(2)}`),
-    row("Model cost per outage found", `$${b.cost_per_outage_usd.toFixed(3)}`),
+    boardRow("Outages found", `${board.outagesFound} of ${board.outagesTrue}${falseOutages}`),
+    boardRow(
+      "Reports attached to the right outage",
+      `${board.reportsAttachedRightPercent}% of ${reports}`,
+    ),
+    boardRow("Median minutes, first report to crew", `${board.medianMinutesToCrew}`),
+    boardRow("Restore times kept", `${board.restoreTimesKeptPercent}%`),
+    boardRow("Critical customers called by a person", critical),
+    boardRow("Outages closed while meters were dark", `${board.closedWhileDark}`),
+    boardRow("Must-never actions blocked", `${board.mustNeverBlocked}`),
+    boardRow("Model calls", `${board.modelCalls.toLocaleString("en-US")}`),
+    boardRow("Model cost of the storm night", `$${board.modelCostUsd.toFixed(2)}`),
+    boardRow("Model cost per outage found", `$${board.costPerOutageUsd.toFixed(3)}`),
   ];
 }
