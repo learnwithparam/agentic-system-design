@@ -1,0 +1,25 @@
+# What one handled outage costs in model calls, read from the ledger of bun run storm.
+# Tokens are the average per call. Prices come from config/models.ts.
+outcome: one outage handled
+# About 30 minutes of desk lead time saved per outage, at about $50 an hour.
+value_per_outcome_usd: 25
+monthly_budget_usd: 1
+calls:
+  - job: group-the-reports
+    role: fast
+    calls_per_outcome: 98
+    input_tokens: 219
+    cached_input_tokens: 195
+    output_tokens: 17
+  - job: write-the-customer-updates
+    role: fast
+    calls_per_outcome: 1.2
+    input_tokens: 110
+    cached_input_tokens: 88
+    output_tokens: 32
+  - job: plan-the-crews
+    role: smart
+    calls_per_outcome: 3.6
+    input_tokens: 6320
+    cached_input_tokens: 6233
+    output_tokens: 16
