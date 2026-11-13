@@ -119,7 +119,7 @@ course, it ends with `3 of 8 rules pass. Fix the FAIL lines and run it again.`
 | [Plan for failure and cost](parts/03-plan-for-failure-and-cost/README.md) | `name-the-failures`, `design-the-restart`, `price-the-outcome`      | 60      | Failures and Restart sections, `cost.yaml`              |
 | [Decide and defend](parts/04-decide-and-defend/README.md)                 | `record-the-decisions`, `review-a-real-system`, `defend-the-design` | 60      | Three ADRs, a review of a real system, a review request |
 
-We are still building parts 2 to 4. [PARTS.md](PARTS.md) lists every step and what its check reads.
+All five parts are ready. [PARTS.md](PARTS.md) lists every step and what its check reads.
 [schedules.toml](schedules.toml) shows how the parts fit into different course lengths.
 
 ## The project
