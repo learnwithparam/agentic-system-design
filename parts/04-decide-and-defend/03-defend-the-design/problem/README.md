@@ -64,11 +64,11 @@ Expect: a `PASS` line for each earlier step and `Done.` once `review-request.md`
 
 ## If you get stuck
 
-| What you see                                             | Fix                                                              |
-| -------------------------------------------------------- | ---------------------------------------------------------------- |
-| `FAIL the finished files pass every rule of ...`         | Run `bun run verify` with that step name to see the rule.        |
-| `FAIL every choice points at a design section ...`       | Use a heading as it is written, such as `Gates`, or `cost.yaml`. |
-| `FAIL every choice says what would change your mind ...` | Add a number you could count, such as `more than 40 gates`.      |
+| What you see                                             | Fix                                                                                                                        |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `FAIL the finished files pass every rule of ...`         | Copy your files into that step's `problem/` folder. Then run `bun run verify` with that step name to see which rule fails. |
+| `FAIL every choice points at a design section ...`       | Use a heading as it is written, such as `Gates`, or `cost.yaml`.                                                           |
+| `FAIL every choice says what would change your mind ...` | Add a number you could count, such as `more than 40 gates`.                                                                |
 
 ## Words you will use
 

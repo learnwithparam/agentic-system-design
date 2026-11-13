@@ -43,13 +43,7 @@ done_when:
 
 The done check reads two OMS tables. It takes nobody's word.
 
-`world/README.md` lists the OMS tables. To see them:
-
-```bash
-bun run world
-```
-
-Expect: `The world is ready. Next: bun run storm`
+`world/README.md` lists the nine OMS tables under "The system of record".
 
 ## Done when
 

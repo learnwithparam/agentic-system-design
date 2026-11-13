@@ -21,14 +21,14 @@ Each level is a rung. To place a job, ask: **who decides the next step?** A pers
 
 In `design.md`, under `## Shape`, place each of the four jobs from `world/desk.yaml` on one rung. Fill:
 
-| Field               | Allowed values                                                                |
-| ------------------- | ----------------------------------------------------------------------------- |
-| `rung`              | `person`, `one-call`, `workflow`, `agent`, `many-agents`                      |
-| `decides_next_step` | `person`, `code` or `model`, matching the rung                                |
-| `trigger`           | `person`, `event`, `schedule`, `agent`: what starts it                        |
-| `lifetime`          | a number and a unit, such as `20 minutes`                                     |
-| `reason`            | only on agent rungs: `open-ended-steps`, `varied-input` or `parallel-breadth` |
-| `why`               | one sentence that names a fact of the storm desk                              |
+| Field               | Allowed values                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| `rung`              | `person`, `one-call`, `workflow`, `agent`, `many-agents`                                                |
+| `decides_next_step` | `person`, `code` or `model`, matching the rung                                                          |
+| `trigger`           | `person`, `event`, `schedule`, `agent`: what starts it                                                  |
+| `lifetime`          | a number and a unit, such as `20 minutes`                                                               |
+| `reason`            | only on agent rungs, so add the line yourself: `open-ended-steps`, `varied-input` or `parallel-breadth` |
+| `why`               | one sentence that names a fact of the storm desk                                                        |
 
 For example, the sample answer in `../solution/design.md` has:
 
