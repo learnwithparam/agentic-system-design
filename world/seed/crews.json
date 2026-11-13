@@ -1,0 +1,68 @@
+[
+ {
+  "id": "CREW-1",
+  "depot": "beckside",
+  "skills": [
+   "line",
+   "switching"
+  ]
+ },
+ {
+  "id": "CREW-2",
+  "depot": "beckside",
+  "skills": [
+   "line"
+  ]
+ },
+ {
+  "id": "CREW-3",
+  "depot": "beckside",
+  "skills": [
+   "line"
+  ]
+ },
+ {
+  "id": "CREW-4",
+  "depot": "beckside",
+  "skills": [
+   "line",
+   "switching"
+  ]
+ },
+ {
+  "id": "CREW-5",
+  "depot": "beckside",
+  "skills": [
+   "line"
+  ]
+ },
+ {
+  "id": "CREW-6",
+  "depot": "fellgate",
+  "skills": [
+   "line"
+  ]
+ },
+ {
+  "id": "CREW-7",
+  "depot": "fellgate",
+  "skills": [
+   "line",
+   "switching"
+  ]
+ },
+ {
+  "id": "CREW-8",
+  "depot": "fellgate",
+  "skills": [
+   "line"
+  ]
+ },
+ {
+  "id": "CREW-9",
+  "depot": "fellgate",
+  "skills": [
+   "line"
+  ]
+ }
+]
