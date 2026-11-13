@@ -27,7 +27,7 @@ Write three ADRs in `adr/`. The starter has three empty files:
 - `0003-the-cost.md`: your cost choice. Link it to `../cost.yaml`.
 
 You may rename each file after its title, such as `0002-a-person-approves-every-customer-text.md`. Keep
-the four digits and the dashes.
+the four digits and the dashes. Delete the old empty file.
 
 Each ADR needs:
 
@@ -75,11 +75,10 @@ Expect: `Done. All 8 rules pass.` and a `Progress:` line.
 | `FAIL every ADR names at least one bad consequence` | Start a bullet with `Bad,` and say what gets worse.      |
 | `FAIL every Confirmation names the step ...`        | Name a check such as `bun run verify price-the-outcome`. |
 | `FAIL every ADR links to the design section ...`    | Write the link as `[Gates](../design.md#gates)`.         |
+| `FAIL` lines after you add renamed files            | Delete the old empty files in `adr/`.                    |
 
 ## Words you will use
 
-- **ADR**: an architecture decision record, one short file for one choice.
-- **MADR**: a common template for ADRs. This course uses version 4.0.0.
 - **Considered options**: the choices you weighed, the winner and the ones you turned down.
 - **Consequence**: what changes because of the choice, good or bad.
 - **Confirmation**: how you will check that the choice was carried out.
