@@ -1,0 +1,4 @@
+job,role,calls_per_outcome,input_tokens,cached_input_tokens,output_tokens,hand_monthly_usd,model_key,litellm_version,litellm_monthly_usd
+group-the-reports,fast,98,219,195,17,0.5289,claude-haiku-5-5,,0.5289
+write-the-customer-updates,fast,1.2,110,88,32,0.0096,claude-haiku-5-5,,0.0096
+plan-the-crews,smart,3.6,6320,6233,16,1.4474,claude-sonnet-5-5,,1.4474

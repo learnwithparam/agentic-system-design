@@ -1,11 +1,11 @@
 # Parts mapped onto formats. This is the only file that names time.
 # Part minutes: meet-the-desk 15, choose-the-shape 60, design-the-agent 60, plan-for-failure-and-cost 60,
-# decide-and-defend 60. Total 255. Parts marked planned in their README count their planned minutes here.
+# decide-and-defend 60, price-the-design-with-litellm 15. Total 270. Parts marked planned in their README count their planned minutes here.
 
 # The live Maven workshop: one sitting of about four and a half hours, with a 15 minute break.
 [one-day]
 sessions = [
-  { parts = ["meet-the-desk", "choose-the-shape", "design-the-agent", "plan-for-failure-and-cost", "decide-and-defend"], minutes = 270 },
+  { parts = ["meet-the-desk", "choose-the-shape", "design-the-agent", "plan-for-failure-and-cost", "decide-and-defend", "price-the-design-with-litellm"], minutes = 270 },
 ]
 
 # Four evenings of 80 minutes; the spare minutes go to questions.
@@ -15,6 +15,7 @@ sessions = [
   { parts = ["design-the-agent"], minutes = 80 },
   { parts = ["plan-for-failure-and-cost"], minutes = 80 },
   { parts = ["decide-and-defend"], minutes = 80 },
+  { parts = ["price-the-design-with-litellm"], minutes = 80 },
 ]
 
 # Four weeks, self-paced or cohort: one part a week, plus the Go further rows, one peer review (30 min)
@@ -25,4 +26,5 @@ sessions = [
   { parts = ["design-the-agent"], minutes = 180 },
   { parts = ["plan-for-failure-and-cost"], minutes = 180 },
   { parts = ["decide-and-defend"], minutes = 180 },
+  { parts = ["price-the-design-with-litellm"], minutes = 180 },
 ]
