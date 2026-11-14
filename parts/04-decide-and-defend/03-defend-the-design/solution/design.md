@@ -295,3 +295,103 @@ budget:
   dollars_per_run: 0.5
   when_hit: stop-and-ask
 ```
+
+## Load
+
+Four things set the size of the build: what people need, how fast each job must answer, how much work
+arrives, and how many model calls that work costs. A smart meter alarm already names the customer, so only
+phone and text reports need a model.
+
+```yaml design
+requirements:
+  - A customer who reports a fault sees it on an outage within a short time.
+  - A critical customer hears from a person before any restore time goes out.
+  - A crew gets one clear next job and is never sent twice to the same outage.
+load:
+  reports_per_night: 4200
+  outages_per_night: 31
+latency:
+  - job: group-the-reports
+    budget_seconds: 5
+    why: A report that waits longer than a few seconds piles up behind thousands more.
+  - job: write-the-customer-updates
+    budget_seconds: 10
+    why: The text should reach the customer while the crew plan is still fresh.
+  - job: plan-the-crews
+    budget_seconds: 120
+    why: A crew plan is a loop of several calls, and a crew only needs it before it leaves the depot.
+capacity:
+  reports_needing_model: 2900
+  calls_per_night: 3100
+```
+
+## Evals
+
+An eval is a test set for an agent. Each job gets its own, because a good crew plan says nothing about a good
+customer text. A model may grade the words, but a person checks the model first.
+
+```yaml design
+evals:
+  - job: group-the-reports
+    question: Does each report land on the right outage?
+    cases: 40
+    source: reports from a past storm with the right outage already known
+    grader: code
+    pass_mark: 0.95
+    gate: block-release
+  - job: write-the-customer-updates
+    question: Is each text true, clear and free of a promise we cannot keep?
+    cases: 20
+    source: texts written for a past storm
+    grader: model
+    checked_by_person: 10
+    pass_mark: 0.9
+    gate: block-release
+  - job: plan-the-crews
+    question: Does each plan send a free crew to the worst fault, and never break a hard rule?
+    cases: 15
+    source: three past storm nights replayed from the OMS
+    grader: code
+    pass_mark: 1
+    covers_rules: [P2, P3]
+    gate: block-release
+```
+
+## Rollout
+
+The desk goes live in steps. At first the agent only suggests, and a person acts. The share of reports it
+handles grows only when the evals hold, and a stop rule can pull it back at any point.
+
+```yaml design
+rollout:
+  stages:
+    - name: shadow
+      share_percent: 0
+      who_acts: person
+      advance_when: the crew plan agrees with the desk lead on most of the replayed storm nights
+    - name: small
+      share_percent: 10
+      who_acts: person
+      advance_when: every eval holds its pass mark on a full week of real reports
+    - name: wide
+      share_percent: 50
+      who_acts: agent
+      advance_when: every eval holds its pass mark and no stop rule fired during one real storm
+    - name: full
+      share_percent: 100
+      who_acts: agent
+      advance_when: the desk lead signs off after a storm
+  stop_when:
+    - metric: outages closed while a meter behind them is still dark
+      limit: 0
+      rule: P2
+    - metric: critical customers who got a restore time with no person on the call
+      limit: 0
+      rule: P3
+    - metric: dollars spent in one run
+      limit: 5
+  rollback:
+    how: Turn the share to 0 so every report goes back to the desk by hand, with no deploy needed.
+    owner: person
+    tested: true
+```

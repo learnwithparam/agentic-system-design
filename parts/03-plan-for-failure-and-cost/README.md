@@ -65,6 +65,8 @@ This is a vendor claim, so read it with care.
 | `name-the-failures`        | 20      | `## Failures`: at least five failure modes, how each shows up, how it is caught, what the system does |
 | `design-the-restart`       | 20      | `## Restart`: where run state lives, idempotency keys, step and money budget per run                  |
 | `price-the-outcome`        | 20      | `cost.yaml` and the cost board for a normal and a storm month                                         |
+| `plan-the-evals`           | 20      | `## Evals`: a test set, a pass bar and a control for each risk                                        |
+| `plan-the-rollout`         | 20      | `## Rollout`: stages, a stop rule and a way back                                                      |
 | `design-the-observability` | 20      | `observability.md`: one signal for each failure, with a number and one person to tell                 |
 
 A failure mode is one way the system can go wrong, such as a tool that fails or a person who never answers.
@@ -152,7 +154,7 @@ When all three pass, check the whole part.
 bun run verify part plan-for-failure-and-cost
 ```
 
-Expect: `Part plan-for-failure-and-cost is done: 4/4 steps pass.` once all four steps pass.
+Expect: `Part plan-for-failure-and-cost is done: 6/6 steps pass.` once all six steps pass.
 
 The full output then looks like this:
 
@@ -161,8 +163,10 @@ Part plan-for-failure-and-cost:
   PASS   name-the-failures  (4/4 rules)
   PASS   design-the-restart  (5/5 rules)
   PASS   price-the-outcome  (6/6 rules)
+  PASS   plan-the-evals
+  PASS   plan-the-rollout
   PASS   design-the-observability  (5/5 rules)
-Part plan-for-failure-and-cost is done: 4/4 steps pass.
+Part plan-for-failure-and-cost is done: 6/6 steps pass.
 ```
 
 ## Assignment
