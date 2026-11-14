@@ -16,7 +16,7 @@ flowchart LR
 
 ## Watch it done
 
-Run the check on the starter:
+Check the starter:
 
 ```bash
 bun run verify defend-the-design
@@ -30,7 +30,7 @@ FAIL  every choice points at a design section or cost.yaml, and says why it is r
 10 of 13 rules pass. Fix the FAIL lines and run it again.
 ```
 
-Then on the finished answer:
+Then the answer:
 
 ```bash
 bun run verify defend-the-design solution
@@ -77,7 +77,7 @@ The finished check looks like this once every part is in place:
 **Go further.** Open `../examples/over-built.md`. It is another team's design with five faults. Find all
 five with the checklist. Then compare your list with `../solution/over-built-faults.md`.
 
-Then run the check and fix each FAIL line it prints:
+Then run the check and fix each FAIL:
 
 ```bash
 bun run verify defend-the-design
@@ -87,9 +87,9 @@ Expect: a `PASS` line for each earlier step and `Done.` once `review-request.md`
 
 ## Do it on your work
 
-Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can read it and name your tool, your person and your number.
+Good looks like this: a stranger can name your tool, person and number.
 
 ## Done when
 
@@ -100,7 +100,7 @@ Good looks like this: a stranger can read it and name your tool, your person and
 
 ## Solution
 
-The finished files are in the `solution/` folder. To see what changed, run:
+The finished files are in `solution/`. Compare:
 
 ```bash
 diff -r problem solution
@@ -108,4 +108,4 @@ diff -r problem solution
 
 Expect: only the parts you fill in are different.
 
-Stuck, or a word you do not know? Open [HELP.md](HELP.md).
+Stuck? See [HELP.md](HELP.md).

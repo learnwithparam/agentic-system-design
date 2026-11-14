@@ -5,10 +5,6 @@
 Every system fails sometimes. A failure you named has a check and a next step. A failure you did not name
 finds nobody ready.
 
-```text
-  +295 min  BLOCKED close of OUT-005: 103 meters behind R-F05 still dark
-```
-
 ```mermaid
 flowchart LR
   F[failure happens] --> S[shows up as: a record or a log line]
@@ -18,7 +14,7 @@ flowchart LR
 
 ## Watch it done
 
-Run the check on the starter:
+Check the starter:
 
 ```bash
 bun run verify name-the-failures
@@ -32,7 +28,7 @@ FAIL  there is one failure of each of the five kinds
 1 of 4 rules pass. Fix the FAIL lines and run it again.
 ```
 
-Then on the finished answer:
+Then the answer:
 
 ```bash
 bun run verify name-the-failures solution
@@ -46,11 +42,13 @@ Done. All 4 rules pass.
 
 ## Your turn
 
-Many teams write "we will monitor it" and stop there. Monitoring means someone watches a screen and hopes to
-see the problem. On a storm night, nobody has time to watch. A check is better: code that reads a record,
-compares it with a rule, and acts when the rule breaks.
+Do not write "we will monitor it". On a storm night nobody has time to watch. A check is code that reads a record, compares it with a rule, and acts when the rule breaks.
 
 For example, run `bun run storm` and find this line:
+
+```text
+  +295 min  BLOCKED close of OUT-005: 103 meters behind R-F05 still dark
+```
 
 The agent tried to close an outage too early. A check read the meters, saw 103 still dark, and blocked the
 close. Nobody had to watch.
@@ -83,7 +81,7 @@ For example, the sample answer in `../solution/design.md` has this row:
   system_does: escalates the gate to the duty manager and keeps the action waiting
 ```
 
-Then run the check and fix each FAIL line it prints:
+Then run the check and fix each FAIL:
 
 ```bash
 bun run verify name-the-failures
@@ -93,9 +91,9 @@ Expect: `Done. All 4 rules pass.` and a `Progress:` line.
 
 ## Do it on your work
 
-Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can read it and name your tool, your person and your number.
+Good looks like this: a stranger can name your tool, person and number.
 
 ## Done when
 
@@ -106,7 +104,7 @@ Good looks like this: a stranger can read it and name your tool, your person and
 
 ## Solution
 
-The finished files are in the `solution/` folder. To see what changed, run:
+The finished files are in `solution/`. Compare:
 
 ```bash
 diff -r problem solution
@@ -114,4 +112,4 @@ diff -r problem solution
 
 Expect: only the parts you fill in are different.
 
-Stuck, or a word you do not know? Open [HELP.md](HELP.md).
+Stuck? See [HELP.md](HELP.md).

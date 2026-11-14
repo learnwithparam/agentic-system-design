@@ -1,5 +1,13 @@
 # Choose the shape
 
+## After this part you can
+
+Place a job on the ladder, write its outcome and pick a pattern.
+
+## You leave with
+
+A ladder rung, an outcome and a pattern in `design.md`.
+
 ## The problem
 
 The operations director asked for "an AI agent for storm nights". Four jobs hide in that wish, and each one
@@ -51,6 +59,28 @@ carries power from a substation to many streets. Its Shape block says:
 
 Each step's `problem/design.md` starts with the sections from the steps before it. So you can begin at any
 step.
+
+## Steps
+
+| Step                  | What you do                                                      |
+| --------------------- | ---------------------------------------------------------------- |
+| `place-on-the-ladder` | Run `bun run verify place-on-the-ladder` until every rule passes |
+| `write-the-outcome`   | Run `bun run verify write-the-outcome` until every rule passes   |
+| `pick-the-pattern`    | Run `bun run verify pick-the-pattern` until every rule passes    |
+
+## Watch and read
+
+| Kind  | Title                                        | Who made it                               | Why                                                                   | Link                                                              |
+| ----- | -------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| video | How we build effective agents                | Barry Zhang, Anthropic                    | The maker of the method explains when an agent is worth its cost.     | https://www.youtube.com/watch?v=D7_ipDqhtwk                       |
+| read  | Building effective agents                    | Erik Schluntz and Barry Zhang, Anthropic  | Start simple and add rungs only when you must.                        | https://www.anthropic.com/engineering/building-effective-agents   |
+| read  | Don't build multi-agents                     | Walden Yan, Cognition                     | The team that runs a coding agent argues against many agents.         | https://cognition.ai/blog/dont-build-multi-agents                 |
+| read  | How we built our multi-agent research system | Anthropic engineering                     | The team that runs it shares real token costs and failures.           | https://www.anthropic.com/engineering/multi-agent-research-system |
+| video | Software is changing again                   | Andrej Karpathy, at a startup school talk | A top researcher explains what models can and cannot do for software. | https://www.youtube.com/watch?v=LCEmiRjPEtQ                       |
+
+## Project
+
+Place one job of yours on the ladder and write its outcome as a number.
 
 ## Walkthrough
 

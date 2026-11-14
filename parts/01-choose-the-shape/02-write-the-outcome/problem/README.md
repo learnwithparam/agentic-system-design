@@ -15,7 +15,7 @@ flowchart LR
 
 ## Watch it done
 
-Run the check on the starter:
+Check the starter:
 
 ```bash
 bun run verify write-the-outcome
@@ -29,7 +29,7 @@ FAIL  the metric has a name, a number and a unit
 1 of 7 rules pass. Fix the FAIL lines and run it again.
 ```
 
-Then on the finished answer:
+Then the answer:
 
 ```bash
 bun run verify write-the-outcome solution
@@ -73,7 +73,7 @@ The done check reads two OMS tables. It takes nobody's word.
 
 `world/README.md` lists the nine OMS tables under "The system of record".
 
-Then run the check and fix each FAIL line it prints:
+Then run the check and fix each FAIL:
 
 ```bash
 bun run verify write-the-outcome
@@ -83,9 +83,9 @@ Expect: `Done. All 7 rules pass.` and a `Progress:` line.
 
 ## Do it on your work
 
-Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can read it and name your tool, your person and your number.
+Good looks like this: a stranger can name your tool, person and number.
 
 ## Done when
 
@@ -99,7 +99,7 @@ Good looks like this: a stranger can read it and name your tool, your person and
 
 ## Solution
 
-The finished files are in the `solution/` folder. To see what changed, run:
+The finished files are in `solution/`. Compare:
 
 ```bash
 diff -r problem solution
@@ -107,4 +107,4 @@ diff -r problem solution
 
 Expect: only the parts you fill in are different.
 
-Stuck, or a word you do not know? Open [HELP.md](HELP.md).
+Stuck? See [HELP.md](HELP.md).

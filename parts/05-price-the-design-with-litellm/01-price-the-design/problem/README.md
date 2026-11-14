@@ -16,7 +16,7 @@ flowchart LR
 
 ## Watch it done
 
-Run the check on the starter:
+Check the starter:
 
 ```bash
 bun run verify price-the-design
@@ -30,7 +30,7 @@ FAIL  the recomputed monthly cost is filled in and matches the cost map prices
 0 of 2 rules pass. Fix the FAIL lines and run it again.
 ```
 
-Then on the finished answer:
+Then the answer:
 
 ```bash
 bun run verify price-the-design solution
@@ -74,17 +74,11 @@ Expect: `Done. All 2 rules pass.` and a `Progress:` line.
 Last, put the two totals side by side. If your figure differs from the hand estimate, write one sentence on
 why. A person reads that sentence, not the script.
 
-Then run the check and fix each FAIL line it prints:
-
-```bash
-bun run verify price-the-design
-```
-
 ## Do it on your work
 
-Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can read it and name your tool, your person and your number.
+Good looks like this: a stranger can name your tool, person and number.
 
 ## Done when
 
@@ -93,7 +87,7 @@ Good looks like this: a stranger can read it and name your tool, your person and
 
 ## Solution
 
-The finished files are in the `solution/` folder. To see what changed, run:
+The finished files are in `solution/`. Compare:
 
 ```bash
 diff -r problem solution
@@ -101,4 +95,4 @@ diff -r problem solution
 
 Expect: only the parts you fill in are different.
 
-Stuck, or a word you do not know? Open [HELP.md](HELP.md).
+Stuck? See [HELP.md](HELP.md).

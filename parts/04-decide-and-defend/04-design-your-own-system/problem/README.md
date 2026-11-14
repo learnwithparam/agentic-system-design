@@ -15,7 +15,7 @@ flowchart LR
 
 ## Watch it done
 
-Run the check on the starter:
+Check the starter:
 
 ```bash
 bun run verify design-your-own-system
@@ -29,7 +29,7 @@ FAIL  at least two tools, each with a read or write action, reversible and a ris
 1 of 7 rules pass. Fix the FAIL lines and run it again.
 ```
 
-Then on the finished answer:
+Then the answer:
 
 ```bash
 bun run verify design-your-own-system solution
@@ -57,7 +57,7 @@ Put the evidence files in an `evidence/` folder next to `my-system.md`. The samp
 
 Do it on your work: this whole step is the move. Use your own job, your own tools and your own numbers.
 
-Then run the check and fix each FAIL line it prints:
+Then run the check and fix each FAIL:
 
 ```bash
 bun run verify design-your-own-system
@@ -67,9 +67,9 @@ Expect: `Done. All 7 rules pass.` and a `Progress:` line.
 
 ## Do it on your work
 
-Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can read it and name your tool, your person and your number.
+Good looks like this: a stranger can name your tool, person and number.
 
 ## Done when
 
@@ -82,7 +82,7 @@ Good looks like this: a stranger can read it and name your tool, your person and
 
 ## Solution
 
-The finished files are in the `solution/` folder. To see what changed, run:
+The finished files are in `solution/`. Compare:
 
 ```bash
 diff -r problem solution
@@ -90,4 +90,4 @@ diff -r problem solution
 
 Expect: only the parts you fill in are different.
 
-Stuck, or a word you do not know? Open [HELP.md](HELP.md).
+Stuck? See [HELP.md](HELP.md).
