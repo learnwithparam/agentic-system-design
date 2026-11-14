@@ -13,7 +13,35 @@ flowchart LR
   C -->|a rule fails| M
 ```
 
-## Your challenge
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify design-your-own-system
+```
+
+Expect:
+
+```text
+FAIL  the system has a name, outcome, owner, rung and a reason for it
+FAIL  at least two tools, each with a read or write action, reversible and a risk tier
+1 of 7 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify design-your-own-system solution
+```
+
+Expect:
+
+```text
+Done. All 7 rules pass.
+```
+
+## Your turn
 
 Open `my-system.md`. Fill each section about a real job from your work or study. For example, a shop that sends refunds by hand could become a returns desk with a refund tool and a gate.
 
@@ -29,6 +57,20 @@ Put the evidence files in an `evidence/` folder next to `my-system.md`. The samp
 
 Do it on your work: this whole step is the move. Use your own job, your own tools and your own numbers.
 
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify design-your-own-system
+```
+
+Expect: `Done. All 7 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
+
 ## Done when
 
 - `my-system.md` has all six sections with a `yaml design` block each.
@@ -38,22 +80,14 @@ Do it on your work: this whole step is the move. Use your own job, your own tool
 - The cost per outcome is below the value per outcome.
 - Two evidence files exist and are not empty.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify design-your-own-system
+diff -r problem solution
 ```
 
-Expect: `Done. All 7 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                 | Fix                                                                 |
-| -------------------------------------------- | ------------------------------------------------------------------- |
-| `FAIL every write that cannot be undone ...` | Add a gate that lists that tool. Set `on_timeout` to `wait`.        |
-| `FAIL at least two evidence files ...`       | Make the files first. Then list their paths under `## Evidence`.    |
-| `FAIL the cost per outcome ...`              | Use numbers, not words. If cost is above value, rethink the design. |
-
-## Words you will use
-
-- **Artefact**: a file you made that someone else can check.
-- **Evidence**: a real file that shows your system ran, such as a log.
-- **Rung**: how much the model decides, from a person up to many agents.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

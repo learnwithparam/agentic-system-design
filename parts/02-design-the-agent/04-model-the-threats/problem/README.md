@@ -15,7 +15,35 @@ flowchart LR
   G -->|no fence| H[harm done]
 ```
 
-## Your challenge
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify model-the-threats
+```
+
+Expect:
+
+```text
+FAIL  four threats or more, each with a kind, an entry, a target tool and a control
+FAIL  there is one threat of each of the three kinds
+2 of 6 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify model-the-threats solution
+```
+
+Expect:
+
+```text
+Done. All 6 rules pass.
+```
+
+## Your turn
 
 Open `threats.md`. The `design.md` next to it is the sample from the gates step, so you can read its tools
 and gates. Write four rows or more under `## Threats`. Give each row:
@@ -41,6 +69,20 @@ Use each kind once. For example, the sample answer in `../solution/threats.md` s
 Do it on your work: open your own agent's tool list. Write the one tool you would hate to see misused, then
 the text that could reach it, then the fence.
 
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify model-the-threats
+```
+
+Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
+
 ## Done when
 
 - `threats.md` has a Threats section with a `yaml design` block.
@@ -49,23 +91,14 @@ the text that could reach it, then the fence.
 - A threat that reaches a tier high tool names a gate that exists.
 - No control is a polite request to the model.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify model-the-threats
+diff -r problem solution
 ```
 
-Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                     | Fix                                                                   |
-| ------------------------------------------------ | --------------------------------------------------------------------- |
-| `FAIL every threat reaches a tool ...`           | Copy the tool name from `design.md`, such as `crew_assign`.           |
-| `FAIL every threat that reaches a tier high ...` | Set `control_kind: gate` and `gate:` to an id from the Gates section. |
-| `FAIL every control is a fence ...`              | Replace "tell the model" with a gate, a tier, a cap or an allowlist.  |
-
-## Words you will use
-
-- **Prompt injection**: hidden orders inside text that the model reads.
-- **Too much power**: a tool that can do more than its job needs.
-- **Data leak**: private facts that travel where they should not.
-- **Allowlist**: a short list of the only values a tool accepts.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).
