@@ -1,5 +1,13 @@
 # Plan for failure and cost
 
+## After this part you can
+
+Name the failures, design a safe restart, price an outcome and plan what you watch.
+
+## You leave with
+
+Failures, a restart plan, a price board and a watch plan in `design.md`.
+
 ## The problem
 
 Two hard questions arrive in the middle of a storm. First, the process that runs the crew agent dies, and
@@ -65,6 +73,30 @@ month at Copperbeck has `420` outages. A normal month has `140`.
 
 Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample
 answers. So you can begin at any step.
+
+## Steps
+
+| Step                       | What you do                                                           |
+| -------------------------- | --------------------------------------------------------------------- |
+| `name-the-failures`        | Run `bun run verify name-the-failures` until every rule passes        |
+| `design-the-restart`       | Run `bun run verify design-the-restart` until every rule passes       |
+| `price-the-outcome`        | Run `bun run verify price-the-outcome` until every rule passes        |
+| `design-the-observability` | Run `bun run verify design-the-observability` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                        | Who made it                                         | Why                                                                    | Link                                                              |
+| ----- | -------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| read  | Monitoring distributed systems               | Google SRE team                                     | The team that runs Google production on what to watch and alert on.    | https://sre.google/sre-book/monitoring-distributed-systems/       |
+| read  | Alerting on SLOs                             | Google SRE team                                     | Every alert needs a number and an owner.                               | https://sre.google/workbook/alerting-on-slos/                     |
+| read  | Designing robust APIs with idempotency       | Brandur Leach, Stripe                               | The source of the idempotency key idea used in the restart step.       | https://stripe.com/blog/idempotency                               |
+| read  | How we built our multi-agent research system | Anthropic engineering                               | The team that runs it shares real token costs and failures.            | https://www.anthropic.com/engineering/multi-agent-research-system |
+| video | Why AI evals matter                          | Hamel Husain and Shreya Shankar, on Lenny's Podcast | Two people who run evals for a living show how to check an AI product. | https://www.youtube.com/watch?v=BsWxPI9UM4c                       |
+| video | How we build effective agents                | Barry Zhang, Anthropic                              | The maker of the method explains when an agent is worth its cost.      | https://www.youtube.com/watch?v=D7_ipDqhtwk                       |
+
+## Project
+
+Name three ways your own system can fail and the check that catches each.
 
 ## Walkthrough
 

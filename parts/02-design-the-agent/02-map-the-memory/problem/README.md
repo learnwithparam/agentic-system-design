@@ -14,7 +14,7 @@ flowchart TB
 
 ## Watch it done
 
-Run the check on the starter:
+Check the starter:
 
 ```bash
 bun run verify map-the-memory
@@ -28,7 +28,7 @@ FAIL  every record in Outcome and every object a tool acts on has a layer
 3 of 6 rules pass. Fix the FAIL lines and run it again.
 ```
 
-Then on the finished answer:
+Then the answer:
 
 ```bash
 bun run verify map-the-memory solution
@@ -76,7 +76,7 @@ For example, the sample answer in `../solution/design.md` keeps this run-state f
 In `bun run storm`, find the line that sends CREW-5 to OUT-005. If the run stops there, this fact tells the restart that
 `CREW-5` is already on its way.
 
-Then run the check and fix each FAIL line it prints:
+Then run the check and fix each FAIL:
 
 ```bash
 bun run verify map-the-memory
@@ -86,9 +86,9 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 ## Do it on your work
 
-Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can read it and name your tool, your person and your number.
+Good looks like this: a stranger can name your tool, person and number.
 
 ## Done when
 
@@ -101,7 +101,7 @@ Good looks like this: a stranger can read it and name your tool, your person and
 
 ## Solution
 
-The finished files are in the `solution/` folder. To see what changed, run:
+The finished files are in `solution/`. Compare:
 
 ```bash
 diff -r problem solution
@@ -109,4 +109,4 @@ diff -r problem solution
 
 Expect: only the parts you fill in are different.
 
-Stuck, or a word you do not know? Open [HELP.md](HELP.md).
+Stuck? See [HELP.md](HELP.md).

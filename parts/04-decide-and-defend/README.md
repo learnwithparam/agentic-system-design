@@ -1,5 +1,13 @@
 # Decide and defend
 
+## After this part you can
+
+Record decisions, review a real system and defend your own design.
+
+## You leave with
+
+Three decision records and a finished `my-system.md`.
+
 ## The problem
 
 Your design now goes to a review board. That is a group of people who must agree before anyone builds it.
@@ -37,7 +45,7 @@ board checks them against a list. If the design fails, you go back and fix `desi
 
 | Step                     | Minutes | You produce                                                                                             |
 | ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
-| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR form, each with a Confirmation section                                 |
+| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR form, each with a Confirmation section                                       |
 | `review-a-real-system`   | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
 | `defend-the-design`      | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
 | `design-your-own-system` | 20      | `my-system.md` and evidence files for a job of your own; the check never reads the storm desk           |
@@ -50,6 +58,29 @@ stated. Every pass must quote the source, so a reviewer can find the words.
 
 Each step's `problem/` folder starts with the finished design from the steps before it, copied from their
 sample answers. So you can begin at any step.
+
+## Steps
+
+| Step                     | What you do                                                         |
+| ------------------------ | ------------------------------------------------------------------- |
+| `record-the-decisions`   | Run `bun run verify record-the-decisions` until every rule passes   |
+| `review-a-real-system`   | Run `bun run verify review-a-real-system` until every rule passes   |
+| `defend-the-design`      | Run `bun run verify defend-the-design` until every rule passes      |
+| `design-your-own-system` | Run `bun run verify design-your-own-system` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                   | Who made it                                         | Why                                                                    | Link                                                                     |
+| ----- | --------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| read  | Documenting architecture decisions      | Michael Nygard                                      | The original post that made decision records common.                   | https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions |
+| read  | Markdown Architectural Decision Records | The MADR project                                    | The official template this course uses for decisions.                  | https://adr.github.io/madr/                                              |
+| read  | Don't build multi-agents                | Walden Yan, Cognition                               | The team that runs a coding agent argues against many agents.          | https://cognition.ai/blog/dont-build-multi-agents                        |
+| video | Why AI evals matter                     | Hamel Husain and Shreya Shankar, on Lenny's Podcast | Two people who run evals for a living show how to check an AI product. | https://www.youtube.com/watch?v=BsWxPI9UM4c                              |
+| video | How we build effective agents           | Barry Zhang, Anthropic                              | The maker of the method explains when an agent is worth its cost.      | https://www.youtube.com/watch?v=D7_ipDqhtwk                              |
+
+## Project
+
+Write the design of one job of your own and defend it to a doubter.
 
 ## Walkthrough
 

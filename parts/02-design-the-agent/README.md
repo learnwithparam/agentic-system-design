@@ -1,5 +1,13 @@
 # Design the agent
 
+## After this part you can
+
+Scope the tools, map the memory, place the gates and list the threats.
+
+## You leave with
+
+Tools, memory, gates and threats in `design.md`.
+
 ## The problem
 
 An agent is a model that picks its own next step and calls tools until the job is done. A tool is one action
@@ -64,6 +72,30 @@ them.
 
 Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample
 answers. So you can begin at any step.
+
+## Steps
+
+| Step                | What you do                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `scope-the-tools`   | Run `bun run verify scope-the-tools` until every rule passes   |
+| `map-the-memory`    | Run `bun run verify map-the-memory` until every rule passes    |
+| `place-the-gates`   | Run `bun run verify place-the-gates` until every rule passes   |
+| `model-the-threats` | Run `bun run verify model-the-threats` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                       | Who made it            | Why                                                               | Link                                                                              |
+| ----- | ------------------------------------------- | ---------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| read  | Writing effective tools for agents          | Anthropic engineering  | The source of the tool response cap used in this course.          | https://www.anthropic.com/engineering/writing-tools-for-agents                    |
+| read  | Claude Code auto mode                       | Anthropic engineering  | The source of the number on how often people accept prompts.      | https://www.anthropic.com/engineering/claude-code-auto-mode                       |
+| read  | Effective context engineering for AI agents | Anthropic engineering  | Memory and context limits from the team that builds the model.    | https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents |
+| read  | The lethal trifecta for AI agents           | Simon Willison         | The person who named the risk explains it in plain words.         | https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/                        |
+| read  | OWASP Top 10 for LLM applications           | OWASP project team     | The security community's own list, kept by its authors.           | https://owasp.org/www-project-top-10-for-large-language-model-applications/       |
+| video | How we build effective agents               | Barry Zhang, Anthropic | The maker of the method explains when an agent is worth its cost. | https://www.youtube.com/watch?v=D7_ipDqhtwk                                       |
+
+## Project
+
+List the tools your own agent would use and mark which writes need a person.
 
 ## Walkthrough
 
