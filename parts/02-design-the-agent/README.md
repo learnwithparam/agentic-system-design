@@ -84,14 +84,15 @@ answers. So you can begin at any step.
 
 ## Watch and read
 
-| Kind  | Title                                       | Who made it            | Why                                                               | Link                                                                              |
-| ----- | ------------------------------------------- | ---------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| read  | Writing effective tools for agents          | Anthropic engineering  | The source of the tool response cap used in this course.          | https://www.anthropic.com/engineering/writing-tools-for-agents                    |
-| read  | Claude Code auto mode                       | Anthropic engineering  | The source of the number on how often people accept prompts.      | https://www.anthropic.com/engineering/claude-code-auto-mode                       |
-| read  | Effective context engineering for AI agents | Anthropic engineering  | Memory and context limits from the team that builds the model.    | https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents |
-| read  | The lethal trifecta for AI agents           | Simon Willison         | The person who named the risk explains it in plain words.         | https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/                        |
-| read  | OWASP Top 10 for LLM applications           | OWASP project team     | The security community's own list, kept by its authors.           | https://owasp.org/www-project-top-10-for-large-language-model-applications/       |
-| video | How we build effective agents               | Barry Zhang, Anthropic | The maker of the method explains when an agent is worth its cost. | https://www.youtube.com/watch?v=D7_ipDqhtwk                                       |
+| Kind  | Title                                       | Who made it                                         | Why                                                                    | Link                                                                              |
+| ----- | ------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| read  | Writing effective tools for agents          | Anthropic engineering                               | The source of the tool response cap used in this course.               | https://www.anthropic.com/engineering/writing-tools-for-agents                    |
+| read  | Claude Code auto mode                       | Anthropic engineering                               | The source of the number on how often people accept prompts.           | https://www.anthropic.com/engineering/claude-code-auto-mode                       |
+| read  | Effective context engineering for AI agents | Anthropic engineering                               | Memory and context limits from the team that builds the model.         | https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents |
+| read  | The lethal trifecta for AI agents           | Simon Willison                                      | The person who named the risk explains it in plain words.              | https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/                        |
+| read  | OWASP Top 10 for LLM applications           | OWASP project team                                  | The security community's own list, kept by its authors.                | https://owasp.org/www-project-top-10-for-large-language-model-applications/       |
+| video | Why AI evals matter                         | Hamel Husain and Shreya Shankar, on Lenny's Podcast | Two people who run evals for a living show how to check an AI product. | https://www.youtube.com/watch?v=BsWxPI9UM4c                                       |
+| video | How we build effective agents               | Barry Zhang, Anthropic                              | The maker of the method explains when an agent is worth its cost.      | https://www.youtube.com/watch?v=D7_ipDqhtwk                                       |
 
 ## Project
 
