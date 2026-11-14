@@ -37,7 +37,7 @@ board checks them against a list. If the design fails, you go back and fix `desi
 
 | Step                     | Minutes | You produce                                                                                             |
 | ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
-| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR form, each with a Confirmation section                                 |
+| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR form, each with a Confirmation section                                       |
 | `review-a-real-system`   | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
 | `defend-the-design`      | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
 | `design-your-own-system` | 20      | `my-system.md` and evidence files for a job of your own; the check never reads the storm desk           |

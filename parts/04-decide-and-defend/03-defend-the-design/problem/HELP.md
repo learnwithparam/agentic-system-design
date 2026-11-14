@@ -6,7 +6,7 @@
 | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `FAIL the finished files pass every rule of ...`         | Copy your files into that step's `problem/` folder. Then run `bun run verify` with that step name to see which rule fails. |
 | `FAIL every choice points at a design section ...`       | Use a heading as it is written, such as `Gates`, or `cost.yaml`.                                                           |
-| `FAIL every choice says what would change your mind ...` | Add a number you could count, such as a count of gates.                                                                |
+| `FAIL every choice says what would change your mind ...` | Add a number you could count, such as a count of gates.                                                                    |
 
 ## Words you will use
 
