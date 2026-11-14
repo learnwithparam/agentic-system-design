@@ -5,11 +5,6 @@
 Your design is full of choices. In a few months, someone will ask why you made them. If the reason lives
 only in your head, the next person may undo a good choice without knowing what it protected.
 
-An ADR (architecture decision record) is a short file for one choice. It says what you chose, which options
-you turned down, what gets worse, and how you will check the choice works. This course uses the MADR 4.0.0
-template ([adr/madr](https://github.com/adr/madr/blob/develop/template/adr-template.md)). MADR marks the
-Confirmation section as optional. Here it is required, because a decision nobody checks soon drifts.
-
 ```mermaid
 flowchart LR
   C[Context: the problem] --> O[Options: at least two]
@@ -18,7 +13,40 @@ flowchart LR
   D --> K[Confirmation: the check that proves it]
 ```
 
-## Your challenge
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify record-the-decisions
+```
+
+Expect:
+
+```text
+FAIL  every status is one from the MADR list
+FAIL  every ADR weighs at least two options
+2 of 8 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify record-the-decisions solution
+```
+
+Expect:
+
+```text
+Done. All 8 rules pass.
+```
+
+## Your turn
+
+An ADR (architecture decision record) is a short file for one choice. It says what you chose, which options
+you turned down, what gets worse, and how you will check the choice works. This course uses the MADR
+template ([adr/madr](https://github.com/adr/madr/blob/develop/template/adr-template.md)). MADR marks the
+Confirmation section as optional. Here it is required, because a decision nobody checks soon drifts.
 
 Write three ADRs in `adr/`. The starter has three empty files:
 
@@ -33,7 +61,7 @@ Each ADR needs:
 
 - `status:` in the front matter: `proposed`, `accepted`, `rejected`, `deprecated` or `superseded`.
 - A title, then the headings in the template.
-- At least two options under `## Considered Options`, each a bullet.
+- At least two options under the Considered Options heading, each a bullet.
 - At least one bullet under `### Consequences` that starts with `Bad,`.
 - A `### Confirmation` that names a step check, such as `bun run verify place-the-gates`.
 
@@ -53,6 +81,20 @@ For example, the sample ADR on the riskiest gate ends like this:
 
 The `Bad,` line is honest: a gate slows every text down. A reviewer trusts an ADR that says what it costs.
 
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify record-the-decisions
+```
+
+Expect: `Done. All 8 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
+
 ## Done when
 
 - `adr/` holds at least three files named like `0001-short-title.md`.
@@ -62,23 +104,14 @@ The `Bad,` line is honest: a gate slows every text down. A reviewer trusts an AD
 - Every ADR links to the design section or `cost.yaml` it decides, and that section exists.
 - Between them, the ADRs decide the shape, a gate and the cost.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify record-the-decisions
+diff -r problem solution
 ```
 
-Expect: `Done. All 8 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                        | Fix                                                      |
-| --------------------------------------------------- | -------------------------------------------------------- |
-| `FAIL every ADR names at least one bad consequence` | Start a bullet with `Bad,` and say what gets worse.      |
-| `FAIL every Confirmation names the step ...`        | Name a check such as `bun run verify price-the-outcome`. |
-| `FAIL every ADR links to the design section ...`    | Write the link as `[Gates](../design.md#gates)`.         |
-| `FAIL` lines after you add renamed files            | Delete the old empty files in `adr/`.                    |
-
-## Words you will use
-
-- **Considered options**: the choices you weighed, the winner and the ones you turned down.
-- **Consequence**: what changes because of the choice, good or bad.
-- **Confirmation**: how you will check that the choice was carried out.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

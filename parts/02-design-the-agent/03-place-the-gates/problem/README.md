@@ -5,12 +5,6 @@
 A gate is a stop where a person must say yes before an action runs. A gate only works if the person reads
 what they approve.
 
-Anthropic found that people "accept 93%" of the permission prompts Claude Code shows them
-([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). People click yes
-when they see too many prompts. So a gate people click through is not a gate.
-
-On a storm night the desk lead is tired and busy. Every gate you add takes some of their attention.
-
 ```mermaid
 sequenceDiagram
   participant A as Crew agent
@@ -25,7 +19,41 @@ sequenceDiagram
   end
 ```
 
-## Your challenge
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify place-the-gates
+```
+
+Expect:
+
+```text
+FAIL  every gate names its tools, trigger, the person who decides, answers and deadline
+FAIL  every tier-high tool has a gate
+1 of 6 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify place-the-gates solution
+```
+
+Expect:
+
+```text
+Done. All 6 rules pass.
+```
+
+## Your turn
+
+Anthropic found that people "accept 93%" of the permission prompts Claude Code shows them
+([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). People click yes
+when they see too many prompts. So a gate people click through is not a gate.
+
+On a storm night the desk lead is tired and busy. Every gate you add takes some of their attention.
 
 Find `## Gates` in `design.md`. Add one gate for every tier-high tool, and one for rule P3 in
 `world/policy.md`. Give each gate:
@@ -51,6 +79,20 @@ call:
 
 One gate per report instead would give `16000 / 90`, about 178 gates per shift. Nobody reads that many.
 
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify place-the-gates
+```
+
+Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
+
 ## Done when
 
 - `design.md` has Tools and Gates sections, each with a `yaml design` block.
@@ -60,25 +102,14 @@ One gate per report instead would give `16000 / 90`, about 178 gates per shift. 
 - Gates per desk lead per shift stay under your `limit_per_shift`, which is at most 240.
 - A gate's trigger names critical customers, such as a hospital or care home.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify place-the-gates
+diff -r problem solution
 ```
 
-Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                             | Fix                                                             |
-| ---------------------------------------- | --------------------------------------------------------------- |
-| `FAIL every tier-high tool has a gate`   | Add the tool's name to a gate's `tools:` list.                  |
-| `FAIL no gate proceeds on timeout ...`   | Set `on_timeout: wait`. A storm desk can wait ten more minutes. |
-| `FAIL gates per desk lead per shift ...` | Fire the gate per `outage`, not per `report`.                   |
-| `FAIL a gate covers rule P3 ...`         | Add a gate whose trigger says "a critical customer ...".        |
-
-## Words you will use
-
-- **Gate**: a stop where a person must answer before the action runs.
-- **Trigger**: the event that makes a gate fire.
-- **Timeout**: what happens when nobody answers before the deadline.
-- **Escalate**: pass the gate to the next person up, such as the duty manager.
-- **Approval fatigue**: people stop reading prompts when they see too many, and click yes.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

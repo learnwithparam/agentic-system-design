@@ -6,8 +6,7 @@ Two hard questions arrive in the middle of a storm. First, the process that runs
 some crews are assigned while others are not. Second, finance asks what one storm night costs. Your design
 needs an answer to both before anyone builds it.
 
-For example, run `bun run storm`. At `+60 min` the timeline prints `CREW-5 to OUT-005 on R-F05, restore in about
-200 min`. Now picture the process dying one second after that line. When it starts again, does it send a
+For example, run `bun run storm`. An hour in, the timeline prints a line that sends CREW-5 to OUT-005 on R-F05, with a restore time of a few hours. Now picture the process dying one second after that line. When it starts again, does it send a
 second crew to `OUT-005`? It must not.
 
 The fix is an idempotency key. That is a label that makes a repeated action count only once. The sample
@@ -53,11 +52,14 @@ handled "about 71%" of them. Each run cost $0.20 to $0.35, which it calls "two t
 human equivalent" ([Claude customer story, Freedom Forever](https://claude.com/customers/freedom-forever)).
 This is a vendor claim, so read it with care.
 
-| Step                 | Minutes | You produce                                                                                           |
-| -------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
-| `name-the-failures`  | 20      | `## Failures`: at least five failure modes, how each shows up, how it is caught, what the system does |
-| `design-the-restart` | 20      | `## Restart`: where run state lives, idempotency keys, step and money budget per run                  |
-| `price-the-outcome`  | 20      | `cost.yaml` and the cost board for a normal and a storm month                                         |
+| Step                       | Minutes | You produce                                                                                           |
+| -------------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
+| `name-the-failures`        | 20      | `## Failures`: at least five failure modes, how each shows up, how it is caught, what the system does |
+| `design-the-restart`       | 20      | `## Restart`: where run state lives, idempotency keys, step and money budget per run                  |
+| `price-the-outcome`        | 20      | `cost.yaml` and the cost board for a normal and a storm month                                         |
+| `plan-the-evals`           | 20      | `## Evals`: a test set, a pass bar and a control for each risk                                        |
+| `plan-the-rollout`         | 20      | `## Rollout`: stages, a stop rule and a way back                                                      |
+| `design-the-observability` | 20      | `observability.md`: one signal for each failure, with a number and one person to tell                 |
 
 A failure mode is one way the system can go wrong, such as a tool that fails or a person who never answers.
 A budget per run is the most steps and dollars one run may spend before it stops and asks a person. A storm
@@ -106,7 +108,7 @@ Fill `cost.yaml` in `03-price-the-outcome/problem/`, then print its price board.
 bun parts/03-plan-for-failure-and-cost/price-the-outcome.ts
 ```
 
-Expect: `Price board for one outage handled` once `cost.yaml` is filled.
+Expect: the price board for one outage handled, once `cost.yaml` is filled.
 
 ```bash
 bun run verify price-the-outcome
@@ -120,7 +122,7 @@ When all three pass, check the whole part.
 bun run verify part plan-for-failure-and-cost
 ```
 
-Expect: `Part plan-for-failure-and-cost is done: 3/3 steps pass.` once all three steps pass.
+Expect: `Part plan-for-failure-and-cost is done: 6/6 steps pass.` once all six steps pass.
 
 The full output then looks like this:
 
@@ -129,7 +131,10 @@ Part plan-for-failure-and-cost:
   PASS   name-the-failures  (4/4 rules)
   PASS   design-the-restart  (5/5 rules)
   PASS   price-the-outcome  (6/6 rules)
-Part plan-for-failure-and-cost is done: 3/3 steps pass.
+  PASS   plan-the-evals
+  PASS   plan-the-rollout
+  PASS   design-the-observability  (5/5 rules)
+Part plan-for-failure-and-cost is done: 6/6 steps pass.
 ```
 
 ## Assignment

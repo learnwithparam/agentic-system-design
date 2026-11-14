@@ -5,11 +5,6 @@
 Finance asks one question: what does a storm night cost? "Tokens" is not an answer they can use. They need
 the cost per outcome: what you spend to get one useful result, here one outage handled.
 
-Freedom Forever, the largest home solar installer in the United States, gives its number this way. Each run
-of its permit email agent "costs $0.20–$0.35", which it calls "two to five times less than the human
-equivalent" ([Freedom Forever customer story](https://claude.com/customers/freedom-forever)). That is a
-vendor claim, but it is the right shape: a cost per outcome next to a value per outcome.
-
 ```mermaid
 flowchart LR
   L[ledger: tokens per call] --> C[cost.yaml: calls per outcome]
@@ -19,11 +14,44 @@ flowchart LR
   B --> D{below value? under budget?}
 ```
 
-## Your challenge
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify price-the-outcome
+```
+
+Expect:
+
+```text
+FAIL  cost.yaml has an outcome, a value per outcome, a monthly budget and calls
+FAIL  every call names a job on the desk, a priced role and its tokens
+0 of 6 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify price-the-outcome solution
+```
+
+Expect:
+
+```text
+Done. All 6 rules pass.
+```
+
+## Your turn
+
+Freedom Forever, the largest home solar installer in the United States, gives its number this way. Each run
+of its permit email agent "costs $0.20–$0.35", which it calls "two to five times less than the human
+equivalent" ([Freedom Forever customer story](https://claude.com/customers/freedom-forever)). That is a
+vendor claim, but it is the right shape: a cost per outcome next to a value per outcome.
 
 Fill `cost.yaml` next to `design.md`:
 
-- `outcome`: the result you pay for, such as `one outage handled`.
+- `outcome`: the result you pay for, such as one outage handled.
 - `value_per_outcome_usd`: what one outcome is worth to Copperbeck, with your reason in a comment.
 - `monthly_budget_usd`: what finance will spend on model calls in a month.
 - `calls`: one entry for each machine job in your Shape section, with `job`, `role` (`fast` or `smart`),
@@ -45,11 +73,25 @@ Then print the board:
 bun parts/03-plan-for-failure-and-cost/price-the-outcome.ts
 ```
 
-Expect: `Price board for one outage handled` and a line for each call, once `cost.yaml` is filled.
+Expect: a price board for one outage handled, and a line for each call, once `cost.yaml` is filled.
 
 The sample answer prints this board:
 
 ![The price board: cost per outcome, a normal month and a storm month](../images/expected.png)
+
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify price-the-outcome
+```
+
+Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
 
 ## Done when
 
@@ -60,23 +102,14 @@ The sample answer prints this board:
 - The storm month (`420` outages) stays under the monthly budget.
 - The cost per outcome is within four times of what the finished system really spends.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify price-the-outcome
+diff -r problem solution
 ```
 
-Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                              | Fix                                                               |
-| --------------------------------------------------------- | ----------------------------------------------------------------- |
-| `FAIL every job on a machine rung in Shape has a call`    | Add a call for `plan-the-crews` and `write-the-customer-updates`. |
-| `FAIL ... within four times ...`                          | Count calls per outage, not per storm or per call.                |
-| `FAIL the storm month ... stays under the monthly budget` | Raise the budget, or cut calls.                                   |
-
-## Words you will use
-
-- **Cost per outcome**: what you spend on model calls for one useful result.
-- **Cached input**: input the model read before. In `config/models.ts` it costs a tenth (`fast`) to a twentieth (`smart`) of fresh input.
-- **Role**: `fast` or `smart`. `config/models.ts` maps each role to a model and a price.
-- **Value per outcome**: what one result is worth, such as desk time saved.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

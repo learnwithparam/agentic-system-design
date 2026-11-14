@@ -47,6 +47,7 @@ carries power from a substation to many streets. Its Shape block says:
 | `place-on-the-ladder` | 20      | `## Shape` in `design.md` | Your Shape block, the jobs and policy in `world/desk.yaml`                                  |
 | `write-the-outcome`   | 20      | `## Outcome`              | Your Outcome block, the hard rules in `world/desk.yaml`, the tables of a freshly seeded OMS |
 | `pick-the-pattern`    | 20      | `## Pattern`              | Your Pattern and Shape blocks, the desk's jobs                                              |
+| `size-the-load`       | 20      | `## Load`                 | Your Load block and the storm night in `world/desk.yaml`                                    |
 
 Each step's `problem/design.md` starts with the sections from the steps before it. So you can begin at any
 step.

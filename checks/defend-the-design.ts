@@ -16,7 +16,12 @@ const THIS_STEP = "defend-the-design";
 const RISKIEST_CHOICES = 3;
 
 // These steps check other files (first-look.md, review-<case>.md), not the finished design.
-const NOT_ON_THE_DESIGN = ["meet-the-outage-desk", "review-a-real-system"];
+const NOT_ON_THE_DESIGN = [
+  "meet-the-outage-desk",
+  "review-a-real-system",
+  "model-the-threats",
+  "design-the-observability",
+];
 
 // Every step before this one whose check reads the design, cost.yaml or adr/.
 function earlierStepNames(): string[] {

@@ -6,9 +6,6 @@ A tool is one action the agent may take, such as reading an outage or sending a 
 one more way for the agent to go wrong. Anthropic puts it this way: "More tools don't always lead to better
 outcomes" ([Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents)).
 
-Some tools only look. Others change the world, and a few changes cannot be taken back. A text that reached
-a phone stays on that phone. Those tools need the most care.
-
 ```mermaid
 flowchart LR
   A[plan-the-crews agent] --> R[read tools: low tier]
@@ -17,7 +14,38 @@ flowchart LR
   W2 --> G{gate in place-the-gates}
 ```
 
-## Your challenge
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify scope-the-tools
+```
+
+Expect:
+
+```text
+FAIL  every tool has every field, with a response cap of 25,000 tokens or less
+FAIL  the agent has at least one read tool and one write tool
+3 of 7 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify scope-the-tools solution
+```
+
+Expect:
+
+```text
+Done. All 7 rules pass.
+```
+
+## Your turn
+
+Some tools only look. Others change the world, and a few changes cannot be taken back. A text that reached
+a phone stays on that phone. Those tools need the most care.
 
 Find `## Tools` in `design.md`. List the tools your machine jobs need, each with these fields:
 
@@ -45,8 +73,22 @@ For example, the sample answer in `../solution/design.md` has this tool:
   error_format: 103 smart meters behind R-F05 are still dark. Read the meters again after the next repair.
 ```
 
-`bun run storm` shows this case: `BLOCKED close of OUT-005`. The error tells the model what to try next.
+`bun run storm` shows this case: a blocked close of OUT-005. The error tells the model what to try next.
 Why `25000`? The same post says Claude Code caps a tool reply at "25,000 tokens by default".
+
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify scope-the-tools
+```
+
+Expect: `Done. All 7 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
 
 ## Done when
 
@@ -58,24 +100,14 @@ Why `25000`? The same post says Claude Code caps a tool reply at "25,000 tokens 
 - No two tools do the same action on the same object.
 - Every tool belongs to a job on the workflow or agent rung.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify scope-the-tools
+diff -r problem solution
 ```
 
-Expect: `Done. All 7 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                                     | Fix                                                                  |
-| ---------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `FAIL every write that cannot be undone is tier high`            | Find each tool with `reversible: false`. Set its `tier: high`.       |
-| `FAIL no two tools do the same action on the same object`        | `oms_read_outage` and `oms_get_outage` overlap. Keep one.            |
-| `FAIL every tool belongs to a job on the workflow or agent rung` | `switch-the-feeder` is a person's job. A person's job holds no tool. |
-
-## Words you will use
-
-- **Read tool** only looks, such as `oms_read_meters`. A **write tool** changes something, such as `crew_assign`.
-- **Reversible**: you can undo it. You can move a crew. You cannot unsend a text.
-- **Risk tier**: how much harm a wrong call can do: low, medium or high.
-- **Namespace**: the first word of a tool name, such as `oms_`.
-- **Response cap**: the most tokens a tool may send back to the model in one reply.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

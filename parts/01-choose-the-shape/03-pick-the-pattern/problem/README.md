@@ -5,14 +5,6 @@
 A rung says who decides. A pattern says how the work flows from step to step. Teams often jump to the most
 complex pattern because it looks good in a demo.
 
-Microsoft's pattern guide warns against this. It lists "Adding agents that don't provide meaningful
-specialization" as an antipattern, that is, a common mistake
-([Azure Architecture Center, AI agent orchestration patterns](https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/ai-ml/guide/ai-agent-design-patterns.md)).
-
-Each step up also costs more tokens. One agent uses about 4 times the tokens of a chat. Many agents use about
-15 times ([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). So pick the
-simplest pattern that works. Then say why the next simpler one fails.
-
 ```mermaid
 flowchart LR
   N[none] --> S[single-call]
@@ -22,9 +14,45 @@ flowchart LR
   AL --> MA[many-agents]
 ```
 
-The simplest pattern is on the left, the most costly on the right.
+## Watch it done
 
-## Your challenge
+Run the check on the starter:
+
+```bash
+bun run verify pick-the-pattern
+```
+
+Expect:
+
+```text
+FAIL  every pattern is on the list and fits the job's rung in Shape
+FAIL  every machine job names a simpler pattern it rejected
+3 of 6 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify pick-the-pattern solution
+```
+
+Expect:
+
+```text
+Done. All 6 rules pass.
+```
+
+## Your turn
+
+Microsoft's pattern guide warns against this. It lists "Adding agents that don't provide meaningful
+specialization" as an antipattern, that is, a common mistake
+([Azure Architecture Center, AI agent orchestration patterns](https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/ai-ml/guide/ai-agent-design-patterns.md)).
+
+Each step up also costs more tokens. One agent uses about 4 times the tokens of a chat. Many agents use about
+15 times ([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). So pick the
+simplest pattern that works. Then say why the next simpler one fails.
+
+The simplest pattern is on the left, the most costly on the right.
 
 Find `## Pattern` in `design.md`. Give each job one pattern that fits its rung in your Shape section:
 
@@ -56,6 +84,20 @@ For example, the sample answer in `../solution/design.md` picks this for the cre
 A chain is a fixed list of steps. It cannot change its plan halfway, so the crew job needs an agent loop.
 The multiplier of 4 matches what Anthropic measured for one agent.
 
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify pick-the-pattern
+```
+
+Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
+
 ## Done when
 
 - `design.md` keeps its Shape section and has a Pattern section with a `yaml design` block.
@@ -65,25 +107,14 @@ The multiplier of 4 matches what Anthropic measured for one agent.
 - Every `why_not_simpler` has at least 10 words.
 - Every agent pattern has a `token_multiplier` near Anthropic's numbers.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify pick-the-pattern
+diff -r problem solution
 ```
 
-Expect: `Done. All 6 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                                 | Fix                                                                           |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| `FAIL every pattern is on the list and fits the job's rung`  | Change the pattern, or go back and change the rung in Shape. They must agree. |
-| `FAIL every machine job names a simpler pattern it rejected` | `rejected` must sit further left on the diagram above than your choice.       |
-| `FAIL ... token multiplier`                                  | One agent: 3 to 5. Many agents: 10 to 20.                                     |
-
-## Words you will use
-
-- **Pattern**: the way the work flows through code and model calls for one job.
-- **Route**: code sends each input down one of several paths. For example, meter alarms go one way and texts
-  go another.
-- **Chain**: fixed steps in order, each feeding the next.
-- **Orchestrator-workers**: one model splits a task and hands the parts to other calls.
-- **Token multiplier**: how many times more tokens a design uses than a single chat answer.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

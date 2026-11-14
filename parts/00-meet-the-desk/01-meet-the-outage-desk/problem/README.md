@@ -17,10 +17,38 @@ flowchart LR
   E --> B
 ```
 
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify meet-the-outage-desk
+```
+
+Expect:
+
+```text
+FAIL  Outages found matches the board
+FAIL  Reports attached to the right outage matches the board
+3 of 8 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify meet-the-outage-desk solution
+```
+
+Expect:
+
+```text
+Done. All 8 rules pass.
+```
+
+## Your turn
+
 The ledger logs each model call and its cost. The events log has a line for each tool the system used. It
 also logs each gate, a rule in code that can stop an action.
-
-## Your challenge
 
 1. Read `world/README.md` and `world/policy.md`.
 2. Run the finished system:
@@ -57,6 +85,20 @@ And one blocked line in `events.jsonl` looks like this:
 Here the agent tried to close outage `OUT-028`. Rule `P2` stopped it, because 151 smart meters behind it
 still had no power. Your `run` id will differ.
 
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify meet-the-outage-desk
+```
+
+Expect: `Done. All 8 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
+
 ## Done when
 
 - `first-look.md` exists in this folder.
@@ -65,26 +107,14 @@ still had no power. Your `run` id will differ.
 - Your four numbers match the board.
 - You named one of the desk's four jobs.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify meet-the-outage-desk
+diff -r problem solution
 ```
 
-Expect: `Done. All 8 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                               | Fix                                                                                  |
-| ------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `FAIL first-look.md exists`                | Put the file in this `problem/` folder, next to this README.                         |
-| `FAIL ... matches the board`               | Copy the number after the label. `92%` and `92` both work. So do `$0.15` and `0.15`. |
-| `FAIL The job you think needs an agent`    | Write a job id such as `plan-the-crews`, not a description.                          |
-| `The storm run stopped: No recorded reply` | Someone changed the sample prompts. Run `git checkout finished/` to bring them back. |
-
-## Words you will use
-
-- **OMS**: the outage management system. It is Copperbeck's true record of every outage.
-- **Replay**: the model replies were saved once and are played back. You need no key, and it costs nothing.
-- **Board**: the summary that code builds from the OMS and the logs, never from what a model said.
-- **Must-never**: an action the system may never take. Here, it is closing an outage while homes are still
-  dark.
-- **Agent**: a loop where the model picks the next step and calls tools until it decides it is done.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

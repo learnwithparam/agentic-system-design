@@ -5,10 +5,6 @@
 On the storm night you watched, the agent twice tried to close an outage because the crew said so. But smart
 meters behind those outages were still dark.
 
-Trusting the agent's "done" would send the crews home and leave a care home without power. So before you
-pick a pattern, write down what success means and how you measure it. Also write what must never happen, and
-where the truth lives.
-
 ```mermaid
 flowchart LR
   O[Outcome: what a person sees] --> M[Metric: a number and a unit]
@@ -17,7 +13,39 @@ flowchart LR
   S --> D[Done when: a check on those tables]
 ```
 
-## Your challenge
+## Watch it done
+
+Run the check on the starter:
+
+```bash
+bun run verify write-the-outcome
+```
+
+Expect:
+
+```text
+FAIL  the outcome is a sentence of at least 8 words
+FAIL  the metric has a name, a number and a unit
+1 of 7 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then on the finished answer:
+
+```bash
+bun run verify write-the-outcome solution
+```
+
+Expect:
+
+```text
+Done. All 7 rules pass.
+```
+
+## Your turn
+
+Trusting the agent's "done" would send the crews home and leave a care home without power. So before you
+pick a pattern, write down what success means and how you measure it. Also write what must never happen, and
+where the truth lives.
 
 Your Shape section is already in `design.md` (or paste in your own). Under `## Outcome`, fill the block:
 
@@ -45,6 +73,20 @@ The done check reads two OMS tables. It takes nobody's word.
 
 `world/README.md` lists the nine OMS tables under "The system of record".
 
+Then run the check and fix each FAIL line it prints:
+
+```bash
+bun run verify write-the-outcome
+```
+
+Expect: `Done. All 7 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system. Use your own tools, people and numbers, not the storm desk.
+
+Good looks like this: a stranger can read it and name your tool, your person and your number.
+
 ## Done when
 
 - `design.md` has an Outcome section with a `yaml design` block.
@@ -55,24 +97,14 @@ The done check reads two OMS tables. It takes nobody's word.
 - The system of record is the OMS, and every record it names is an OMS table.
 - Every done check reads OMS tables, never someone saying it is done.
 
+## Solution
+
+The finished files are in the `solution/` folder. To see what changed, run:
+
 ```bash
-bun run verify write-the-outcome
+diff -r problem solution
 ```
 
-Expect: `Done. All 7 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                        | Fix                                                                                                                    |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `FAIL the metric has a name, a number and a unit`   | Write `target: 45`, not `target: 45 minutes`. The unit goes in `unit:`.                                                |
-| `FAIL the must-never covers at least one hard rule` | Rules P2 and P3 in `world/policy.md` are the ones a machine could break.                                               |
-| `FAIL the system of record is the OMS`              | Name tables that exist, such as `outages`, `meter_reads`, `calls`. A notes file or the agent's memory is not a record. |
-| `FAIL done is a check against OMS records`          | Replace "the agent reports it is fixed" with what the meters in `meter_reads` show.                                    |
-
-## Words you will use
-
-- **Outcome**: the change in the world the system exists to make.
-- **Metric**: the number that tells you how well the system meets the outcome.
-- **Must-never**: an action the system may never take, whatever the model decides.
-- **System of record**: the place the business treats as the truth. Here, it is the OMS.
+Stuck, or a word you do not know? Open [HELP.md](HELP.md).

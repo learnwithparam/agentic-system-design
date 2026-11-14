@@ -1,9 +1,9 @@
 # Start here
 
 On this page, you set up the repo and meet Copperbeck Power's storm desk. Then you run the finished
-system and see your goal. It takes about 15 minutes, and you do not need a model key.
+system and see your goal. It takes a short while, and you do not need a model key.
 
-## 1. Set up (4 minutes)
+## 1. Set up
 
 You need [Bun](https://bun.sh) and git. Bun is the tool that runs this course's scripts. Open a terminal
 in the repo folder and run:
@@ -37,7 +37,7 @@ Every role answers.
 Later, you may want to run with a live model. Copy `.env.example` to `.env`. Set `LLM_PROVIDER` to
 `anthropic`, `openrouter` or `openai`, and fill in that one key. Nothing in this course needs it.
 
-## 2. Meet the world (5 minutes)
+## 2. Meet the world
 
 ```bash
 bun run world reset
@@ -51,7 +51,7 @@ database that holds the truth about every outage.
 Now read two pages. [world/README.md](../world/README.md) shows the network, the data and the OMS.
 [world/policy.md](../world/policy.md) has the four rules every design must follow.
 
-## 3. Run the finished system (4 minutes)
+## 3. Run the finished system
 
 ```bash
 bun run storm
@@ -81,7 +81,7 @@ For example, here is one of those two lines in the timeline:
 
 Second, the whole night of model calls cost cents. Even so, 8% of reports still went to the wrong outage.
 
-## 4. See the goal (2 minutes)
+## 4. See the goal
 
 Your job across the four parts is a design for this desk. It must beat this board, or explain why it
 cannot. Then you defend it with numbers.
