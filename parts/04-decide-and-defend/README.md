@@ -35,11 +35,12 @@ Read the diagram from left to right. You turn your `design.md` into three ADRs. 
 decision record) is a short file that records one choice, the options you turned down, and why. Then the
 board checks them against a list. If the design fails, you go back and fix `design.md`.
 
-| Step                   | Minutes | You produce                                                                                             |
-| ---------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
-| `record-the-decisions` | 20      | Three ADRs in `adr/`, MADR 4.0.0 form, each with a Confirmation section                                 |
-| `review-a-real-system` | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
-| `defend-the-design`    | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
+| Step                     | Minutes | You produce                                                                                             |
+| ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
+| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR 4.0.0 form, each with a Confirmation section                                 |
+| `review-a-real-system`   | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
+| `defend-the-design`      | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
+| `design-your-own-system` | 20      | `my-system.md` and evidence files for a job of your own; the check never reads the storm desk           |
 
 MADR is a common template for ADRs, and the course uses version 4.0.0. Its Confirmation section says how
 you will check that the choice was carried out. In your ADRs, it names a check.
@@ -84,13 +85,21 @@ bun run verify defend-the-design
 
 Expect: a `PASS` line for each earlier step and `Done.` once `review-request.md` is filled.
 
+Then fill `my-system.md` for a job of your own and put two real files in its `evidence/` folder.
+
+```bash
+bun run verify design-your-own-system
+```
+
+Expect: `Done. All 7 rules pass.` once your file and evidence are in place.
+
 When all three pass, check the whole part.
 
 ```bash
 bun run verify part decide-and-defend
 ```
 
-Expect: `Part decide-and-defend is done: 3/3 steps pass.` once all three steps pass.
+Expect: `Part decide-and-defend is done: 4/4 steps pass.` once all four steps pass.
 
 The full output then looks like this:
 
@@ -99,7 +108,8 @@ Part decide-and-defend:
   PASS   record-the-decisions  (8/8 rules)
   PASS   review-a-real-system  (5/5 rules)
   PASS   defend-the-design  (13/13 rules)
-Part decide-and-defend is done: 3/3 steps pass.
+  PASS   design-your-own-system  (7/7 rules)
+Part decide-and-defend is done: 4/4 steps pass.
 ```
 
 ## Assignment

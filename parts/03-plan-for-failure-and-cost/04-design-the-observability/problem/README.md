@@ -49,10 +49,10 @@ Expect: `Done. All 5 rules pass.` and a `Progress:` line.
 
 ## If you get stuck
 
-| What you see                                | Fix                                                                   |
-| ------------------------------------------- | --------------------------------------------------------------------- |
-| `FAIL every failure in design.md ...`       | Copy each `failure:` line from `design.md` exactly, then add a signal. |
-| `FAIL every alert names one person ...`     | Use a role such as `desk-lead`. Words like team or everyone fail.     |
+| What you see                            | Fix                                                                    |
+| --------------------------------------- | ---------------------------------------------------------------------- |
+| `FAIL every failure in design.md ...`   | Copy each `failure:` line from `design.md` exactly, then add a signal. |
+| `FAIL every alert names one person ...` | Use a role such as `desk-lead`. Words like team or everyone fail.      |
 
 ## Words you will use
 

@@ -57,11 +57,11 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 ## If you get stuck
 
-| What you see                                       | Fix                                                                  |
-| -------------------------------------------------- | -------------------------------------------------------------------- |
-| `FAIL every threat reaches a tool ...`             | Copy the tool name from `design.md`, such as `crew_assign`.          |
-| `FAIL every threat that reaches a tier high ...`   | Set `control_kind: gate` and `gate:` to an id from the Gates section. |
-| `FAIL every control is a fence ...`                | Replace "tell the model" with a gate, a tier, a cap or an allowlist. |
+| What you see                                     | Fix                                                                   |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| `FAIL every threat reaches a tool ...`           | Copy the tool name from `design.md`, such as `crew_assign`.           |
+| `FAIL every threat that reaches a tier high ...` | Set `control_kind: gate` and `gate:` to an id from the Gates section. |
+| `FAIL every control is a fence ...`              | Replace "tell the model" with a gate, a tier, a cap or an allowlist.  |
 
 ## Words you will use
 

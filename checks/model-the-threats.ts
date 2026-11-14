@@ -21,7 +21,8 @@ export const THREAT_KINDS = ["prompt-injection", "too-much-power", "data-leak"];
 export const CONTROL_KINDS = ["gate", "tier", "cap", "allowlist", "check"];
 
 // A hope, not a control: asking the model to behave is not a fence.
-const HOPEFUL = /tell the model|prompt (says|asks)|be careful|trust the model|model will (refuse|know)/i;
+const HOPEFUL =
+  /tell the model|prompt (says|asks)|be careful|trust the model|model will (refuse|know)/i;
 
 const threatsOf = (folder: string) =>
   asList<Threat>(designData<{ threats?: unknown }>(folder, "Threats", THREATS_FILE)?.threats);
@@ -51,7 +52,8 @@ export default [
     says: "threats.md has a Threats section with a yaml design block",
     test: (folder) => block(readDesign(folder, THREATS_FILE), "Threats").ok,
     tryNext:
-      "fill the yaml design block under ## Threats in threats.md; keep the fence line ```yaml design",
+      "fill the yaml design block under ## Threats in threats.md; " +
+      "keep the fence line ```yaml design",
   },
   {
     says: "four threats or more, each with a kind, an entry, a target tool and a control",
@@ -60,7 +62,8 @@ export default [
       return rows.length >= FEWEST_ROWS && rows.every(rowIsComplete);
     },
     tryNext:
-      "give each row threat:, kind:, enters_through:, reaches: and a control: of at least 5 words; " +
+      "give each row threat:, kind:, enters_through:, reaches: " +
+      "and a control: of at least 5 words; " +
       "write four rows or more",
   },
   {

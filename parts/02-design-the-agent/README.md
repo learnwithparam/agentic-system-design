@@ -46,11 +46,12 @@ Read the arrows from left to right. Read tools only look. Write tools change som
 undo, like moving a crew. Others you cannot, like a text that has already reached a phone. Those go through
 the human gate, and if nobody answers in time, the system stops and waits.
 
-| Step              | Minutes | You produce                                                                                |
-| ----------------- | ------- | ------------------------------------------------------------------------------------------ |
-| `scope-the-tools` | 20      | `## Tools`: each tool with read or write, reversible or not, risk tier, response size cap  |
-| `map-the-memory`  | 20      | `## Memory`: each fact, its layer, who writes it, who reads it, when it expires            |
-| `place-the-gates` | 20      | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
+| Step                | Minutes | You produce                                                                                |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------ |
+| `scope-the-tools`   | 20      | `## Tools`: each tool with read or write, reversible or not, risk tier, response size cap  |
+| `map-the-memory`    | 20      | `## Memory`: each fact, its layer, who writes it, who reads it, when it expires            |
+| `place-the-gates`   | 20      | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
+| `model-the-threats` | 20      | `threats.md`: each threat, the tool it reaches, and the fence that holds it                |
 
 A few words from the table. A risk tier is how much harm a wrong call can do. A write you cannot undo is always tier high. A
 response size cap is the most text a tool may send back to the model. A memory layer is where a fact is kept.
@@ -97,13 +98,19 @@ bun run verify place-the-gates
 
 Expect: `Done. All 6 rules pass.` once your Gates section is filled.
 
+```bash
+bun run verify model-the-threats
+```
+
+Expect: `Done. All 6 rules pass.` once `threats.md` is filled.
+
 When all three pass, check the whole part.
 
 ```bash
 bun run verify part design-the-agent
 ```
 
-Expect: `Part design-the-agent is done: 3/3 steps pass.` once all three sections pass.
+Expect: `Part design-the-agent is done: 4/4 steps pass.` once all four steps pass.
 
 The full output then looks like this:
 
@@ -112,7 +119,8 @@ Part design-the-agent:
   PASS   scope-the-tools  (7/7 rules)
   PASS   map-the-memory  (6/6 rules)
   PASS   place-the-gates  (6/6 rules)
-Part design-the-agent is done: 3/3 steps pass.
+  PASS   model-the-threats  (6/6 rules)
+Part design-the-agent is done: 4/4 steps pass.
 ```
 
 ## Assignment
