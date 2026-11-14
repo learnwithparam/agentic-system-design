@@ -130,7 +130,7 @@ export default [
       return block(design, "Shape").ok && block(design, "Tools").ok;
     },
     tryNext:
-      "keep the sections from part one and fill the yaml design block under ## Tools; " +
+      "keep the sections from Choose the shape and fill the yaml design block under ## Tools; " +
       "keep the fence line ```yaml design",
   },
   {

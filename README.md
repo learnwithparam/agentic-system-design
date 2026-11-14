@@ -111,13 +111,14 @@ A few words from the picture:
 For example, `bun run verify meet-the-outage-desk` prints one line per rule. On a new copy of the
 course, it ends with `3 of 8 rules pass. Fix the FAIL lines and run it again.`
 
-| Part                                                                      | Steps                                                               | Minutes | You produce                                             |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------- | ------------------------------------------------------- |
-| [Meet the desk](parts/00-meet-the-desk/README.md)                         | `meet-the-outage-desk`                                              | 15      | `first-look.md`: the board's numbers in your words      |
-| [Choose the shape](parts/01-choose-the-shape/README.md)                   | `place-on-the-ladder`, `write-the-outcome`, `pick-the-pattern`      | 60      | Shape, Outcome and Pattern sections                     |
-| [Design the agent](parts/02-design-the-agent/README.md)                   | `scope-the-tools`, `map-the-memory`, `place-the-gates`              | 60      | Tools, Memory and Gates sections                        |
-| [Plan for failure and cost](parts/03-plan-for-failure-and-cost/README.md) | `name-the-failures`, `design-the-restart`, `price-the-outcome`      | 60      | Failures and Restart sections, `cost.yaml`              |
-| [Decide and defend](parts/04-decide-and-defend/README.md)                 | `record-the-decisions`, `review-a-real-system`, `defend-the-design` | 60      | Three ADRs, a review of a real system, a review request |
+| Part                                                                              | Steps                                                               | Minutes | You produce                                                |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------- | ---------------------------------------------------------- |
+| [Meet the desk](parts/00-meet-the-desk/README.md)                                 | `meet-the-outage-desk`                                              | 15      | `first-look.md`: the board's numbers in your words         |
+| [Choose the shape](parts/01-choose-the-shape/README.md)                           | `place-on-the-ladder`, `write-the-outcome`, `pick-the-pattern`      | 60      | Shape, Outcome and Pattern sections                        |
+| [Design the agent](parts/02-design-the-agent/README.md)                           | `scope-the-tools`, `map-the-memory`, `place-the-gates`              | 60      | Tools, Memory and Gates sections                           |
+| [Plan for failure and cost](parts/03-plan-for-failure-and-cost/README.md)         | `name-the-failures`, `design-the-restart`, `price-the-outcome`      | 60      | Failures and Restart sections, `cost.yaml`                 |
+| [Decide and defend](parts/04-decide-and-defend/README.md)                         | `record-the-decisions`, `review-a-real-system`, `defend-the-design` | 60      | Three ADRs, a review of a real system, a review request    |
+| [Price the design with LiteLLM](parts/05-price-the-design-with-litellm/README.md) | `price-the-design`                                                  | 15      | `sheet.csv`: your hand estimate redone with LiteLLM prices |
 
 All five parts are ready. [PARTS.md](PARTS.md) lists every step and what its check reads.
 [schedules.toml](schedules.toml) shows how the parts fit into different course lengths.
