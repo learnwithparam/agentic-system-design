@@ -25,10 +25,10 @@ The top layer lasts one call. The bottom layer lasts for good.
 
 Find `## Memory` in `design.md`. List every fact the system keeps. Give each fact:
 
-- `fact`: a short name, named after its record or object, such as `outages` or `crews and when each is free`.
+- `fact`: a short name, named after its record or object, such as `outages` or `crews`.
 - `layer`: `context`, `run-state`, `notes` or `system-of-record`.
 - `writer` and `reader`: the job, tool or person that writes it and reads it.
-- `expires`: when it goes away, such as `at the end of the run`.
+- `expires`: when it goes away, such as the end of the run.
 
 Cover every record in your Outcome and every object your tools act on. For example, `oms_read_meters` acts
 on `meter`, and `crew_assign` on `crew`.
@@ -45,7 +45,7 @@ For example, the sample answer in `../solution/design.md` keeps this run-state f
   expires: at the end of the run
 ```
 
-In `bun run storm`, find `CREW-5 to OUT-005`. If the run stops there, this fact tells the restart that
+In `bun run storm`, find the line that sends CREW-5 to OUT-005. If the run stops there, this fact tells the restart that
 `CREW-5` is already on its way.
 
 ## Done when

@@ -6,7 +6,7 @@ Your design is full of choices. In a few months, someone will ask why you made t
 only in your head, the next person may undo a good choice without knowing what it protected.
 
 An ADR (architecture decision record) is a short file for one choice. It says what you chose, which options
-you turned down, what gets worse, and how you will check the choice works. This course uses the MADR 4.0.0
+you turned down, what gets worse, and how you will check the choice works. This course uses the MADR
 template ([adr/madr](https://github.com/adr/madr/blob/develop/template/adr-template.md)). MADR marks the
 Confirmation section as optional. Here it is required, because a decision nobody checks soon drifts.
 
@@ -33,7 +33,7 @@ Each ADR needs:
 
 - `status:` in the front matter: `proposed`, `accepted`, `rejected`, `deprecated` or `superseded`.
 - A title, then the headings in the template.
-- At least two options under `## Considered Options`, each a bullet.
+- At least two options under the Considered Options heading, each a bullet.
 - At least one bullet under `### Consequences` that starts with `Bad,`.
 - A `### Confirmation` that names a step check, such as `bun run verify place-the-gates`.
 

@@ -240,7 +240,7 @@ gates:
 ## Failures
 
 Each failure has a check that reads the OMS, the events log or the ledger. None waits for someone to notice.
-The P2 row is the one the storm board shows: `BLOCKED close of OUT-005`.
+The P2 row is the one the storm board shows a blocked close of OUT-005.
 
 ```yaml design
 failures:

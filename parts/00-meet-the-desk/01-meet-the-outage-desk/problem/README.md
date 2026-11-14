@@ -78,7 +78,7 @@ Expect: `Done. All 8 rules pass.` and a `Progress:` line.
 | `FAIL first-look.md exists`                | Put the file in this `problem/` folder, next to this README.                         |
 | `FAIL ... matches the board`               | Copy the number after the label. `92%` and `92` both work. So do `$0.15` and `0.15`. |
 | `FAIL The job you think needs an agent`    | Write a job id such as `plan-the-crews`, not a description.                          |
-| `The storm run stopped: No recorded reply` | Someone changed the sample prompts. Run `git checkout finished/` to bring them back. |
+| The storm run stops with a No recorded reply message | Someone changed the sample prompts. Run `git checkout finished/` to bring them back. |
 
 ## Words you will use
 

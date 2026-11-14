@@ -15,12 +15,12 @@ permission prompts Claude Code shows them
 lead on a storm night. If they click yes without reading, the gate does not protect anyone.
 
 For example, run `bun run storm` and look at this line in the timeline above the board:
-`+295 min  BLOCKED close of OUT-005: 103 meters behind R-F05 still dark`. The agent called `oms_close_outage` to close an outage, and the harness blocked it.
+a line that says the close of OUT-005 was blocked, with 103 meters behind R-F05 still dark. The agent called `oms_close_outage` to close an outage, and the harness blocked it.
 Policy rule P2 says you close an outage only when every smart meter behind it reports power. A close
 cannot be undone, so this is the kind of tool that needs a hard stop.
 
-The board shows a second case. At `+60 min`, the Ellerby House care home is "routed to the desk lead, who
-calls at + 72 min". Rule P3 says a critical customer hears its restore time from a person. That is a gate
+The board shows a second case. An hour in, the Ellerby House care home is "routed to the desk lead, who
+calls about an hour later". Rule P3 says a critical customer hears its restore time from a person. That is a gate
 too.
 
 In this part you decide three things: which tools the agent holds, where each fact lives, and where a person

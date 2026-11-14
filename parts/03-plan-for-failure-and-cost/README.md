@@ -6,8 +6,7 @@ Two hard questions arrive in the middle of a storm. First, the process that runs
 some crews are assigned while others are not. Second, finance asks what one storm night costs. Your design
 needs an answer to both before anyone builds it.
 
-For example, run `bun run storm`. At `+60 min` the timeline prints `CREW-5 to OUT-005 on R-F05, restore in about
-200 min`. Now picture the process dying one second after that line. When it starts again, does it send a
+For example, run `bun run storm`. An hour in, the timeline prints a line that sends CREW-5 to OUT-005 on R-F05, with a restore time of a few hours. Now picture the process dying one second after that line. When it starts again, does it send a
 second crew to `OUT-005`? It must not.
 
 The fix is an idempotency key. That is a label that makes a repeated action count only once. The sample
@@ -107,7 +106,7 @@ Fill `cost.yaml` in `03-price-the-outcome/problem/`, then print its price board.
 bun parts/03-plan-for-failure-and-cost/price-the-outcome.ts
 ```
 
-Expect: `Price board for one outage handled` once `cost.yaml` is filled.
+Expect: the price board for one outage handled, once `cost.yaml` is filled.
 
 ```bash
 bun run verify price-the-outcome

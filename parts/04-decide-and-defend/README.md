@@ -37,12 +37,12 @@ board checks them against a list. If the design fails, you go back and fix `desi
 
 | Step                     | Minutes | You produce                                                                                             |
 | ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
-| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR 4.0.0 form, each with a Confirmation section                                 |
+| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR form, each with a Confirmation section                                 |
 | `review-a-real-system`   | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
 | `defend-the-design`      | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
 | `design-your-own-system` | 20      | `my-system.md` and evidence files for a job of your own; the check never reads the storm desk           |
 
-MADR is a common template for ADRs, and the course uses version 4.0.0. Its Confirmation section says how
+MADR is a common template for ADRs, and the course uses its current form. Its Confirmation section says how
 you will check that the choice was carried out. In your ADRs, it names a check.
 
 In the review step you test one public system against the checklist. You mark each item pass, fail or not
@@ -114,7 +114,7 @@ Part decide-and-defend is done: 4/4 steps pass.
 
 ## Assignment
 
-A review board has 20 minutes and three doubters: finance, security, and the head of control room
+A review board has a short slot and three doubters: finance, security, and the head of control room
 operations. Hand in three ADRs, `review-<case>.md` and `review-request.md`, next to your finished
 `design.md` and `cost.yaml`.
 

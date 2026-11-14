@@ -2,12 +2,12 @@
 
 ## The problem
 
-The review board meets for 20 minutes. Three people sit on it: finance, security, and the head of control
+The review board meets for a short slot. Three people sit on it: finance, security, and the head of control
 room operations. They cannot read every line. So you tell them where to push.
 
 A good review request does two things. It names your riskiest choices. And for each one it says what
 evidence would change your mind. "I would change it if it felt wrong" gives the board nothing to test. "I
-would change it if one desk lead saw more than 40 gates in one storm night shift" does.
+would change it if one desk lead saw many gates in one storm night shift" does.
 
 ```mermaid
 flowchart LR
@@ -23,7 +23,7 @@ flowchart LR
 This folder holds a finished design: `design.md`, `cost.yaml` and `adr/`, copied from the sample answers.
 Put your own files from the earlier steps here instead, if you like.
 
-Then fill `review-request.md`. Under `## Riskiest choices`, list exactly three choices. Give each:
+Then fill `review-request.md`. Under the Riskiest choices heading, list exactly three choices. Give each:
 
 - `choice`: the choice in one line.
 - `section`: where it lives: a heading in `design.md`, such as `Gates`, or `cost.yaml`.
@@ -68,7 +68,7 @@ Expect: a `PASS` line for each earlier step and `Done.` once `review-request.md`
 | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `FAIL the finished files pass every rule of ...`         | Copy your files into that step's `problem/` folder. Then run `bun run verify` with that step name to see which rule fails. |
 | `FAIL every choice points at a design section ...`       | Use a heading as it is written, such as `Gates`, or `cost.yaml`.                                                           |
-| `FAIL every choice says what would change your mind ...` | Add a number you could count, such as `more than 40 gates`.                                                                |
+| `FAIL every choice says what would change your mind ...` | Add a number you could count, such as a count of gates.                                                                |
 
 ## Words you will use
 

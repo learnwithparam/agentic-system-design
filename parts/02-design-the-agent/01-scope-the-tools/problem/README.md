@@ -45,7 +45,7 @@ For example, the sample answer in `../solution/design.md` has this tool:
   error_format: 103 smart meters behind R-F05 are still dark. Read the meters again after the next repair.
 ```
 
-`bun run storm` shows this case: `BLOCKED close of OUT-005`. The error tells the model what to try next.
+`bun run storm` shows this case: a blocked close of OUT-005. The error tells the model what to try next.
 Why `25000`? The same post says Claude Code caps a tool reply at "25,000 tokens by default".
 
 ## Done when

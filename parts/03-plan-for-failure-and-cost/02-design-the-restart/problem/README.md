@@ -41,7 +41,7 @@ The starter fills one key for you. The sample harness already uses it:
   key: outage:crew
 ```
 
-For example, run `bun run storm` and find `CREW-5 to OUT-005`. The key for that write is `OUT-005:CREW-5`.
+For example, run `bun run storm` and find the line that sends CREW-5 to OUT-005. The key for that write is `OUT-005:CREW-5`.
 If the restart repeats it, the OMS sees the same key and does nothing.
 
 A key must never hold a clock time or a random id. Those change on every try, so a repeat looks new.

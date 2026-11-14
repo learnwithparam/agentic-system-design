@@ -23,7 +23,7 @@ flowchart LR
 
 Fill `cost.yaml` next to `design.md`:
 
-- `outcome`: the result you pay for, such as `one outage handled`.
+- `outcome`: the result you pay for, such as one outage handled.
 - `value_per_outcome_usd`: what one outcome is worth to Copperbeck, with your reason in a comment.
 - `monthly_budget_usd`: what finance will spend on model calls in a month.
 - `calls`: one entry for each machine job in your Shape section, with `job`, `role` (`fast` or `smart`),
@@ -45,7 +45,7 @@ Then print the board:
 bun parts/03-plan-for-failure-and-cost/price-the-outcome.ts
 ```
 
-Expect: `Price board for one outage handled` and a line for each call, once `cost.yaml` is filled.
+Expect: a price board for one outage handled, and a line for each call, once `cost.yaml` is filled.
 
 The sample answer prints this board:
 
