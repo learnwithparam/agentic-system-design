@@ -1,5 +1,13 @@
 # Price the design with LiteLLM
 
+## After this part you can
+
+Price a design with real model prices from LiteLLM.
+
+## You leave with
+
+A cost sheet for your design built from a price table.
+
 ## The problem
 
 You priced the outage desk by hand. Each price came from a page you read and typed into `cost.yaml`.
@@ -26,6 +34,25 @@ and the cost from the map. The check reads the sheet and writes a result file.
 | Step               | Minutes | You produce                                                           |
 | ------------------ | ------- | --------------------------------------------------------------------- |
 | `price-the-design` | 15      | `sheet.csv` with a model key, a LiteLLM version and a recomputed cost |
+
+## Steps
+
+| Step               | What you do                                                   |
+| ------------------ | ------------------------------------------------------------- |
+| `price-the-design` | Run `bun run verify price-the-design` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                        | Who made it                                         | Why                                                                    | Link                                                              |
+| ----- | -------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| read  | How we built our multi-agent research system | Anthropic engineering                               | The team that runs it shares real token costs and failures.            | https://www.anthropic.com/engineering/multi-agent-research-system |
+| read  | Claude Code auto mode                        | Anthropic engineering                               | The source of the number on how often people accept prompts.           | https://www.anthropic.com/engineering/claude-code-auto-mode       |
+| video | How we build effective agents                | Barry Zhang, Anthropic                              | The maker of the method explains when an agent is worth its cost.      | https://www.youtube.com/watch?v=D7_ipDqhtwk                       |
+| video | Why AI evals matter                          | Hamel Husain and Shreya Shankar, on Lenny's Podcast | Two people who run evals for a living show how to check an AI product. | https://www.youtube.com/watch?v=BsWxPI9UM4c                       |
+
+## Project
+
+Price your own design for one outcome and compare the cost with its value.
 
 ## Walkthrough
 

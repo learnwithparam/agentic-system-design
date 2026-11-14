@@ -1,5 +1,13 @@
 # Meet the desk
 
+## After this part you can
+
+Run the finished storm desk and say which job needs an agent.
+
+## You leave with
+
+A `first-look.md` file that names the job.
+
 ## The problem
 
 Copperbeck Power is a made-up power company. Its storm desk is the team that handles power cuts on a storm
@@ -41,6 +49,25 @@ must never do. Your design has to do at least as well, or explain why it cannot.
 | Step                   | Minutes | What the check reads                                                                           |
 | ---------------------- | ------- | ---------------------------------------------------------------------------------------------- |
 | `meet-the-outage-desk` | 15      | Three fresh replay runs of the finished system (OMS, ledger, events), and your `first-look.md` |
+
+## Steps
+
+| Step                   | What you do                                                       |
+| ---------------------- | ----------------------------------------------------------------- |
+| `meet-the-outage-desk` | Run `bun run verify meet-the-outage-desk` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                        | Who made it                               | Why                                                                   | Link                                                              |
+| ----- | -------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| video | How we build effective agents                | Barry Zhang, Anthropic                    | The maker of the method explains when an agent is worth its cost.     | https://www.youtube.com/watch?v=D7_ipDqhtwk                       |
+| read  | Building effective agents                    | Erik Schluntz and Barry Zhang, Anthropic  | Start simple and add rungs only when you must.                        | https://www.anthropic.com/engineering/building-effective-agents   |
+| video | Software is changing again                   | Andrej Karpathy, at a startup school talk | A top researcher explains what models can and cannot do for software. | https://www.youtube.com/watch?v=LCEmiRjPEtQ                       |
+| read  | How we built our multi-agent research system | Anthropic engineering                     | The team that runs it shares real token costs and failures.           | https://www.anthropic.com/engineering/multi-agent-research-system |
+
+## Project
+
+Pick one real job from your own work and say why it might need an agent.
 
 ## Walkthrough
 

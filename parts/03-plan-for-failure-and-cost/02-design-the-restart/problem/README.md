@@ -5,16 +5,6 @@
 The process that runs the crew agent will die one night. A server restarts, or the code crashes. When it
 starts again, it must pick up where it stopped. It must not send a second crew to the same outage.
 
-Anthropic built its managed agents this way. The run's record sits outside the process, so "nothing in the
-harness needs to survive a crash"
-([Scaling Managed Agents](https://www.anthropic.com/engineering/managed-agents)).
-
-Two ideas make a safe restart:
-
-1. **Run state lives outside the process.** If it lives in memory, it dies with the process.
-2. **Every write has an idempotency key.** The key is built from the write's own fields. A repeated write
-   with the same key changes nothing.
-
 ```mermaid
 sequenceDiagram
   participant A as Crew agent
@@ -25,7 +15,45 @@ sequenceDiagram
   O-->>A: already assigned, nothing new
 ```
 
-## Your challenge
+## Watch it done
+
+Check the starter:
+
+```bash
+bun run verify design-the-restart
+```
+
+Expect:
+
+```text
+FAIL  run state lives outside the process, and the restart says how it resumes
+FAIL  every write tool in Tools has an idempotency key
+1 of 5 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then the answer:
+
+```bash
+bun run verify design-the-restart solution
+```
+
+Expect:
+
+```text
+Done. All 5 rules pass.
+```
+
+## Your turn
+
+Anthropic built its managed agents this way. The run's record sits outside the process, so "nothing in the
+harness needs to survive a crash"
+([Scaling Managed Agents](https://www.anthropic.com/engineering/managed-agents)).
+
+Two ideas make a safe restart:
+
+1. **Run state lives outside the process.** If it lives in memory, it dies with the process.
+2. **Every write has an idempotency key.** The key is built from the write's own fields. A repeated write
+   with the same key changes nothing.
 
 Find `## Restart` in `design.md`. Fill three parts:
 
@@ -41,13 +69,27 @@ The starter fills one key for you. The sample harness already uses it:
   key: outage:crew
 ```
 
-For example, run `bun run storm` and find `CREW-5 to OUT-005`. The key for that write is `OUT-005:CREW-5`.
+For example, run `bun run storm` and find the line that sends CREW-5 to OUT-005. The key for that write is `OUT-005:CREW-5`.
 If the restart repeats it, the OMS sees the same key and does nothing.
 
 A key must never hold a clock time or a random id. Those change on every try, so a repeat looks new.
 
 The budget stops a run that goes wrong. A run that loops spends money and time. After `40` steps or `$0.50`,
 the sample design stops and asks the desk lead.
+
+Then run the check and fix each FAIL:
+
+```bash
+bun run verify design-the-restart
+```
+
+Expect: `Done. All 5 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system, with your own tools, people and numbers.
+
+Good looks like this: a stranger can name your tool, person and number.
 
 ## Done when
 
@@ -57,23 +99,14 @@ the sample design stops and asks the desk lead.
 - Every key is made of field names joined by `:`, with no time or random part.
 - The budget has steps and dollars above 0, and `when_hit: stop-and-ask`.
 
+## Solution
+
+The finished files are in `solution/`. Compare:
+
 ```bash
-bun run verify design-the-restart
+diff -r problem solution
 ```
 
-Expect: `Done. All 5 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                               | Fix                                                             |
-| ---------------------------------------------------------- | --------------------------------------------------------------- |
-| `FAIL run state lives outside the process ...`             | `memory` dies with the process. Use `oms` or `append-only-log`. |
-| `FAIL every write tool in Tools has an idempotency key`    | Add an entry for each tool with `action: write`.                |
-| `FAIL every key is built from the action's own fields ...` | Replace `uuid` or `time` with fields such as `outage`.          |
-
-## Words you will use
-
-- **Run state**: the record of how far one run got.
-- **Idempotency key**: a label on a write. The same write with the same key happens only once.
-- **Resume**: start again from the run state, not from the beginning.
-- **Budget**: the most steps and dollars one run may spend before it stops.
+Stuck? See [HELP.md](HELP.md).

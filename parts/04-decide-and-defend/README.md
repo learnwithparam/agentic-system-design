@@ -1,5 +1,13 @@
 # Decide and defend
 
+## After this part you can
+
+Record decisions, review a real system and defend your own design.
+
+## You leave with
+
+Three decision records and a finished `my-system.md`.
+
 ## The problem
 
 Your design now goes to a review board. That is a group of people who must agree before anyone builds it.
@@ -35,13 +43,14 @@ Read the diagram from left to right. You turn your `design.md` into three ADRs. 
 decision record) is a short file that records one choice, the options you turned down, and why. Then the
 board checks them against a list. If the design fails, you go back and fix `design.md`.
 
-| Step                   | Minutes | You produce                                                                                             |
-| ---------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
-| `record-the-decisions` | 20      | Three ADRs in `adr/`, MADR 4.0.0 form, each with a Confirmation section                                 |
-| `review-a-real-system` | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
-| `defend-the-design`    | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
+| Step                     | Minutes | You produce                                                                                             |
+| ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |
+| `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR form, each with a Confirmation section                                       |
+| `review-a-real-system`   | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
+| `defend-the-design`      | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
+| `design-your-own-system` | 20      | `my-system.md` and evidence files for a job of your own; the check never reads the storm desk           |
 
-MADR is a common template for ADRs, and the course uses version 4.0.0. Its Confirmation section says how
+MADR is a common template for ADRs, and the course uses its current form. Its Confirmation section says how
 you will check that the choice was carried out. In your ADRs, it names a check.
 
 In the review step you test one public system against the checklist. You mark each item pass, fail or not
@@ -49,6 +58,29 @@ stated. Every pass must quote the source, so a reviewer can find the words.
 
 Each step's `problem/` folder starts with the finished design from the steps before it, copied from their
 sample answers. So you can begin at any step.
+
+## Steps
+
+| Step                     | What you do                                                         |
+| ------------------------ | ------------------------------------------------------------------- |
+| `record-the-decisions`   | Run `bun run verify record-the-decisions` until every rule passes   |
+| `review-a-real-system`   | Run `bun run verify review-a-real-system` until every rule passes   |
+| `defend-the-design`      | Run `bun run verify defend-the-design` until every rule passes      |
+| `design-your-own-system` | Run `bun run verify design-your-own-system` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                   | Who made it                                         | Why                                                                    | Link                                                                     |
+| ----- | --------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| read  | Documenting architecture decisions      | Michael Nygard                                      | The original post that made decision records common.                   | https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions |
+| read  | Markdown Architectural Decision Records | The MADR project                                    | The official template this course uses for decisions.                  | https://adr.github.io/madr/                                              |
+| read  | Don't build multi-agents                | Walden Yan, Cognition                               | The team that runs a coding agent argues against many agents.          | https://cognition.ai/blog/dont-build-multi-agents                        |
+| video | Why AI evals matter                     | Hamel Husain and Shreya Shankar, on Lenny's Podcast | Two people who run evals for a living show how to check an AI product. | https://www.youtube.com/watch?v=BsWxPI9UM4c                              |
+| video | How we build effective agents           | Barry Zhang, Anthropic                              | The maker of the method explains when an agent is worth its cost.      | https://www.youtube.com/watch?v=D7_ipDqhtwk                              |
+
+## Project
+
+Write the design of one job of your own and defend it to a doubter.
 
 ## Walkthrough
 
@@ -84,13 +116,21 @@ bun run verify defend-the-design
 
 Expect: a `PASS` line for each earlier step and `Done.` once `review-request.md` is filled.
 
+Then fill `my-system.md` for a job of your own and put two real files in its `evidence/` folder.
+
+```bash
+bun run verify design-your-own-system
+```
+
+Expect: `Done. All 7 rules pass.` once your file and evidence are in place.
+
 When all three pass, check the whole part.
 
 ```bash
 bun run verify part decide-and-defend
 ```
 
-Expect: `Part decide-and-defend is done: 3/3 steps pass.` once all three steps pass.
+Expect: `Part decide-and-defend is done: 4/4 steps pass.` once all four steps pass.
 
 The full output then looks like this:
 
@@ -99,12 +139,13 @@ Part decide-and-defend:
   PASS   record-the-decisions  (8/8 rules)
   PASS   review-a-real-system  (5/5 rules)
   PASS   defend-the-design  (13/13 rules)
-Part decide-and-defend is done: 3/3 steps pass.
+  PASS   design-your-own-system  (7/7 rules)
+Part decide-and-defend is done: 4/4 steps pass.
 ```
 
 ## Assignment
 
-A review board has 20 minutes and three doubters: finance, security, and the head of control room
+A review board has a short slot and three doubters: finance, security, and the head of control room
 operations. Hand in three ADRs, `review-<case>.md` and `review-request.md`, next to your finished
 `design.md` and `cost.yaml`.
 

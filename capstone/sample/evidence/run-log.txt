@@ -1,0 +1,4 @@
+run_id=r-0412 return=RET-88 step=read_order status=ok
+run_id=r-0412 step=send_label status=ok
+run_id=r-0412 step=refund_payment gate=approve-the-refund waiting for the manager
+run_id=r-0412 gate=approve-the-refund answer=accept

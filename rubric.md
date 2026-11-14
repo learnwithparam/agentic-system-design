@@ -45,7 +45,7 @@ A workflow is below the agent rung, so the answer is yes. The check prints:
 | Design doc    | `design.md`                  | Sections Shape, Outcome, Pattern, Tools, Memory, Gates, Failures, Restart, each with a `yaml design` block        |
 | Cost model    | `cost.yaml` and its board    | Every model call has a price; cost per outcome for a normal and a storm month at the volumes in `world/desk.yaml` |
 | Failure modes | `## Failures` in `design.md` | At least five, one of each required kind, each caught by a named check                                            |
-| ADRs          | `adr/0001-*.md` and two more | MADR 4.0.0 headings, at least two options, a bad consequence, a Confirmation                                      |
+| ADRs          | `adr/0001-*.md` and two more | MADR headings, at least two options, a bad consequence, a Confirmation                                            |
 | Review        | `review-<case>.md`           | Every checklist item answered, every pass quoted from its source                                                  |
 
 ## Questions the script answers

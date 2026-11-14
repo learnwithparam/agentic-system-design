@@ -1,6 +1,6 @@
 # Assignment: price your design with LiteLLM
 
-This is optional in the live session and expected as homework. It takes about 15 minutes.
+This is optional in the live session and expected as homework. It takes a short while.
 
 ## The task
 

@@ -1,13 +1,20 @@
 # Plan for failure and cost
 
+## After this part you can
+
+Name the failures, design a safe restart, price an outcome and plan what you watch.
+
+## You leave with
+
+Failures, a restart plan, a price board and a watch plan in `design.md`.
+
 ## The problem
 
 Two hard questions arrive in the middle of a storm. First, the process that runs the crew agent dies, and
 some crews are assigned while others are not. Second, finance asks what one storm night costs. Your design
 needs an answer to both before anyone builds it.
 
-For example, run `bun run storm`. At `+60 min` the timeline prints `CREW-5 to OUT-005 on R-F05, restore in about
-200 min`. Now picture the process dying one second after that line. When it starts again, does it send a
+For example, run `bun run storm`. An hour in, the timeline prints a line that sends CREW-5 to OUT-005 on R-F05, with a restore time of a few hours. Now picture the process dying one second after that line. When it starts again, does it send a
 second crew to `OUT-005`? It must not.
 
 The fix is an idempotency key. That is a label that makes a repeated action count only once. The sample
@@ -53,11 +60,12 @@ handled "about 71%" of them. Each run cost $0.20 to $0.35, which it calls "two t
 human equivalent" ([Claude customer story, Freedom Forever](https://claude.com/customers/freedom-forever)).
 This is a vendor claim, so read it with care.
 
-| Step                 | Minutes | You produce                                                                                           |
-| -------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
-| `name-the-failures`  | 20      | `## Failures`: at least five failure modes, how each shows up, how it is caught, what the system does |
-| `design-the-restart` | 20      | `## Restart`: where run state lives, idempotency keys, step and money budget per run                  |
-| `price-the-outcome`  | 20      | `cost.yaml` and the cost board for a normal and a storm month                                         |
+| Step                       | Minutes | You produce                                                                                           |
+| -------------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
+| `name-the-failures`        | 20      | `## Failures`: at least five failure modes, how each shows up, how it is caught, what the system does |
+| `design-the-restart`       | 20      | `## Restart`: where run state lives, idempotency keys, step and money budget per run                  |
+| `price-the-outcome`        | 20      | `cost.yaml` and the cost board for a normal and a storm month                                         |
+| `design-the-observability` | 20      | `observability.md`: one signal for each failure, with a number and one person to tell                 |
 
 A failure mode is one way the system can go wrong, such as a tool that fails or a person who never answers.
 A budget per run is the most steps and dollars one run may spend before it stops and asks a person. A storm
@@ -65,6 +73,30 @@ month at Copperbeck has `420` outages. A normal month has `140`.
 
 Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample
 answers. So you can begin at any step.
+
+## Steps
+
+| Step                       | What you do                                                           |
+| -------------------------- | --------------------------------------------------------------------- |
+| `name-the-failures`        | Run `bun run verify name-the-failures` until every rule passes        |
+| `design-the-restart`       | Run `bun run verify design-the-restart` until every rule passes       |
+| `price-the-outcome`        | Run `bun run verify price-the-outcome` until every rule passes        |
+| `design-the-observability` | Run `bun run verify design-the-observability` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                        | Who made it                                         | Why                                                                    | Link                                                              |
+| ----- | -------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| read  | Monitoring distributed systems               | Google SRE team                                     | The team that runs Google production on what to watch and alert on.    | https://sre.google/sre-book/monitoring-distributed-systems/       |
+| read  | Alerting on SLOs                             | Google SRE team                                     | Every alert needs a number and an owner.                               | https://sre.google/workbook/alerting-on-slos/                     |
+| read  | Designing robust APIs with idempotency       | Brandur Leach, Stripe                               | The source of the idempotency key idea used in the restart step.       | https://stripe.com/blog/idempotency                               |
+| read  | How we built our multi-agent research system | Anthropic engineering                               | The team that runs it shares real token costs and failures.            | https://www.anthropic.com/engineering/multi-agent-research-system |
+| video | Why AI evals matter                          | Hamel Husain and Shreya Shankar, on Lenny's Podcast | Two people who run evals for a living show how to check an AI product. | https://www.youtube.com/watch?v=BsWxPI9UM4c                       |
+| video | How we build effective agents                | Barry Zhang, Anthropic                              | The maker of the method explains when an agent is worth its cost.      | https://www.youtube.com/watch?v=D7_ipDqhtwk                       |
+
+## Project
+
+Name three ways your own system can fail and the check that catches each.
 
 ## Walkthrough
 
@@ -106,7 +138,7 @@ Fill `cost.yaml` in `03-price-the-outcome/problem/`, then print its price board.
 bun parts/03-plan-for-failure-and-cost/price-the-outcome.ts
 ```
 
-Expect: `Price board for one outage handled` once `cost.yaml` is filled.
+Expect: the price board for one outage handled, once `cost.yaml` is filled.
 
 ```bash
 bun run verify price-the-outcome
@@ -120,7 +152,7 @@ When all three pass, check the whole part.
 bun run verify part plan-for-failure-and-cost
 ```
 
-Expect: `Part plan-for-failure-and-cost is done: 3/3 steps pass.` once all three steps pass.
+Expect: `Part plan-for-failure-and-cost is done: 4/4 steps pass.` once all four steps pass.
 
 The full output then looks like this:
 
@@ -129,7 +161,8 @@ Part plan-for-failure-and-cost:
   PASS   name-the-failures  (4/4 rules)
   PASS   design-the-restart  (5/5 rules)
   PASS   price-the-outcome  (6/6 rules)
-Part plan-for-failure-and-cost is done: 3/3 steps pass.
+  PASS   design-the-observability  (5/5 rules)
+Part plan-for-failure-and-cost is done: 4/4 steps pass.
 ```
 
 ## Assignment

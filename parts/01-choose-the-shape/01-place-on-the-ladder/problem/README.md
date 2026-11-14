@@ -15,9 +15,37 @@ flowchart LR
   A --> M[many-agents: models hand work to models]
 ```
 
-Each level is a rung. To place a job, ask: **who decides the next step?** A person, code, or the model.
+## Watch it done
 
-## Your challenge
+Check the starter:
+
+```bash
+bun run verify place-on-the-ladder
+```
+
+Expect:
+
+```text
+FAIL  every job sits on one rung of the ladder
+FAIL  every job says who decides the next step, and that matches its rung
+3 of 9 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then the answer:
+
+```bash
+bun run verify place-on-the-ladder solution
+```
+
+Expect:
+
+```text
+Done. All 9 rules pass.
+```
+
+## Your turn
+
+Each level is a rung. To place a job, ask: **who decides the next step?** A person, code, or the model.
 
 In `design.md`, under `## Shape`, place each of the four jobs from `world/desk.yaml` on one rung. Fill:
 
@@ -43,6 +71,20 @@ For example, the sample answer in `../solution/design.md` has:
 
 Read `world/policy.md` before you place `switch-the-feeder`.
 
+Then run the check and fix each FAIL:
+
+```bash
+bun run verify place-on-the-ladder
+```
+
+Expect: `Done. All 9 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system, with your own tools, people and numbers.
+
+Good looks like this: a stranger can name your tool, person and number.
+
 ## Done when
 
 - `design.md` has a Shape section with a `yaml design` block.
@@ -53,26 +95,14 @@ Read `world/policy.md` before you place `switch-the-feeder`.
 - At least one machine job is below the agent rung.
 - Every `why` has at least 8 words.
 
+## Solution
+
+The finished files are in `solution/`. Compare:
+
 ```bash
-bun run verify place-on-the-ladder
+diff -r problem solution
 ```
 
-Expect: `Done. All 9 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                              | Fix                                                                                          |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `FAIL design.md has a Shape section`                      | Keep the fence line exactly as ` ```yaml design `. Indent with spaces, not tabs.             |
-| `FAIL ... matches its rung`                               | A workflow is still decided by code, even when one step calls a model.                       |
-| `FAIL ... reserves for a person`                          | Policy rule P1 says no software operates a switch.                                           |
-| `FAIL at least one machine job sits below the agent rung` | Ask of each job: could I write every step down before it starts? If yes, it is not an agent. |
-
-To compare, run `bun run verify place-on-the-ladder solution` and read `../solution/design.md`.
-
-## Words you will use
-
-- **Rung**: one level of the ladder, from a person doing the job to many agents doing it.
-- **Workflow**: a fixed recipe in code. A model may do one step, but code picks the next step.
-- **Agent**: a loop where the model picks the next step. It calls tools until it decides it is done.
-- **Trigger**: what starts a job: a person, an event such as a new report, a schedule, or an agent.
+Stuck? See [HELP.md](HELP.md).

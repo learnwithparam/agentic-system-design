@@ -5,13 +5,6 @@
 Teams copy what they read in customer stories. But a story is written to sell. A reviewer reads it the way a
 doctor reads a test result: what was measured, against what base, and who checked it?
 
-For example, the AES story says "96% faster" for audit results. The same page says "Reduced audit costs by
-99%". Faster than what? 99% of which costs? The page does not say. So a reviewer marks that item "not
-stated" and asks the team.
-
-You review one real system with the same checklist your own design must pass. Its saved page is in
-`../cases/`.
-
 ```mermaid
 flowchart LR
   P[saved page in cases/] --> I[each checklist item]
@@ -22,7 +15,42 @@ flowchart LR
   N --> A
 ```
 
-## Your challenge
+## Watch it done
+
+Check the starter:
+
+```bash
+bun run verify review-a-real-system
+```
+
+Expect:
+
+```text
+FAIL  every checklist item is answered once with pass, fail or not-stated
+FAIL  at least one item is not stated
+2 of 5 rules pass. Fix the FAIL lines and run it again.
+```
+
+Then the answer:
+
+```bash
+bun run verify review-a-real-system solution
+```
+
+Expect:
+
+```text
+Done. All 5 rules pass.
+```
+
+## Your turn
+
+For example, the AES story says "96% faster" for audit results. The same page says "Reduced audit costs by
+99%". Faster than what? 99% of which costs? The page does not say. So a reviewer marks that item "not
+stated" and asks the team.
+
+You review one real system with the same checklist your own design must pass. Its saved page is in
+`../cases/`.
 
 Pick one case: `freedom-forever` or `aes`. Rename `review-freedom-forever.md` to match it, such as
 `review-aes.md`. Under `## Review`, set `case:` and answer each item:
@@ -51,6 +79,20 @@ For example, the sample answer for Freedom Forever has:
 Its question asks for the base: "Of the 19,000 emails, how many did a person check after the agent acted, and
 how many of those were wrong?"
 
+Then run the check and fix each FAIL:
+
+```bash
+bun run verify review-a-real-system
+```
+
+Expect: `Done. All 5 rules pass.` and a `Progress:` line.
+
+## Do it on your work
+
+Make the same move on your own system, with your own tools, people and numbers.
+
+Good looks like this: a stranger can name your tool, person and number.
+
 ## Done when
 
 - A `review-<case>.md` file has a Review block, and `case:` names a file in `cases/`.
@@ -59,22 +101,14 @@ how many of those were wrong?"
 - At least one item is `not-stated`.
 - The question asks for a denominator or about a gate, in at least 8 words, and ends with `?`.
 
+## Solution
+
+The finished files are in `solution/`. Compare:
+
 ```bash
-bun run verify review-a-real-system
+diff -r problem solution
 ```
 
-Expect: `Done. All 5 rules pass.` and a `Progress:` line.
+Expect: only the parts you fill in are different.
 
-## If you get stuck
-
-| What you see                                  | Fix                                                                             |
-| --------------------------------------------- | ------------------------------------------------------------------------------- |
-| `FAIL every pass quotes at least 5 words ...` | Copy the words from the case file. If the page never says it, use `not-stated`. |
-| `FAIL at least one item is not stated`        | Look again at `human-gate` and `system-of-record`.                              |
-| `FAIL the question for the team asks ...`     | Ask "of how many?" or "who signs off before the agent acts?".                   |
-
-## Words you will use
-
-- **Vendor claim**: a number published by the company selling the product.
-- **Denominator**: the number you divide by, the base of a percent.
-- **Not stated**: the page is silent on this item. It is not a pass and not a fail.
+Stuck? See [HELP.md](HELP.md).

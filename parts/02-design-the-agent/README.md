@@ -1,5 +1,13 @@
 # Design the agent
 
+## After this part you can
+
+Scope the tools, map the memory, place the gates and list the threats.
+
+## You leave with
+
+Tools, memory, gates and threats in `design.md`.
+
 ## The problem
 
 An agent is a model that picks its own next step and calls tools until the job is done. A tool is one action
@@ -15,12 +23,12 @@ permission prompts Claude Code shows them
 lead on a storm night. If they click yes without reading, the gate does not protect anyone.
 
 For example, run `bun run storm` and look at this line in the timeline above the board:
-`+295 min  BLOCKED close of OUT-005: 103 meters behind R-F05 still dark`. The agent called `oms_close_outage` to close an outage, and the harness blocked it.
+a line that says the close of OUT-005 was blocked, with 103 meters behind R-F05 still dark. The agent called `oms_close_outage` to close an outage, and the harness blocked it.
 Policy rule P2 says you close an outage only when every smart meter behind it reports power. A close
 cannot be undone, so this is the kind of tool that needs a hard stop.
 
-The board shows a second case. At `+60 min`, the Ellerby House care home is "routed to the desk lead, who
-calls at + 72 min". Rule P3 says a critical customer hears its restore time from a person. That is a gate
+The board shows a second case. An hour in, the Ellerby House care home is "routed to the desk lead, who
+calls about an hour later". Rule P3 says a critical customer hears its restore time from a person. That is a gate
 too.
 
 In this part you decide three things: which tools the agent holds, where each fact lives, and where a person
@@ -46,11 +54,12 @@ Read the arrows from left to right. Read tools only look. Write tools change som
 undo, like moving a crew. Others you cannot, like a text that has already reached a phone. Those go through
 the human gate, and if nobody answers in time, the system stops and waits.
 
-| Step              | Minutes | You produce                                                                                |
-| ----------------- | ------- | ------------------------------------------------------------------------------------------ |
-| `scope-the-tools` | 20      | `## Tools`: each tool with read or write, reversible or not, risk tier, response size cap  |
-| `map-the-memory`  | 20      | `## Memory`: each fact, its layer, who writes it, who reads it, when it expires            |
-| `place-the-gates` | 20      | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
+| Step                | Minutes | You produce                                                                                |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------ |
+| `scope-the-tools`   | 20      | `## Tools`: each tool with read or write, reversible or not, risk tier, response size cap  |
+| `map-the-memory`    | 20      | `## Memory`: each fact, its layer, who writes it, who reads it, when it expires            |
+| `place-the-gates`   | 20      | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
+| `model-the-threats` | 20      | `threats.md`: each threat, the tool it reaches, and the fence that holds it                |
 
 A few words from the table. A risk tier is how much harm a wrong call can do. A write you cannot undo is always tier high. A
 response size cap is the most text a tool may send back to the model. A memory layer is where a fact is kept.
@@ -63,6 +72,30 @@ them.
 
 Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample
 answers. So you can begin at any step.
+
+## Steps
+
+| Step                | What you do                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `scope-the-tools`   | Run `bun run verify scope-the-tools` until every rule passes   |
+| `map-the-memory`    | Run `bun run verify map-the-memory` until every rule passes    |
+| `place-the-gates`   | Run `bun run verify place-the-gates` until every rule passes   |
+| `model-the-threats` | Run `bun run verify model-the-threats` until every rule passes |
+
+## Watch and read
+
+| Kind  | Title                                       | Who made it                                         | Why                                                                    | Link                                                                              |
+| ----- | ------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| read  | Writing effective tools for agents          | Anthropic engineering                               | The source of the tool response cap used in this course.               | https://www.anthropic.com/engineering/writing-tools-for-agents                    |
+| read  | Claude Code auto mode                       | Anthropic engineering                               | The source of the number on how often people accept prompts.           | https://www.anthropic.com/engineering/claude-code-auto-mode                       |
+| read  | Effective context engineering for AI agents | Anthropic engineering                               | Memory and context limits from the team that builds the model.         | https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents |
+| read  | The lethal trifecta for AI agents           | Simon Willison                                      | The person who named the risk explains it in plain words.              | https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/                        |
+| video | Why AI evals matter                         | Hamel Husain and Shreya Shankar, on Lenny's Podcast | Two people who run evals for a living show how to check an AI product. | https://www.youtube.com/watch?v=BsWxPI9UM4c                                       |
+| video | How we build effective agents               | Barry Zhang, Anthropic                              | The maker of the method explains when an agent is worth its cost.      | https://www.youtube.com/watch?v=D7_ipDqhtwk                                       |
+
+## Project
+
+List the tools your own agent would use and mark which writes need a person.
 
 ## Walkthrough
 
@@ -97,13 +130,19 @@ bun run verify place-the-gates
 
 Expect: `Done. All 6 rules pass.` once your Gates section is filled.
 
+```bash
+bun run verify model-the-threats
+```
+
+Expect: `Done. All 6 rules pass.` once `threats.md` is filled.
+
 When all three pass, check the whole part.
 
 ```bash
 bun run verify part design-the-agent
 ```
 
-Expect: `Part design-the-agent is done: 3/3 steps pass.` once all three sections pass.
+Expect: `Part design-the-agent is done: 4/4 steps pass.` once all four steps pass.
 
 The full output then looks like this:
 
@@ -112,7 +151,8 @@ Part design-the-agent:
   PASS   scope-the-tools  (7/7 rules)
   PASS   map-the-memory  (6/6 rules)
   PASS   place-the-gates  (6/6 rules)
-Part design-the-agent is done: 3/3 steps pass.
+  PASS   model-the-threats  (6/6 rules)
+Part design-the-agent is done: 4/4 steps pass.
 ```
 
 ## Assignment
