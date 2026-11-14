@@ -1,8 +1,8 @@
 # Picks candidates
 
 For the page pass. Cut each part to 4 to 6 picks, keep at least 2 videos, check each link is live, then
-delete this file. Every pick passes the bar in STANDARD-v2 section 5: made by the person or team who made
-the method or runs it, about the idea and not a launch, never a listicle or content farm. Links were not
+delete this file. Every pick passes the bar in STANDARD-v2 section 5.
+It is made by the person or team who made the method or runs it. It is about the idea, not a launch. It is never a listicle or content farm. Links were not
 fetched in this pass, so the page pass must find the live URL and confirm the year.
 
 ## Part 00: meet the desk
@@ -43,7 +43,7 @@ fetched in this pass, so the page pass must find the live URL and confirm the ye
 
 1. Google SRE book, "Monitoring distributed systems", Beyer and others, 2016. The team that runs Google production. Article.
 2. Google SRE workbook, "Alerting on SLOs", 2018. Alerts need a number and an owner. Article.
-3. Stripe engineering, "Designing robust and predictable APIs with idempotency", Brandur Leach, 2017. Source of the idempotency key idea. Article.
+3. Stripe engineering, "Designing APIs with idempotency", Brandur Leach, 2017. Source of the idempotency key idea. Article.
 4. Anthropic, "Multi-agent research system", 2025. Failure and cost lessons from running it. Article.
 5. Hamel Husain, "Your AI product needs evals", 2024. Look at the data before you build alerts. Article.
 6. Charity Majors, "Observability 2.0" talks, Honeycomb, 2023 onward. Founder of the company that defined the term. Video.
