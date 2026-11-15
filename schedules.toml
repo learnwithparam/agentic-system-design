@@ -18,9 +18,9 @@ sessions = [
   { parts = ["price-the-design-with-litellm"], minutes = 80 },
 ]
 
-# Four weeks, self-paced or cohort: one part a week, plus the Go further rows, one peer review (30 min)
+# Five weeks, self-paced or cohort: one part a week, plus the Go further rows, one peer review (30 min)
 # and one live design review (60 min) each week.
-[four-weeks]
+[five-weeks]
 sessions = [
   { parts = ["meet-the-desk", "choose-the-shape"], minutes = 195 },
   { parts = ["design-the-agent"], minutes = 180 },
