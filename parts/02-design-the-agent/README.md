@@ -22,14 +22,16 @@ permission prompts Claude Code shows them
 ([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). Picture a tired desk
 lead on a storm night. If they click yes without reading, the gate does not protect anyone.
 
-For example, run `bun run storm` and look at this line in the timeline above the board:
-a line that says the close of OUT-005 was blocked, with 103 meters behind R-F05 still dark. The agent called `oms_close_outage` to close an outage, and the harness blocked it.
-Policy rule P2 says you close an outage only when every smart meter behind it reports power. A close
-cannot be undone, so this is the kind of tool that needs a hard stop.
+For example, run `bun run storm` and look at one line in the timeline above the board. It says the close of
+OUT-005 was blocked, with 103 meters behind R-F05 still dark.
+
+The agent called `oms_close_outage` to close an outage, and the harness blocked it. Policy rule P2 says you
+close an outage only when every smart meter behind it reports power. A close cannot be undone, so this is the
+kind of tool that needs a hard stop.
 
 The board shows a second case. An hour in, the Ellerby House care home is "routed to the desk lead, who
-calls about an hour later". Rule P3 says a critical customer hears its restore time from a person. That is a gate
-too.
+calls about an hour later". Rule P3 says a critical customer hears its restore time from a person. That is a
+gate too.
 
 In this part you decide three things: which tools the agent holds, where each fact lives, and where a person
 must decide.
@@ -50,9 +52,10 @@ flowchart LR
   G -->|timeout| S[Stop and wait, never proceed]
 ```
 
-Read the arrows from left to right. Read tools only look. Write tools change something. Some writes you can
-undo, like moving a crew. Others you cannot, like a text that has already reached a phone. Those go through
-the human gate, and if nobody answers in time, the system stops and waits.
+Read the arrows from left to right. Read tools only look. Write tools change something.
+
+Some writes you can undo, like moving a crew. Others you cannot, like a text that has already reached a
+phone. Those go through the human gate, and if nobody answers in time, the system stops and waits.
 
 | Step                | Minutes | You produce                                                                                |
 | ------------------- | ------- | ------------------------------------------------------------------------------------------ |
@@ -61,10 +64,17 @@ the human gate, and if nobody answers in time, the system stops and waits.
 | `place-the-gates`   | 20      | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
 | `model-the-threats` | 20      | `threats.md`: each threat, the tool it reaches, and the fence that holds it                |
 
-A few words from the table. A risk tier is how much harm a wrong call can do. A write you cannot undo is always tier high. A
-response size cap is the most text a tool may send back to the model. A memory layer is where a fact is kept.
-It can sit in four places. The context is what the model reads on this call. Run state is notes the
-harness keeps for one run. Long-term notes last across runs. The OMS is the outage system itself.
+A few words from the table. A risk tier is how much harm a wrong call can do. A write you cannot undo is
+always tier high.
+
+A response size cap is the most text a tool may send back to the model.
+
+A memory layer is where a fact is kept. It can sit in four places.
+
+- The context is what the model reads on this call.
+- Run state is notes the harness keeps for one run.
+- Long-term notes last across runs.
+- The OMS is the outage system itself.
 
 Gates per shift matters because people get tired. Your desk lead works a shift of `480` minutes. In a storm
 month, the desk handles `420` outages. If every outage asks for several approvals, the lead stops reading
@@ -170,8 +180,9 @@ Each question has a yes or no answer. The script answers the first four.
 | 4   | Do gates per desk lead per shift, from the storm month in `world/desk.yaml`, stay under the limit? | script      |
 | 5   | Does each `error_format` tell the model what to do next, not only what went wrong?                 | grader      |
 
-Go further: a storm month spreads its outages over many shifts. A storm night does not. It has `31` outages
-in one long shift. Count your gates for that night by hand. Does your limit still hold? If not, which gate
+Go further: a storm month spreads its outages over many shifts. A storm night does not.
+
+It has `31` outages in one long shift. Count your gates for that night by hand. Does your limit still hold? If not, which gate
 would you merge?
 
 ## Finished

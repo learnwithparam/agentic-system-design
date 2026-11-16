@@ -14,8 +14,11 @@ Two hard questions arrive in the middle of a storm. First, the process that runs
 some crews are assigned while others are not. Second, finance asks what one storm night costs. Your design
 needs an answer to both before anyone builds it.
 
-For example, run `bun run storm`. An hour in, the timeline prints a line that sends CREW-5 to OUT-005 on R-F05, with a restore time of a few hours. Now picture the process dying one second after that line. When it starts again, does it send a
-second crew to `OUT-005`? It must not.
+For example, run `bun run storm`. An hour in, the timeline prints a line that sends CREW-5 to OUT-005 on
+R-F05, with a restore time of a few hours.
+
+Now picture the process dying one second after that line. When it starts again, does it send a second crew to
+`OUT-005`? It must not.
 
 The fix is an idempotency key. That is a label that makes a repeated action count only once. The sample
 harness uses the key `outage:crew` for `crew_assign`, so here the key is `OUT-005:CREW-5`. The restart
@@ -58,6 +61,7 @@ Compare this with one public case. Freedom Forever is the largest home solar ins
 It reports that its permit email agent processed about 19,000 emails in its first month. It says it fully
 handled "about 71%" of them. Each run cost $0.20 to $0.35, which it calls "two to five times less than the
 human equivalent" ([Claude customer story, Freedom Forever](https://claude.com/customers/freedom-forever)).
+
 This is a vendor claim, so read it with care.
 
 | Step                       | Minutes | You produce                                                                                           |

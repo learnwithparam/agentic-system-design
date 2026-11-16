@@ -61,9 +61,9 @@ Expect: the timeline, then `Storm night replayed.` under a board like the one be
 
 ![The board after one storm night: outages found, reports attached, minutes, cost and blocked actions](../images/expected.png)
 
-3. Open `first-look.md` in this folder. Copy four numbers from the board, each after its label: outages
-   found, reports attached to the right outage, model cost of the storm night, and must-never actions
-   blocked.
+3. Open `first-look.md` in this folder. Copy four numbers from the board, each after its label. They are
+   outages found, reports attached to the right outage, model cost of the storm night, and must-never
+   actions blocked.
 4. On the last line, name the one job you think needs an agent. Use a job id from `world/desk.yaml`.
 5. Open `world/state/events.jsonl` and find the lines with `"kind":"blocked"`. Each one is the agent trying
    to close an outage while smart meters behind it were still dark.

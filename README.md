@@ -4,7 +4,9 @@ In this course, you write a design doc for a real agentic system. An agentic sys
 AI model chooses some of its own next steps.
 
 Your design doc answers four questions. Should each job be an agent at all? What must it never do? Where
-does a person say yes? And what does each good result cost? A script checks every part of your doc.
+does a person say yes? And what does each good result cost?
+
+A script checks every part of your doc.
 
 **Who it is for.** This course is for engineers who must design an agent system. It is also for product
 managers (PMs) who must approve one.
@@ -161,7 +163,7 @@ All model calls go through [config/models.ts](config/models.ts). That file names
 `openai`. Then put one key in `.env` (see `.env.example`).
 
 The replay replies in `world/replay/` come from `world/build-replay.ts`. That file is a script that acts
-like the model; its header says how. With a key, `bun run storm --record` swaps them for replies from a
+like the model. Its header says how. With a key, `bun run storm --record` swaps them for replies from a
 live model.
 
 [STANDARD.md](STANDARD.md) lists the rules every course repo follows, and the check behind each one.

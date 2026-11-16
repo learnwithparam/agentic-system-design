@@ -11,6 +11,7 @@ Three decision records and a finished `my-system.md`.
 ## The problem
 
 Your design now goes to a review board. That is a group of people who must agree before anyone builds it.
+
 This board has three doubters: finance, security, and the head of control room operations. Each one asks
 what a number means before they trust it.
 
@@ -23,12 +24,14 @@ For example, run `bun run storm` and read the first line of the board at the end
   Outages found                           31 of 31 (+5 false)
 ```
 
-The "31 of 31" alone looks perfect. The `+5 false` tells the rest: the system also opened 5 outages that
+The "31 of 31" alone looks perfect. The `+5 false` tells the rest. The system also opened 5 outages that
 were not real. The 31 matches the `31` outages of a storm night in `world/desk.yaml`, so you know the base.
 
 Public cases need the same care. AES's story says "96% faster" for audit results. The same page also says
 "Reduced audit costs by 99%" ([Claude customer story, AES](https://claude.com/customers/aes), a vendor
-claim). Faster than what? And 99% of which costs? The page does not say, so a reviewer marks it "not stated".
+claim).
+
+Faster than what? And 99% of which costs? The page does not say, so a reviewer marks it "not stated".
 
 ```mermaid
 flowchart LR
@@ -40,8 +43,9 @@ flowchart LR
 ```
 
 Read the diagram from left to right. You turn your `design.md` into three ADRs. An ADR (architecture
-decision record) is a short file that records one choice, the options you turned down, and why. Then the
-board checks them against a list. If the design fails, you go back and fix `design.md`.
+decision record) is a short file that records one choice, the options you turned down, and why.
+
+Then the board checks them against a list. If the design fails, you go back and fix `design.md`.
 
 | Step                     | Minutes | You produce                                                                                             |
 | ------------------------ | ------- | ------------------------------------------------------------------------------------------------------- |

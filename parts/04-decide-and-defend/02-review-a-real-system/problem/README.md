@@ -46,8 +46,10 @@ Done. All 5 rules pass.
 ## Your turn
 
 For example, the AES story says "96% faster" for audit results. The same page says "Reduced audit costs by
-99%". Faster than what? 99% of which costs? The page does not say. So a reviewer marks that item "not
-stated" and asks the team.
+99%".
+
+Faster than what? 99% of which costs? The page does not say. So a reviewer marks that item "not stated" and
+asks the team.
 
 You review one real system with the same checklist your own design must pass. Its saved page is in
 `../cases/`.
@@ -66,7 +68,9 @@ Pick one case: `freedom-forever` or `aes`. Rename `review-freedom-forever.md` to
 | `system-of-record` | Does it say where the truth is checked?                    |
 
 Answer each with `pass`, `fail` or `not-stated`. A `pass` needs a `quote` of at least 5 words, copied from
-the case file. Then write one `question` for the team about a denominator or a gate.
+the case file.
+
+Then write one `question` for the team about a denominator or a gate.
 
 For example, the sample answer for Freedom Forever has:
 
@@ -76,7 +80,7 @@ For example, the sample answer for Freedom Forever has:
   quote: Each execution costs $0.20–$0.35 and completes in about two minutes
 ```
 
-Its question asks for the base: "Of the 19,000 emails, how many did a person check after the agent acted, and
+Its question asks for the base. It reads: "Of the 19,000 emails, how many did a person check after the agent acted, and
 how many of those were wrong?"
 
 Then run the check and fix each FAIL:
