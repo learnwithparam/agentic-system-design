@@ -182,7 +182,7 @@ Each question has a yes or no answer. The script answers the first four.
 
 Go further: a storm month spreads its outages over many shifts. A storm night does not.
 
-It has `31` outages in one long shift. Count your gates for that night by hand. Does your limit still hold? If not, which gate
+A storm night has `31` outages in one long shift. Count your gates for that night by hand. Does your limit still hold? If not, which gate
 would you merge?
 
 ## Finished
