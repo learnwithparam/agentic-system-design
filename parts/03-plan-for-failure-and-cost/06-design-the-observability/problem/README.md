@@ -2,8 +2,8 @@
 
 ## The problem
 
-A failure you cannot see, you cannot fix. On a storm night the system runs for hours with nobody watching
-each line. You decide ahead of time what it writes down, and who hears about it.
+A failure you cannot see, you cannot fix. On a storm night, the system runs for hours with nobody watching each line.
+So you decide ahead of time what it writes down, and who hears about it.
 
 ```mermaid
 flowchart LR
@@ -42,11 +42,11 @@ Done. All 5 rules pass.
 
 ## Your turn
 
-Observability means the system writes enough records that you can ask it why something happened. The
-records are the signals. A signal with no number and no person is only a log.
+Observability means the system writes enough records that you can ask it why something happened. The records are the
+signals. A signal with no number and no person is only a log.
 
-Open `observability.md`. The `design.md` next to it is the sample with its Failures section. Add
-`run_id_field`, then one signal for every failure in `design.md`. Give each signal:
+Open `observability.md`. The `design.md` next to it is the sample, with its Failures section. Add `run_id_field`. Then
+add one signal for every failure in `design.md`. Give each signal:
 
 - `failure`: the failure text, copied word for word.
 - `signal` and `field`: what is counted, and the name of the number.
@@ -55,13 +55,13 @@ Open `observability.md`. The `design.md` next to it is the sample with its Failu
 - `tells`: one role, never "the team".
 - `action`: what that person does, in at least five words.
 
-For example, the sample answer in `../solution/observability.md` says the run that costs more than
-`2` dollars tells the `on-call-engineer` to stop the run.
+For example, the sample answer in `../solution/observability.md` says the run that costs more than `2` dollars tells the
+`on-call-engineer` to stop the run.
 
-Do it on your work: take your own agent's worst failure and write its signal. Which record holds the
-number, and who gets the alert?
+Do it on your work: take your own agent's worst failure and write its signal. Which record holds the number, and who
+gets the alert?
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify design-the-observability
@@ -73,7 +73,7 @@ Expect: `Done. All 5 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 

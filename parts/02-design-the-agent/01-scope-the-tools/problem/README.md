@@ -2,9 +2,9 @@
 
 ## The problem
 
-A tool is one action the agent may take, such as reading an outage or sending a text. Each tool you add is
-one more way for the agent to go wrong. Anthropic puts it this way: "More tools don't always lead to better
-outcomes" ([Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents)).
+A tool is one action the agent may take, such as reading an outage or sending a text. Each tool you add is one more
+way for the agent to go wrong. Anthropic puts it this way: "More tools don't always lead to better outcomes"
+([Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents)).
 
 ```mermaid
 flowchart LR
@@ -44,10 +44,10 @@ Done. All 7 rules pass.
 
 ## Your turn
 
-Some tools only look. Others change the world, and a few changes cannot be taken back. A text that reached
-a phone stays on that phone. Those tools need the most care.
+Some tools only look. Others change the world, and a few changes cannot be taken back. A text that reached a phone
+stays on that phone. Those tools need the most care.
 
-Find `## Tools` in `design.md`. List the tools your machine jobs need, each with these fields:
+Find `## Tools` in `design.md`. List the tools your machine jobs need. Give each one these fields:
 
 | Field                 | What to write                                             |
 | --------------------- | --------------------------------------------------------- |
@@ -73,10 +73,10 @@ For example, the sample answer in `../solution/design.md` has this tool:
   error_format: 103 smart meters behind R-F05 are still dark. Read the meters again after the next repair.
 ```
 
-`bun run storm` shows this case: a blocked close of OUT-005. The error tells the model what to try next.
-Why `25000`? The same post says Claude Code caps a tool reply at "25,000 tokens by default".
+`bun run storm` shows this case: a blocked close of OUT-005. The error tells the model what to try next. Why `25000`?
+The same post says Claude Code caps a tool reply at "25,000 tokens by default".
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify scope-the-tools
@@ -88,11 +88,11 @@ Expect: `Done. All 7 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 
-- `design.md` keeps its Shape section and has a Tools section with a `yaml design` block.
+- `design.md` keeps its Shape section, and has a Tools section with a `yaml design` block.
 - Every tool has every field, and its response cap is at most 25,000 tokens.
 - There is at least one read tool and one write tool.
 - Every write that cannot be undone is tier high.

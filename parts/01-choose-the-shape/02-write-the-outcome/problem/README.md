@@ -2,8 +2,8 @@
 
 ## The problem
 
-On the storm night you watched, the agent twice tried to close an outage because the crew said so. But smart
-meters behind those outages were still dark.
+On the storm night you watched, the agent twice tried to close an outage because the crew said so. But smart meters
+behind those outages were still dark.
 
 ```mermaid
 flowchart LR
@@ -43,11 +43,11 @@ Done. All 7 rules pass.
 
 ## Your turn
 
-Trusting the agent's "done" would send the crews home and leave a care home without power. So before you
-pick a pattern, write down what success means and how you measure it. Also write what must never happen, and
-where the truth lives.
+Trusting the agent's "done" would send the crews home and leave a care home without power. So before you pick a
+pattern, write down what success means and how you measure it. Also write what must never happen, and where the
+truth lives.
 
-Your Shape section is already in `design.md` (or paste in your own). Under `## Outcome`, fill the block:
+Your Shape section is already in `design.md`. Or paste in your own. Under `## Outcome`, fill in the block:
 
 | Field              | What to write                                                         |
 | ------------------ | --------------------------------------------------------------------- |
@@ -73,7 +73,7 @@ The done check reads two OMS tables. It takes nobody's word.
 
 `world/README.md` lists the nine OMS tables under "The system of record".
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify write-the-outcome
@@ -85,7 +85,7 @@ Expect: `Done. All 7 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 

@@ -2,8 +2,8 @@
 
 ## The problem
 
-Your design is full of choices. In a few months, someone will ask why you made them. If the reason lives
-only in your head, the next person may undo a good choice without knowing what it protected.
+Your design is full of choices. In a few months, someone will ask why you made them. If the reason lives only in your
+head, the next person may undo a good choice without knowing what it protected.
 
 ```mermaid
 flowchart LR
@@ -43,10 +43,10 @@ Done. All 8 rules pass.
 
 ## Your turn
 
-An ADR (architecture decision record) is a short file for one choice. It says what you chose, which options
-you turned down, what gets worse, and how you will check the choice works. This course uses the MADR
-template ([adr/madr](https://github.com/adr/madr/blob/develop/template/adr-template.md)). MADR marks the
-Confirmation section as optional. Here it is required, because a decision nobody checks soon drifts.
+An ADR (architecture decision record) is a short file for one choice. It says what you chose, which options you turned
+down, what gets worse, and how you will check the choice works. This course uses the MADR template
+([adr/madr](https://github.com/adr/madr/blob/develop/template/adr-template.md)). MADR marks the Confirmation section as
+optional. Here it is required, because a decision nobody checks soon drifts.
 
 Write three ADRs in `adr/`. The starter has three empty files:
 
@@ -54,8 +54,8 @@ Write three ADRs in `adr/`. The starter has three empty files:
 - `0002-the-riskiest-gate.md`: the gate on your riskiest tool. Link it to `../design.md#gates`.
 - `0003-the-cost.md`: your cost choice. Link it to `../cost.yaml`.
 
-You may rename each file after its title, such as `0002-a-person-approves-every-customer-text.md`. Keep
-the four digits and the dashes. Delete the old empty file.
+You may rename each file after its title, such as `0002-a-person-approves-every-customer-text.md`. Keep the four digits
+and the dashes. Delete the old empty file.
 
 Each ADR needs:
 
@@ -81,7 +81,7 @@ For example, the sample ADR on the riskiest gate ends like this:
 
 The `Bad,` line is honest: a gate slows every text down. A reviewer trusts an ADR that says what it costs.
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify record-the-decisions
@@ -93,7 +93,7 @@ Expect: `Done. All 8 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, person and number.
 
 ## Done when
 

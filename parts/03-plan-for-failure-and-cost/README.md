@@ -2,30 +2,30 @@
 
 ## After this part you can
 
-Name the failures, design a safe restart, price an outcome and plan what you watch.
+Name the failures, design a safe restart, price an outcome, and plan what you watch.
 
 ## You leave with
 
-Failures, a restart plan, a price board and a watch plan in `design.md`.
+Failures, a restart plan, a price board and a watch plan, all in `design.md`.
 
 ## The problem
 
-Two hard questions arrive in the middle of a storm. First, the process that runs the crew agent dies, and
-some crews are assigned while others are not. Second, finance asks what one storm night costs. Your design
-needs an answer to both before anyone builds it.
+Two hard questions arrive in the middle of a storm. First, the process that runs the crew agent dies. Some crews are
+assigned, and others are not. Second, finance asks what one storm night costs. Your design needs an answer to both,
+before anyone builds it.
 
-For example, run `bun run storm`. An hour in, the timeline prints a line that sends CREW-5 to OUT-005 on
-R-F05, with a restore time of a few hours.
+For example, run `bun run storm`. An hour in, the timeline prints a line that sends CREW-5 to OUT-005 on R-F05, with a
+restore time of a few hours.
 
 Now picture the process dying one second after that line. When it starts again, does it send a second crew to
 `OUT-005`? It must not.
 
-The fix is an idempotency key. That is a label that makes a repeated action count only once. The sample
-harness uses the key `outage:crew` for `crew_assign`, so here the key is `OUT-005:CREW-5`. The restart
-repeats the call with the same key, and the OMS answers "already assigned".
+The fix is an idempotency key. That is a label that makes a repeated action count only once. The sample harness uses
+the key `outage:crew` for `crew_assign`. So here the key is `OUT-005:CREW-5`. The restart repeats the call with the
+same key, and the OMS answers "already assigned".
 
-The OMS is the outage management system, the database that holds the truth about every outage. Run state
-is the record of how far one run got. It must live outside the process, so it survives when the process dies.
+The OMS is the outage management system, the database that holds the truth about every outage. Run state is the
+record of how far one run got. It must live outside the process, so it survives when the process dies.
 
 ```mermaid
 sequenceDiagram
@@ -39,11 +39,11 @@ sequenceDiagram
   O-->>A: already assigned, no second crew sent
 ```
 
-A workflow is code that runs fixed steps in a fixed order. In the diagram, the workflow hands one waiting
-outage to the agent.
+A workflow is code that runs fixed steps in a fixed order. In the diagram, the workflow hands one waiting outage to the
+agent.
 
-Now the cost question. The number that decides whether the system pays is the cost per outcome. That is
-what you spend to get one useful result, such as one outage handled.
+Now the cost question. The number that decides whether the system pays is the cost per outcome. That is what you spend
+to get one useful result, such as one outage handled.
 
 The bottom of the storm board gives you real numbers:
 
@@ -53,14 +53,13 @@ The bottom of the storm board gives you real numbers:
   Model cost per outage found             $0.005
 ```
 
-Cost comes from tokens. A token is a small piece of text, often part of a word. Prices are per million
-tokens. In `config/models.ts`, the `smart` role costs `$2` per million input tokens and `$10` per million
-output tokens. The `fast` role costs `$0.1` and `$0.5`.
+Cost comes from tokens. A token is a small piece of text, often part of a word. Prices are per million tokens. In
+`config/models.ts`, the `smart` role costs `$2` per million input tokens and `$10` per million output tokens. The
+`fast` role costs `$0.1` and `$0.5`.
 
-Compare this with one public case. Freedom Forever is the largest home solar installer in the United States.
-It reports that its permit email agent processed about 19,000 emails in its first month. It says it fully
-handled "about 71%" of them. Each run cost $0.20 to $0.35, which it calls "two to five times less than the
-human equivalent" ([Claude customer story, Freedom Forever](https://claude.com/customers/freedom-forever)).
+Compare this with one public case. Freedom Forever is the largest home solar installer in the United States. It
+reports that its permit email agent processed about 19,000 emails in its first month, and fully handled "about 71%" of them. Each run cost $0.20 to $0.35. The company calls that "two to five times less than the human equivalent"
+([Claude customer story, Freedom Forever](https://claude.com/customers/freedom-forever)).
 
 This is a vendor claim, so read it with care.
 
@@ -73,12 +72,12 @@ This is a vendor claim, so read it with care.
 | `plan-the-rollout`         | 20      | `## Rollout`: stages, a stop rule and a way back                                                      |
 | `design-the-observability` | 20      | `observability.md`: one signal for each failure, with a number and one person to tell                 |
 
-A failure mode is one way the system can go wrong, such as a tool that fails or a person who never answers.
-A budget per run is the most steps and dollars one run may spend before it stops and asks a person. A storm
-month at Copperbeck has `420` outages. A normal month has `140`.
+A failure mode is one way the system can go wrong, such as a tool that fails, or a person who never answers. A budget
+per run is the most steps and dollars one run may spend before it stops and asks a person. A storm month at Copperbeck
+has `420` outages. A normal month has `140`.
 
-Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample
-answers. So you can begin at any step.
+Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample answers. So
+you can begin at any step.
 
 ## Steps
 
@@ -102,11 +101,11 @@ answers. So you can begin at any step.
 
 ## Project
 
-Name three ways your own system can fail and the check that catches each.
+Name three ways your own system can fail, and the check that catches each.
 
 ## Walkthrough
 
-You work in each step's `problem/` folder. Open its `README.md`, fill the empty section, then run the check.
+You work in each step's `problem/` folder. Open its `README.md`, fill in the empty section, then run the check.
 
 First, see a passing answer. This runs the check on the sample answer for the first step:
 
@@ -116,7 +115,7 @@ bun run verify name-the-failures solution
 
 Expect: `Done. All 4 rules pass.`
 
-Now fill `## Failures` in `parts/03-plan-for-failure-and-cost/01-name-the-failures/problem/design.md`.
+Now fill in `## Failures` in `parts/03-plan-for-failure-and-cost/01-name-the-failures/problem/design.md`.
 
 ```bash
 bun run verify name-the-failures
@@ -138,7 +137,7 @@ bun run storm
 
 Expect: `Storm night replayed.` as the last line.
 
-Fill `cost.yaml` in `03-price-the-outcome/problem/`, then print its price board.
+Fill in `cost.yaml` in `03-price-the-outcome/problem/`, then print its price board.
 
 ```bash
 bun parts/03-plan-for-failure-and-cost/price-the-outcome.ts
@@ -175,9 +174,8 @@ Part plan-for-failure-and-cost is done: 6/6 steps pass.
 
 ## Assignment
 
-The process dies in the middle of a storm with some crews assigned and others not. Then finance asks what a
-storm night costs. Hand in the Failures and Restart sections of `design.md`, your `cost.yaml`, and its price
-board.
+The process dies in the middle of a storm, with some crews assigned and others not. Then finance asks what a storm
+night costs. Hand in the Failures and Restart sections of `design.md`, your `cost.yaml`, and its price board.
 
 Each question has a yes or no answer. The script answers the first four.
 
@@ -189,13 +187,13 @@ Each question has a yes or no answer. The script answers the first four.
 | 4   | Is the cost per outcome below its value, and the storm month under budget?       | script      |
 | 5   | Does each `system_does` leave the OMS correct, even if the run never comes back? | grader      |
 
-Go further: price the same design with `plan-the-crews` on the `fast` role. Then write which role you would
-pick. At what number of outages a month would your choice flip?
+Go further: price the same design with `plan-the-crews` on the `fast` role. Then write which role you would pick. At
+what number of outages a month would your choice flip?
 
 ## Finished
 
-You now know how your design fails and what it costs. For example, the sample answer handles one outage for
-about half a cent, and a storm month of `420` outages costs about two dollars.
+You now know how your design fails, and what it costs. For example, the sample answer handles one outage for about half
+a cent, and a storm month of `420` outages costs about two dollars.
 
-The next part, [Decide and defend](../04-decide-and-defend/README.md), turns these choices into decision
-records. Then it takes your design to a review board.
+The next part, [Decide and defend](../04-decide-and-defend/README.md), turns these choices into decision records. Then
+it takes your design to a review board.

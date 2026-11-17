@@ -6,19 +6,19 @@ Price a design with real model prices from LiteLLM.
 
 ## You leave with
 
-A cost sheet for your design built from a price table.
+A cost sheet for your design, built from a price table.
 
 ## The problem
 
-You priced the outage desk by hand. Each price came from a page you read and typed into `cost.yaml`.
-A team with three providers cannot keep that up. One list of prices, shared by every service, is easier.
+You priced the outage desk by hand. Each price came from a page you read and typed into `cost.yaml`. A team with
+three providers cannot keep that up. One list of prices, shared by every service, is easier.
 
-LiteLLM is an open-source tool that many teams run between their apps and their model providers. It
-publishes a cost map, the list of per-token prices. For example, your `plan-the-crews` call has a hand price per month. The cost map gives a second price for the same call. In this part you redo your cost estimate with that map
-and compare it with the one you made by hand.
+LiteLLM is an open-source tool that many teams run between their apps and their model providers. It publishes a cost
+map. A cost map is the list of per-token prices. For example, your `plan-the-crews` call has a hand price per month, and the cost map gives a second price for the same call. In this part, you redo your cost estimate with that map, and
+compare it with the one you made by hand.
 
-This part is optional in a live session. It is the take-home assignment. Nothing earlier in the course
-changes, and you still build each idea by hand first.
+This part is optional in a live session. It is the take-home assignment. Nothing earlier in the course changes, and you
+still build each idea by hand first.
 
 ```mermaid
 flowchart LR
@@ -28,8 +28,8 @@ flowchart LR
   K --> R[assignment/result.json]
 ```
 
-Read the diagram from left to right. The sheet holds your hand estimate. You add the model key, the version
-and the cost from the map. The check reads the sheet and writes a result file.
+Read the diagram from left to right. The sheet holds your hand estimate. You add the model key, the version and the cost
+from the map. The check reads the sheet and writes a result file.
 
 | Step               | Minutes | You produce                                                           |
 | ------------------ | ------- | --------------------------------------------------------------------- |
@@ -52,7 +52,7 @@ and the cost from the map. The check reads the sheet and writes a result file.
 
 ## Project
 
-Price your own design for one outcome and compare the cost with its value.
+Price your own design for one outcome, and compare the cost with its value.
 
 ## Walkthrough
 
@@ -64,7 +64,7 @@ bun run verify price-the-design solution
 
 Expect: `Done. All 2 rules pass.`
 
-Now fill your own `sheet.csv` in the step's `problem/` folder, then check it.
+Now fill in your own `sheet.csv` in the step's `problem/` folder, then check it.
 
 ```bash
 bun run verify price-the-design
@@ -76,5 +76,5 @@ For the take-home version, see the [assignment](../../assignment/README.md).
 
 ## Assignment
 
-The task and its Done-when lines are in [assignment/README.md](../../assignment/README.md). The script checks
-the first two lines. A person reads the rubric.
+The task and its Done-when lines are in [assignment/README.md](../../assignment/README.md). The script checks the first
+two lines. A person reads the rubric.

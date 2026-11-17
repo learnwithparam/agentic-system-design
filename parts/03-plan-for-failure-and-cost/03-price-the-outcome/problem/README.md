@@ -2,8 +2,8 @@
 
 ## The problem
 
-Finance asks one question: what does a storm night cost? "Tokens" is not an answer they can use. They need
-the cost per outcome: what you spend to get one useful result, here one outage handled.
+Finance asks one question: what does a storm night cost? "Tokens" is not an answer they can use. They need the cost
+per outcome. That is what you spend to get one useful result. Here, one outage handled.
 
 ```mermaid
 flowchart LR
@@ -44,28 +44,28 @@ Done. All 6 rules pass.
 
 ## Your turn
 
-Freedom Forever, the largest home solar installer in the United States, gives its number this way. Each run
-of its permit email agent "costs $0.20–$0.35", which it calls "two to five times less than the human
-equivalent" ([Freedom Forever customer story](https://claude.com/customers/freedom-forever)). That is a
-vendor claim, but it is the right shape: a cost per outcome next to a value per outcome.
+Freedom Forever, the largest home solar installer in the United States, gives its number this way. Each run of its
+permit email agent "costs $0.20–$0.35". The company calls that "two to five times less than the human equivalent"
+([Freedom Forever customer story](https://claude.com/customers/freedom-forever)). That is a vendor claim. But it has
+the right shape: a cost per outcome, next to a value per outcome.
 
-Fill `cost.yaml` next to `design.md`:
+Fill in `cost.yaml` next to `design.md`:
 
 - `outcome`: the result you pay for, such as one outage handled.
-- `value_per_outcome_usd`: what one outcome is worth to Copperbeck, with your reason in a comment.
+- `value_per_outcome_usd`: what one outcome is worth to Copperbeck. Give your reason in a comment.
 - `monthly_budget_usd`: what finance will spend on model calls in a month.
-- `calls`: one entry for each machine job in your Shape section, with `job`, `role` (`fast` or `smart`),
+- `calls`: one entry for each machine job in your Shape section. Each has `job`, `role` (`fast` or `smart`),
   `calls_per_outcome`, `input_tokens`, `cached_input_tokens` and `output_tokens`.
 
-Take the tokens from the storm night. Run `bun run storm`, then read `world/state/ledger.jsonl`. Each line
-is one model call. For example, this is one crew agent call:
+Take the tokens from the storm night. Run `bun run storm`, then read `world/state/ledger.jsonl`. Each line is one model
+call. For example, this is one crew agent call:
 
 ```text
 {"purpose":"plan-the-crews","role":"smart","input":6320,"cached":6233,"output":16, ...}
 ```
 
-The night had 113 such calls for 31 outages. So `calls_per_outcome` is about `3.6`. The starter already
-fills the `group-the-reports` call.
+The night had 113 such calls for 31 outages. So `calls_per_outcome` is about `3.6`. The starter already fills in the
+`group-the-reports` call.
 
 Then print the board:
 
@@ -79,7 +79,7 @@ The sample answer prints this board:
 
 ![The price board: cost per outcome, a normal month and a storm month](../images/expected.png)
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify price-the-outcome
@@ -91,7 +91,7 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 

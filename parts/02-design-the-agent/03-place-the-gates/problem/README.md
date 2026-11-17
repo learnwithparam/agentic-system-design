@@ -2,8 +2,8 @@
 
 ## The problem
 
-A gate is a stop where a person must say yes before an action runs. A gate only works if the person reads
-what they approve.
+A gate is a stop where a person must say yes before an action runs. A gate only works if the person reads what they
+approve.
 
 ```mermaid
 sequenceDiagram
@@ -50,13 +50,13 @@ Done. All 6 rules pass.
 ## Your turn
 
 Anthropic found that people "accept 93%" of the permission prompts Claude Code shows them
-([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). People click yes
-when they see too many prompts. So a gate people click through is not a gate.
+([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). People click yes when they
+see too many prompts. So a gate that people click through is not a gate.
 
-On a storm night the desk lead is tired and busy. Every gate you add takes some of their attention.
+On a storm night, the desk lead is tired and busy. Every gate you add takes some of their attention.
 
-Find `## Gates` in `design.md`. Add one gate for every tier-high tool, and one for rule P3 in
-`world/policy.md`. Give each gate:
+Find `## Gates` in `design.md`. Add one gate for every tier-high tool, and one for rule P3 in `world/policy.md`. Give
+each gate:
 
 - `gate`: a short name. `tools`: the tools it stops, from your Tools section.
 - `trigger`: what makes it fire. `decides`: the person who answers, such as `desk-lead`.
@@ -66,20 +66,19 @@ Find `## Gates` in `design.md`. Add one gate for every tier-high tool, and one f
 
 Then set `limit_per_shift`: the most gates one desk lead can read well in one shift.
 
-The check counts the gates for you. It takes the storm month in `world/desk.yaml` (`420` outages, `16000`
-reports, `260` critical calls). It spreads them over the shifts in a month of `480`-minute shifts. That is
-90 shifts: 30 days of three shifts a day.
+The check counts the gates for you. It takes the storm month in `world/desk.yaml` (`420` outages, `16000` reports,
+`260` critical calls). It spreads them over the shifts in a month of `480`-minute shifts. That is 90 shifts: 30 days
+of three shifts a day.
 
-For example, the sample answer in `../solution/design.md` has two gates per outage and one per critical
-call:
+For example, the sample answer in `../solution/design.md` has two gates per outage and one per critical call:
 
 ```text
 (420 + 420 + 260) gates / 90 shifts = about 12 gates per shift
 ```
 
-One gate per report instead would give `16000 / 90`, about 178 gates per shift. Nobody reads that many.
+One gate per report would give `16000 / 90`, about 178 gates per shift. Nobody reads that many.
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify place-the-gates
@@ -91,7 +90,7 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 

@@ -2,10 +2,9 @@
 
 ## The problem
 
-Copperbeck's director wants "an AI agent for storm nights". But you pay for every token, a small piece of
-text a model reads or writes. An agent uses about 4 times the tokens of a chat, and many agents about 15 times
-([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). And an agent on the
-switching job would break the desk's first safety rule.
+Copperbeck's director wants "an AI agent for storm nights". But every token costs money. An agent uses about 4 times the tokens of a chat, and many agents about 15 times
+([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). And an agent on the switching job
+would break the desk's first safety rule.
 
 ```mermaid
 flowchart LR
@@ -47,16 +46,16 @@ Done. All 9 rules pass.
 
 Each level is a rung. To place a job, ask: **who decides the next step?** A person, code, or the model.
 
-In `design.md`, under `## Shape`, place each of the four jobs from `world/desk.yaml` on one rung. Fill:
+In `design.md`, under `## Shape`, place each of the four jobs from `world/desk.yaml` on one rung. Fill in:
 
-| Field               | Allowed values                                                                                          |
-| ------------------- | ------------------------------------------------------------------------------------------------------- |
-| `rung`              | `person`, `one-call`, `workflow`, `agent`, `many-agents`                                                |
-| `decides_next_step` | `person`, `code` or `model`, matching the rung                                                          |
-| `trigger`           | `person`, `event`, `schedule`, `agent`: what starts it                                                  |
-| `lifetime`          | a number and a unit, such as `20 minutes`                                                               |
-| `reason`            | only on agent rungs, so add the line yourself: `open-ended-steps`, `varied-input` or `parallel-breadth` |
-| `why`               | one sentence that names a fact of the storm desk                                                        |
+| Field               | Allowed values                                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------------------------- |
+| `rung`              | `person`, `one-call`, `workflow`, `agent`, `many-agents`                                             |
+| `decides_next_step` | `person`, `code` or `model`, matching the rung                                                       |
+| `trigger`           | `person`, `event`, `schedule`, `agent`: what starts it                                               |
+| `lifetime`          | a number and a unit, such as `20 minutes`                                                            |
+| `reason`            | only on agent rungs. Add the line yourself: `open-ended-steps`, `varied-input` or `parallel-breadth` |
+| `why`               | one sentence that names a fact of the storm desk                                                     |
 
 For example, the sample answer in `../solution/design.md` has:
 
@@ -71,7 +70,7 @@ For example, the sample answer in `../solution/design.md` has:
 
 Read `world/policy.md` before you place `switch-the-feeder`.
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify place-on-the-ladder
@@ -83,7 +82,7 @@ Expect: `Done. All 9 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 

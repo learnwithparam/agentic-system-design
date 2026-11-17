@@ -2,7 +2,9 @@
 
 ## The problem
 
-On the storm night, 4,200 reports came in for 31 outages. A design that works for ten reports can fall over at 4,200. Before you build, write down what people need, how fast each job must answer, and how many model calls the night needs.
+On the storm night, 4,200 reports came in for 31 outages. A design that works for ten reports can fall over at
+4,200. Before you build, write down what people need, how fast each job must answer, and how many model calls the
+night needs.
 
 ```mermaid
 flowchart LR
@@ -41,10 +43,10 @@ Done. All 6 rules pass.
 
 ## Your turn
 
-Latency is how long one job may take to answer. Capacity is how much work comes in. A smart meter alarm
-already names the customer, so it needs no model. Only phone and text reports do.
+Latency is how long one job may take to answer. Capacity is how much work comes in. A smart meter alarm already names
+the customer, so it needs no model. Only phone and text reports do.
 
-Open `design.md` in this folder. Fill the block under `## Load`:
+Open `design.md` in this folder. Fill in the block under `## Load`:
 
 1. Write `requirements`: at least two full sentences about what a customer, a critical customer and a crew need.
 2. Write `load`: `reports_per_night` and `outages_per_night`, copied from `storm_night` in `world/desk.yaml`.
@@ -59,10 +61,10 @@ For example, one latency entry looks like this:
   why: The text should reach the customer while the crew plan is still fresh.
 ```
 
-The job `switch-the-feeder` belongs to a person, so it gets no budget. The crew plan is a loop of calls, so
-it gets a longer budget than one call.
+The job `switch-the-feeder` belongs to a person, so it gets no budget. The crew plan is a loop of calls, so it gets
+a longer budget than one call.
 
-Then run the check and fix each FAIL line it prints:
+Then run the check, and fix each FAIL line it prints:
 
 ```bash
 bun run verify size-the-load
@@ -72,9 +74,9 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 ## Do it on your work
 
-Write the same Load block for your own agent. Use the busiest day you know, its real report count and the slowest job.
+Write the same Load block for your own agent. Use the busiest day you know, its real report count, and the slowest job.
 
-Good looks like this: a stranger can read your numbers and say which job is the slowest and why.
+A good answer is one where a stranger can read your numbers and say which job is the slowest, and why.
 
 ## Done when
 

@@ -2,8 +2,8 @@
 
 ## The problem
 
-A rung says who decides. A pattern says how the work flows from step to step. Teams often jump to the most
-complex pattern because it looks good in a demo.
+A rung says who decides. A pattern says how the work flows from step to step. Teams often jump to the most complex
+pattern, because it looks good in a demo.
 
 ```mermaid
 flowchart LR
@@ -44,15 +44,15 @@ Done. All 6 rules pass.
 
 ## Your turn
 
-Microsoft's pattern guide warns against this. It lists "Adding agents that don't provide meaningful
-specialization" as an antipattern, that is, a common mistake
+Microsoft's pattern guide warns against this mistake. It lists "Adding agents that don't provide meaningful
+specialization" as an antipattern. An antipattern is a common mistake
 ([Azure Architecture Center, AI agent orchestration patterns](https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/ai-ml/guide/ai-agent-design-patterns.md)).
 
-Each step up also costs more tokens. One agent uses about 4 times the tokens of a chat. Many agents use about
-15 times ([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). So pick the
-simplest pattern that works. Then say why the next simpler one fails.
+Each step up also costs more tokens. One agent uses about 4 times the tokens of a chat. Many agents use about 15 times
+([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). So pick the simplest pattern that
+works. Then say why the next simpler one fails.
 
-The simplest pattern is on the left, the most costly on the right.
+The simplest pattern is on the left, and the most costly is on the right.
 
 Find `## Pattern` in `design.md`. Give each job one pattern that fits its rung in your Shape section:
 
@@ -81,10 +81,10 @@ For example, the sample answer in `../solution/design.md` picks this for the cre
   why_not_simpler: A fixed chain cannot react when a repair uncovers a second fault or a crew frees early, which happens on most storm nights.
 ```
 
-A chain is a fixed list of steps. It cannot change its plan halfway, so the crew job needs an agent loop.
-The multiplier of 4 matches what Anthropic measured for one agent.
+A chain is a fixed list of steps. It cannot change its plan halfway, so the crew job needs an agent loop. The
+multiplier of 4 matches what Anthropic measured for one agent.
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify pick-the-pattern
@@ -96,13 +96,13 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 
-- `design.md` keeps its Shape section and has a Pattern section with a `yaml design` block.
+- `design.md` keeps its Shape section, and has a Pattern section with a `yaml design` block.
 - Every job on the desk has exactly one pattern.
-- Every pattern is on the list and fits the job's rung.
+- Every pattern is on the list, and fits the job's rung.
 - Every machine job names a simpler pattern it rejected.
 - Every `why_not_simpler` has at least 10 words.
 - Every agent pattern has a `token_multiplier` near Anthropic's numbers.

@@ -2,42 +2,39 @@
 
 ## After this part you can
 
-Scope the tools, map the memory, place the gates and list the threats.
+Scope the tools, map the memory, place the gates, and list the threats.
 
 ## You leave with
 
-Tools, memory, gates and threats in `design.md`.
+Tools, memory, gates and threats, all in `design.md` and `threats.md`.
 
 ## The problem
 
-An agent is a model that picks its own next step and calls tools until the job is done. A tool is one action
-the agent may take, such as reading an outage or sending a text. In your design, the crew plan agent can
-assign crews, send texts and close outages.
+An agent is a model that picks its own next step, and calls tools until the job is done. A tool is one action the
+agent may take, such as reading an outage or sending a text. In your design, the crew plan agent can assign crews,
+send texts and close outages.
 
 Every tool is a new way to be wrong, and to be wrong fast. So some tools need a gate. A gate is a stop where a
 person must say yes before the action runs.
 
-A gate only helps if people read what they approve. Anthropic reports that people "accept 93%" of the
-permission prompts Claude Code shows them
-([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)). Picture a tired desk
-lead on a storm night. If they click yes without reading, the gate does not protect anyone.
+A gate only helps if people read what they approve. Anthropic reports that people "accept 93%" of the permission
+prompts Claude Code shows them ([Claude Code auto mode](https://www.anthropic.com/engineering/claude-code-auto-mode)).
+Picture a tired desk lead on a storm night. If they click yes without reading, the gate does not protect anyone.
 
-For example, run `bun run storm` and look at one line in the timeline above the board. It says the close of
-OUT-005 was blocked, with 103 meters behind R-F05 still dark.
+For example, run `bun run storm` and look at one line in the timeline above the board. It says the close of OUT-005
+was blocked, with 103 meters behind R-F05 still dark.
 
-The agent called `oms_close_outage` to close an outage, and the harness blocked it. Policy rule P2 says you
-close an outage only when every smart meter behind it reports power. A close cannot be undone, so this is the
-kind of tool that needs a hard stop.
+The agent called `oms_close_outage` to close an outage, and the harness blocked it. The harness is the code around the
+model that runs its tools. Policy rule P2 says you close an outage only when every smart meter behind it reports
+power. A close cannot be undone, so this is the kind of tool that needs a hard stop.
 
-The board shows a second case. An hour in, the Ellerby House care home is "routed to the desk lead, who
-calls about an hour later". Rule P3 says a critical customer hears its restore time from a person. That is a
-gate too.
+The board shows a second case. An hour in, the Ellerby House care home is "routed to the desk lead, who calls about
+an hour later". Rule P3 says a critical customer hears its restore time from a person. That is a gate too.
 
-In this part you decide three things: which tools the agent holds, where each fact lives, and where a person
-must decide.
+In this part you decide three things. Which tools does the agent hold? Where does each fact live? Where must a person
+decide?
 
-The diagram shows the harness, that is, the code around the model that runs its tools. The OMS is the
-outage management system, the database that holds the truth about every outage.
+The OMS is the outage management system. It is the database that holds the truth about every outage.
 
 ```mermaid
 flowchart LR
@@ -54,8 +51,8 @@ flowchart LR
 
 Read the arrows from left to right. Read tools only look. Write tools change something.
 
-Some writes you can undo, like moving a crew. Others you cannot, like a text that has already reached a
-phone. Those go through the human gate, and if nobody answers in time, the system stops and waits.
+Some writes you can undo, like moving a crew. Others you cannot, like a text that has already reached a phone. Those
+go through the human gate. If nobody answers in time, the system stops and waits.
 
 | Step                | Minutes | You produce                                                                                |
 | ------------------- | ------- | ------------------------------------------------------------------------------------------ |
@@ -64,24 +61,23 @@ phone. Those go through the human gate, and if nobody answers in time, the syste
 | `place-the-gates`   | 20      | `## Gates`: each gate, its trigger, who decides, the answers, the timeout, gates per shift |
 | `model-the-threats` | 20      | `threats.md`: each threat, the tool it reaches, and the fence that holds it                |
 
-A few words from the table. A risk tier is how much harm a wrong call can do. A write you cannot undo is
-always tier high.
+A few words from the table. A risk tier is how much harm a wrong call can do. A write you cannot undo is always
+tier high.
 
 A response size cap is the most text a tool may send back to the model.
 
-A memory layer is where a fact is kept. It can sit in four places.
+A memory layer is where a fact is kept. There are four layers.
 
 - The context is what the model reads on this call.
 - Run state is notes the harness keeps for one run.
 - Long-term notes last across runs.
 - The OMS is the outage system itself.
 
-Gates per shift matters because people get tired. Your desk lead works a shift of `480` minutes. In a storm
-month, the desk handles `420` outages. If every outage asks for several approvals, the lead stops reading
-them.
+Gates per shift matters because people get tired. Your desk lead works a shift of `480` minutes. In a storm month,
+the desk handles `420` outages. If every outage asks for several approvals, the lead stops reading them.
 
-Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample
-answers. So you can begin at any step.
+Each step's `problem/design.md` starts with the sections from the steps before it, copied from their sample answers.
+So you can begin at any step.
 
 ## Steps
 
@@ -105,12 +101,12 @@ answers. So you can begin at any step.
 
 ## Project
 
-List the tools your own agent would use and mark which writes need a person.
+List the tools your own agent would use, and mark which writes need a person.
 
 ## Walkthrough
 
-You work in each step's `problem/` folder. Open its `README.md`, fill the empty section in `design.md`, then
-run the check.
+You work in each step's `problem/` folder. Open its `README.md`, fill in the empty section in `design.md`, then run
+the check.
 
 First, see what a passing answer looks like. This runs the check on the sample answer for the first step:
 
@@ -120,7 +116,7 @@ bun run verify scope-the-tools solution
 
 Expect: `Done. All 7 rules pass.`
 
-Now fill `## Tools` in `parts/02-design-the-agent/01-scope-the-tools/problem/design.md` and check it.
+Now fill in `## Tools` in `parts/02-design-the-agent/01-scope-the-tools/problem/design.md`, and check it.
 
 ```bash
 bun run verify scope-the-tools
@@ -146,7 +142,7 @@ bun run verify model-the-threats
 
 Expect: `Done. All 6 rules pass.` once `threats.md` is filled.
 
-When all three pass, check the whole part.
+When all four pass, check the whole part.
 
 ```bash
 bun run verify part design-the-agent
@@ -167,8 +163,8 @@ Part design-the-agent is done: 4/4 steps pass.
 
 ## Assignment
 
-The crew plan agent can assign crews and send texts. One wrong text to a hospital is a safety event. Hand in
-the Tools, Memory and Gates sections of your `design.md`.
+The crew plan agent can assign crews and send texts. One wrong text to a hospital is a safety event. Hand in the
+Tools, Memory and Gates sections of your `design.md`.
 
 Each question has a yes or no answer. The script answers the first four.
 
@@ -182,14 +178,14 @@ Each question has a yes or no answer. The script answers the first four.
 
 Go further: a storm month spreads its outages over many shifts. A storm night does not.
 
-A storm night has `31` outages in one long shift. Count your gates for that night by hand. Does your limit still hold? If not, which gate
-would you merge?
+A storm night has `31` outages in one long shift. Count your gates for that night by hand. Does your limit still
+hold? If not, which gate would you merge?
 
 ## Finished
 
-You now have the inside of the agent on paper. You know which tools it holds and how risky each one is. You
-know where each fact lives, and where a person must say yes. For example, `notify_customers` is tier high,
-and the `send-the-restore-time` gate stops it until the desk lead answers.
+You now have the inside of the agent on paper. You know which tools it holds, and how risky each one is. You know
+where each fact lives, and where a person must say yes. For example, `notify_customers` is tier high, and the
+`send-the-restore-time` gate stops it until the desk lead answers.
 
-The next part, [Plan for failure and cost](../03-plan-for-failure-and-cost/README.md), asks what happens when
-this agent fails. It also asks what one outage costs in model calls.
+The next part, [Plan for failure and cost](../03-plan-for-failure-and-cost/README.md), asks what happens when this
+agent fails. It also asks what one outage costs in model calls.

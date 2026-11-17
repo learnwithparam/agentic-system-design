@@ -2,21 +2,21 @@
 
 ## After this part you can
 
-Record decisions, review a real system and defend your own design.
+Record decisions, review a real system, and defend your own design.
 
 ## You leave with
 
-Three decision records and a finished `my-system.md`.
+Three decision records, and a finished `my-system.md`.
 
 ## The problem
 
 Your design now goes to a review board. That is a group of people who must agree before anyone builds it.
 
-This board has three doubters: finance, security, and the head of control room operations. Each one asks
-what a number means before they trust it.
+The board has three doubters: finance, security, and the head of control room operations. Each one asks what a number
+means before they trust it.
 
-The first question a reviewer asks is always the same: compared with what? A number with no base can mean
-almost anything.
+The first question a reviewer asks is always the same: compared with what? A number with no base can mean almost
+anything.
 
 For example, run `bun run storm` and read the first line of the board at the end:
 
@@ -24,12 +24,11 @@ For example, run `bun run storm` and read the first line of the board at the end
   Outages found                           31 of 31 (+5 false)
 ```
 
-The "31 of 31" alone looks perfect. The `+5 false` tells the rest. The system also opened 5 outages that
-were not real. The 31 matches the `31` outages of a storm night in `world/desk.yaml`, so you know the base.
+"31 of 31" alone looks perfect. The `+5 false` tells the rest. The system also opened 5 outages that were not real. The
+31 matches the `31` outages of a storm night in `world/desk.yaml`, so you know the base.
 
-Public cases need the same care. AES's story says "96% faster" for audit results. The same page also says
-"Reduced audit costs by 99%" ([Claude customer story, AES](https://claude.com/customers/aes), a vendor
-claim).
+Public cases need the same care. AES's story says "96% faster" for audit results. The same page also says "Reduced audit
+costs by 99%" ([Claude customer story, AES](https://claude.com/customers/aes), a vendor claim).
 
 Faster than what? And 99% of which costs? The page does not say, so a reviewer marks it "not stated".
 
@@ -42,8 +41,8 @@ flowchart LR
   V -->|fail| D
 ```
 
-Read the diagram from left to right. You turn your `design.md` into three ADRs. An ADR (architecture
-decision record) is a short file that records one choice, the options you turned down, and why.
+Read the diagram from left to right. You turn your `design.md` into three ADRs. An ADR (architecture decision record) is a
+short file that records one choice, the options you turned down, and why.
 
 Then the board checks them against a list. If the design fails, you go back and fix `design.md`.
 
@@ -52,16 +51,16 @@ Then the board checks them against a list. If the design fails, you go back and 
 | `record-the-decisions`   | 20      | Three ADRs in `adr/`, MADR form, each with a Confirmation section                                       |
 | `review-a-real-system`   | 20      | `review-<case>.md`: the checklist applied to one public system, every pass quoted                       |
 | `defend-the-design`      | 20      | The finished design and `review-request.md`: the three riskiest choices and what would change your mind |
-| `design-your-own-system` | 20      | `my-system.md` and evidence files for a job of your own; the check never reads the storm desk           |
+| `design-your-own-system` | 20      | `my-system.md` and evidence files for a job of your own. The check never reads the storm desk           |
 
-MADR is a common template for ADRs, and the course uses its current form. Its Confirmation section says how
-you will check that the choice was carried out. In your ADRs, it names a check.
+MADR is a common template for ADRs, and the course uses its current form. Its Confirmation section says how you will
+check that the choice was carried out. In your ADRs, it names a check.
 
-In the review step you test one public system against the checklist. You mark each item pass, fail or not
-stated. Every pass must quote the source, so a reviewer can find the words.
+In the review step, you test one public system against the checklist. You mark each item pass, fail or not stated.
+Every pass must quote the source, so a reviewer can find the words.
 
-Each step's `problem/` folder starts with the finished design from the steps before it, copied from their
-sample answers. So you can begin at any step.
+Each step's `problem/` folder starts with the finished design from the steps before it, copied from their sample
+answers. So you can begin at any step.
 
 ## Steps
 
@@ -84,11 +83,11 @@ sample answers. So you can begin at any step.
 
 ## Project
 
-Write the design of one job of your own and defend it to a doubter.
+Write the design of one job of your own, and defend it to a doubter.
 
 ## Walkthrough
 
-You work in each step's `problem/` folder. Open its `README.md`, fill the empty files, then run the check.
+You work in each step's `problem/` folder. Open its `README.md`, fill in the empty files, then run the check.
 
 First, see a passing answer. This runs the check on the three sample ADRs:
 
@@ -98,7 +97,7 @@ bun run verify record-the-decisions solution
 
 Expect: `Done. All 8 rules pass.`
 
-Now fill the three ADRs in `parts/04-decide-and-defend/01-record-the-decisions/problem/adr/`.
+Now fill in the three ADRs in `parts/04-decide-and-defend/01-record-the-decisions/problem/adr/`.
 
 ```bash
 bun run verify record-the-decisions
@@ -106,7 +105,7 @@ bun run verify record-the-decisions
 
 Expect: `Done. All 8 rules pass.` once your three ADRs are filled.
 
-Pick a case in `02-review-a-real-system/cases/` and fill your review.
+Pick a case in `02-review-a-real-system/cases/`, and fill in your review.
 
 ```bash
 bun run verify review-a-real-system
@@ -120,7 +119,7 @@ bun run verify defend-the-design
 
 Expect: a `PASS` line for each earlier step and `Done.` once `review-request.md` is filled.
 
-Then fill `my-system.md` for a job of your own and put two real files in its `evidence/` folder.
+Then fill in `my-system.md` for a job of your own, and put two real files in its `evidence/` folder.
 
 ```bash
 bun run verify design-your-own-system
@@ -149,9 +148,8 @@ Part decide-and-defend is done: 4/4 steps pass.
 
 ## Assignment
 
-A review board has a short slot and three doubters: finance, security, and the head of control room
-operations. Hand in three ADRs, `review-<case>.md` and `review-request.md`, next to your finished
-`design.md` and `cost.yaml`.
+A review board has a short slot and three doubters: finance, security, and the head of control room operations. Hand
+in three ADRs, `review-<case>.md` and `review-request.md`. Put them next to your finished `design.md` and `cost.yaml`.
 
 Each question has a yes or no answer. The script answers the first four.
 
@@ -163,14 +161,12 @@ Each question has a yes or no answer. The script answers the first four.
 | 4   | Does each riskiest choice say what would change your mind, with a number?              | script      |
 | 5   | Is the review question about a denominator or a gate that the page really leaves open? | grader      |
 
-Go further: grade `03-defend-the-design/examples/over-built.md` with the same checklist and find its five
-faults.
+Go further: grade `03-defend-the-design/examples/over-built.md` with the same checklist, and find its five faults.
 
 ## Finished
 
-You now have a design a review board can test. For example, your gate ADR names `place-the-gates` as its
-Confirmation, so anyone can run the check and see the gate still holds.
+You now have a design a review board can test. For example, your gate ADR names `place-the-gates` as its Confirmation,
+so anyone can run the check and see that the gate still holds.
 
-This is the last part. Your project is the folder you hand in: `design.md`, `cost.yaml`, `adr/`, a review
-of a real system and a review request. The [rubric](../../rubric.md) lists every question it must answer
-yes to.
+This is the last part. Your project is the folder you hand in: `design.md`, `cost.yaml`, `adr/`, a review of a real
+system and a review request. The [rubric](../../rubric.md) lists every question it must answer yes to.

@@ -2,8 +2,8 @@
 
 ## The problem
 
-Every system fails sometimes. A failure you named has a check and a next step. A failure you did not name
-finds nobody ready.
+Every system fails sometimes. A failure you named has a check and a next step. A failure you did not name finds
+nobody ready.
 
 ```mermaid
 flowchart LR
@@ -42,7 +42,8 @@ Done. All 4 rules pass.
 
 ## Your turn
 
-Do not write "we will monitor it". On a storm night nobody has time to watch. A check is code that reads a record, compares it with a rule, and acts when the rule breaks.
+Do not write "we will monitor it". On a storm night, nobody has time to watch. A check is code that reads a record,
+compares it with a rule, and acts when the rule breaks.
 
 For example, run `bun run storm` and find this line:
 
@@ -50,8 +51,8 @@ For example, run `bun run storm` and find this line:
   +295 min  BLOCKED close of OUT-005: 103 meters behind R-F05 still dark
 ```
 
-The agent tried to close an outage too early. A check read the meters, saw 103 still dark, and blocked the
-close. Nobody had to watch.
+The agent tried to close an outage too early. A check read the meters, saw 103 still dark, and blocked the close.
+Nobody had to watch.
 
 Find `## Failures` in `design.md`. Write at least five rows. Give each row:
 
@@ -81,7 +82,7 @@ For example, the sample answer in `../solution/design.md` has this row:
   system_does: escalates the gate to the duty manager and keeps the action waiting
 ```
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify name-the-failures
@@ -93,7 +94,7 @@ Expect: `Done. All 4 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 

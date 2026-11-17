@@ -2,8 +2,8 @@
 
 ## The problem
 
-An agent forgets everything between calls. So the harness decides what it remembers, and where. A fact
-kept in two places soon says two different things.
+An agent forgets everything between calls. So the harness decides what the agent remembers, and where. A fact kept in
+two places soon says two different things.
 
 ```mermaid
 flowchart TB
@@ -42,12 +42,12 @@ Done. All 6 rules pass.
 
 ## Your turn
 
-Anthropic tested this. Several agents wrote to one shared page about a set of contracts. Only "41 of the 57
-facts (72%)" made it into the brief. With one page per contract, all 57 did
+Anthropic tested this. Several agents wrote to one shared page about a set of contracts. Only "41 of the 57 facts
+(72%)" made it into the brief. With one page per contract, all 57 did
 ([The components of agent memory](https://www.anthropic.com/research/components-of-agent-memory)).
 
-At Copperbeck the OMS already holds the truth about outages, crews and customers. A second list of outages
-would drift away from it during a storm.
+At Copperbeck, the OMS already holds the truth about outages, crews and customers. A second list of outages would
+drift away from it during a storm.
 
 The top layer lasts one call. The bottom layer lasts for good.
 
@@ -58,8 +58,8 @@ Find `## Memory` in `design.md`. List every fact the system keeps. Give each fac
 - `writer` and `reader`: the job, tool or person that writes it and reads it.
 - `expires`: when it goes away, such as the end of the run.
 
-Cover every record in your Outcome and every object your tools act on. For example, `oms_read_meters` acts
-on `meter`, and `crew_assign` on `crew`.
+Cover every record in your Outcome, and every object your tools act on. For example, `oms_read_meters` acts on `meter`,
+and `crew_assign` acts on `crew`.
 
 Then set `context_cap_tokens`: the most tokens the harness puts in front of the model on one call.
 
@@ -73,10 +73,10 @@ For example, the sample answer in `../solution/design.md` keeps this run-state f
   expires: at the end of the run
 ```
 
-In `bun run storm`, find the line that sends CREW-5 to OUT-005. If the run stops there, this fact tells the restart that
-`CREW-5` is already on its way.
+In `bun run storm`, find the line that sends CREW-5 to OUT-005. If the run stops there, this fact tells the restart
+that `CREW-5` is already on its way.
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify map-the-memory
@@ -88,7 +88,7 @@ Expect: `Done. All 6 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 

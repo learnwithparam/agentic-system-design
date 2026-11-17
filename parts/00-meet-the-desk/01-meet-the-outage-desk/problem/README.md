@@ -2,9 +2,9 @@
 
 ## The problem
 
-You cannot design a system for a desk you have never watched. So first, you run the finished sample design
-through one storm night at Copperbeck Power. Then you read three things: what it did, what it cost, and what
-it was stopped from doing.
+You cannot design a system for a desk you have never watched. So first, run the finished sample design through one
+storm night at Copperbeck Power. Then read three things: what it did, what it cost, and what it was stopped from
+doing.
 
 ```mermaid
 flowchart LR
@@ -47,8 +47,8 @@ Done. All 8 rules pass.
 
 ## Your turn
 
-The ledger logs each model call and its cost. The events log has a line for each tool the system used. It
-also logs each gate, a rule in code that can stop an action.
+The ledger logs each model call and its cost. The events log has a line for each tool the system used. It also logs
+each gate. A gate is a rule in code that can stop an action.
 
 1. Read `world/README.md` and `world/policy.md`.
 2. Run the finished system:
@@ -61,12 +61,11 @@ Expect: the timeline, then `Storm night replayed.` under a board like the one be
 
 ![The board after one storm night: outages found, reports attached, minutes, cost and blocked actions](../images/expected.png)
 
-3. Open `first-look.md` in this folder. Copy four numbers from the board, each after its label. They are
-   outages found, reports attached to the right outage, model cost of the storm night, and must-never
-   actions blocked.
+3. Open `first-look.md` in this folder. Copy four numbers from the board, each after its label. They are outages
+   found, reports attached to the right outage, model cost of the storm night, and must-never actions blocked.
 4. On the last line, name the one job you think needs an agent. Use a job id from `world/desk.yaml`.
-5. Open `world/state/events.jsonl` and find the lines with `"kind":"blocked"`. Each one is the agent trying
-   to close an outage while smart meters behind it were still dark.
+5. Open `world/state/events.jsonl` and find the lines with `"kind":"blocked"`. Each one is the agent trying to close
+   an outage while smart meters behind it were still dark.
 
 For example, a filled `first-look.md` has lines like these:
 
@@ -82,10 +81,10 @@ And one blocked line in `events.jsonl` looks like this:
 {"run":"run-mwe5heo6","at":240,"kind":"blocked","rule":"P2","tool":"oms_close_outage","by":"agent","args":{"outage":"OUT-028"},"result":"151 smart meters behind R-F01 still dark"}
 ```
 
-Here the agent tried to close outage `OUT-028`. Rule `P2` stopped it, because 151 smart meters behind it
-still had no power. Your `run` id will differ.
+Here the agent tried to close outage `OUT-028`. Rule `P2` stopped it, because 151 smart meters behind it still had
+no power. Your `run` id will differ.
 
-Then run the check and fix each FAIL:
+Then run the check, and fix each FAIL:
 
 ```bash
 bun run verify meet-the-outage-desk
@@ -97,13 +96,13 @@ Expect: `Done. All 8 rules pass.` and a `Progress:` line.
 
 Make the same move on your own system, with your own tools, people and numbers.
 
-Good looks like this: a stranger can name your tool, person and number.
+A good answer is one where a stranger can name your tool, your person and your number.
 
 ## Done when
 
 - `first-look.md` exists in this folder.
-- The finished system gives the same board on three fresh replay runs, and never closes an outage while
-  meters are dark.
+- The finished system gives the same board on three fresh replay runs, and never closes an outage while meters are
+  dark.
 - Your four numbers match the board.
 - You named one of the desk's four jobs.
 
